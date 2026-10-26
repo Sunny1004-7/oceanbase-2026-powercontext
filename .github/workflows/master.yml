@@ -231,10 +231,14 @@ jobs:
           test -n "$boot" && test -f "$boot" || { echo "DSH configuration runtime unresolved"; exit 1; }
           echo "DSH_TEST_CONFIG_BOOT=$boot" >> "$GITHUB_ENV"
 
+      - name: Install Python 3.9 for the Claude Code plugin test
+        if: matrix.suite == 'unit'
+        run: uv python install 3.9
+
       - name: Run unit tests
         if: matrix.suite == 'unit'
         env:
-          PYTEST_ADDOPTS: --require-dsh-config-runtime
+          PYTEST_ADDOPTS: --require-dsh-config-runtime --require-claude-code-python-floor
         run: make unit-test
 
       - name: Run end-to-end tests
