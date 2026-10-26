@@ -922,6 +922,8 @@ def parallel_reports(release, monkeypatch, request):
     dist = root / "dist"
     dist.mkdir()
     shutil.copyfile(wheel, dist / wheel.name)
+    # Model an unpinned checkout even inside the upgrade workflow, which exports PC_UPGRADE_SOURCE_SHA.
+    monkeypatch.delenv("PC_UPGRADE_SOURCE_SHA", raising=False)
     prepared = root / "prepared"
     scheduled = parallel.prepare(root, dist, prepared, release=False, release_notes=None, selection=selection)
     executed = []
