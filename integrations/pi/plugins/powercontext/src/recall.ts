@@ -17,7 +17,7 @@
 import { captureUserPrompt } from './capture.ts'
 import { combineSignals, createTimeoutSignal, type PowerContextClient } from './client.ts'
 import type { ResolvedConfig } from './config.ts'
-import { validatePreparedContext } from './prepared-context.ts'
+import { boundedRecallQuery, validatePreparedContext } from './prepared-context.ts'
 import { scrubSecrets } from './secrets.ts'
 import type { DiagnosticEvent } from './diagnostics.ts'
 
@@ -91,7 +91,7 @@ export async function recallBeforeAgentStart(input: BeforeAgentStartInput): Prom
     try {
       const response = await input.runtime.client.request('prepare_context', {
         scope_id: scopeId,
-        query: safePrompt,
+        query: boundedRecallQuery(safePrompt),
         max_bytes: input.runtime.config.maxBytes,
         ...(input.runtime.config.contextAssembly === undefined ? {} : { assembly: input.runtime.config.contextAssembly }),
       }, signal)
