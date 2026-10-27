@@ -7,7 +7,7 @@ Python environment and build configuration.
 | Directory | Purpose | Suites |
 | --- | --- | --- |
 | [`coding/`](coding/README.md) | Coding-task completion and continuation quality | [SWE-bench Pro](coding/swebench_pro/README.md), [Work continuity](coding/work_continuity/README.md) |
-| [`memory/`](memory/README.md) | Memory retrieval, answer quality, and write-gate evidence | [LoCoMo](memory/locomo/README.md), [LoCoMo-Plus](memory/locomo_plus/README.md), [LongMemEval-V2](memory/longmemeval_v2/README.md), [Memory write gate](memory/write_gate/README.md) |
+| [`memory/`](memory/README.md) | Memory retrieval, answer quality, and write-gate evidence | [LoCoMo](memory/locomo/README.md), [LoCoMo-Plus](memory/locomo_plus/README.md), [LongMemEval-V2](memory/longmemeval_v2/README.md), [Memory write gate](memory/write_gate/README.md), [Capture ownership](memory/capture_ownership/README.md) |
 | [`performance/`](performance/README.md) | Load, latency, storage growth, and capacity limits | None yet |
 | [`skills/`](skills/README.md) | Agent instruction routing and authorization regressions | [Claude Code skill-up](skills/skill-up/README.md), [ZCode native CLI](zcode_guidance/README.md) |
 | [`artifact_evolution/`](artifact_evolution/README.md) | Evaluation-owned Dream recording and faithful replay | [Artifact evolution](artifact_evolution/README.md) |
@@ -61,6 +61,7 @@ uv sync --project evaluation --locked
 uv run --project evaluation swebench-pro --help
 uv run --project evaluation work-continuity --help
 uv run --project evaluation longmemeval-v2 --help
+uv run --project evaluation --extra capture-ownership capture-ownership --help
 
 # Memory quality: inspect a bundled, provider-free smoke plan.
 uv run python -m evaluation.memory.locomo --help
@@ -94,10 +95,11 @@ uv run --directory evaluation ty check
 uv build --project evaluation
 ```
 
-The `powercontext-eval` distribution contains four packages: `powercontext_eval_artifact_evolution`,
-`powercontext_eval_swebench_pro`, `powercontext_eval_work_continuity`, and `powercontext_eval_longmemeval_v2`.
-Editable installs and wheels expose the independent `artifact-evolution`, `swebench-pro`, `work-continuity`, and
-`longmemeval-v2` commands and their suite modules.
+The `powercontext-eval` distribution contains five packages: `powercontext_eval_artifact_evolution`,
+`powercontext_eval_swebench_pro`, `powercontext_eval_work_continuity`, `powercontext_eval_longmemeval_v2`, and
+`powercontext_eval_capture_ownership`. Editable installs and wheels expose the independent `artifact-evolution`,
+`swebench-pro`, `work-continuity`, `longmemeval-v2`, and `capture-ownership` commands and their suite modules.
+Capture ownership requires the `capture-ownership` extra shown above.
 LoCoMo behavior tests remain under [`tests/`](../tests/), including [`tests/evaluation/`](../tests/evaluation/).
 Skill-up and ZCode guidance keep their own validation tests. The [Bub replay harness](../e2e/bub/README.md) and
 [product E2E tests](../tests/e2e/) cover cross-component acceptance.
