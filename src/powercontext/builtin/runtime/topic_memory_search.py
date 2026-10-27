@@ -175,16 +175,20 @@ class TopicMemorySearcher:
                 **keywords,
             )
             return result.model_copy(update={"query_embedding": query_embedding, "embedding_calls": 0}), None
+        started = asyncio.get_running_loop().time()
         embedded, fallback = await self._embed_for_search(
             embedding,
             query,
             timeout_seconds=embedding_timeout_seconds,
             allow_fallback=plan is None or plan.fallback_allowed,
         )
+        waited = asyncio.get_running_loop().time() - started
         if embedded is None:
             result = await self._search(scope_id, query, mode="fts", **keywords)
             return (
-                result.model_copy(update={"embedding_calls": 1, "embedding_fallback": fallback}),
+                result.model_copy(
+                    update={"embedding_calls": 1, "embedding_fallback": fallback, "embedding_wait_seconds": waited}
+                ),
                 fallback,
             )
         result = await self._search(
@@ -201,6 +205,7 @@ class TopicMemorySearcher:
                     query_vector=tuple(embedded.vectors[0]), embedding_profile=embedding.profile
                 ),
                 "embedding_calls": 1,
+                "embedding_wait_seconds": waited,
             }
         ), None
 
