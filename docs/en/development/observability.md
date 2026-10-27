@@ -133,10 +133,16 @@ These checks exercise real spawn, OTLP/HTTP, a local model fixture, Pydantic AI 
 surface. They prove local reception, not storage/query acceptance by an external backend.
 
 The background CLI listener lifecycle requires a disposable OceanBase instance and
-`POWERCONTEXT_TEST_MIGRATION_OCEANBASE_URL`. The `E2E harness` workflow's `atomic-memory-clean-oceanbase` job runs
-`tests/e2e/test_background_metrics.py` through the clean migration acceptance runner, which rejects skipped tests.
-The test initializes its fresh database before starting the real background CLI, then checks listener startup,
-authorized metrics, absence of business routes and clean SIGTERM shutdown. The listener startup budget excludes
-first-run schema and index creation. CI retains `background-metrics/background.log` with the migration reports;
-startup failures include the child return code and a bounded log tail. Backend acceptance requires this step to pass.
-Without the backend setting, default test runs skip that lifecycle test.
+`POWERCONTEXT_TEST_MIGRATION_OCEANBASE_URL`. The `E2E harness` workflow's
+`atomic-memory-clean-oceanbase-shards` matrix runs
+`tests/e2e/test_background_metrics.py` through the clean migration acceptance runner
+on three runners, and rejects skipped tests. The legacy-named
+`atomic-memory-clean-oceanbase` job only downloads the three shard artifacts and
+checks their complete, exactly-once coverage. The test initializes its fresh database
+before starting the real background CLI, then checks listener startup, authorized
+metrics, absence of business routes and clean SIGTERM shutdown. The listener startup
+budget excludes first-run schema and index creation. CI retains
+`background-metrics/background.log` in the shard artifact; this group has one node,
+so the log is in shard `0`. Startup failures include the child return code and a
+bounded log tail. Backend acceptance requires this step to pass. Without the backend
+setting, default test runs skip that lifecycle test.

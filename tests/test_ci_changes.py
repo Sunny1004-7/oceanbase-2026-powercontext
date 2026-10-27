@@ -45,6 +45,8 @@ RULES = tomllib.loads((ROOT / ".github/ci-paths.toml").read_text(encoding="utf-8
         (["tests/native/test_personal_service_lifecycle.py"], {"tests", "native"}),
         (["e2e/bub/compose.yaml"], {"harness"}),
         (["scripts/scan_e2e_evidence.sh"], {"tests", "harness"}),
+        (["scripts/run_atomic_memory_clean_migration.py"], {"tests", "database"}),
+        (["scripts/check_atomic_memory_migration_shards.py"], {"tests", "database"}),
         (["scripts/sync_dsh_plugin_tree.py"], {"tests", "dsh"}),
         (["integrations/bub/src/powercontext_bub/__init__.py"], {"tests", "harness"}),
         (
