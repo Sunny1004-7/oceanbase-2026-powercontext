@@ -19,6 +19,10 @@
       "release1400_operations.py",
       "schemas/mysql-r1400.json",
       "source-provenance.json"
+    ],
+    "v1_5_0_001": [
+      "schemas/sqlite-v1_5_0_001.json",
+      "schemas/mysql-v1_5_0_001.json"
     ]
   },
   "sqlite_baselines": {
@@ -36,6 +40,9 @@
     ],
     "r1400": [
       "374ad3217e4dc286c3942708da52cc8262e30581e2b836bedd0c4e693f1b75bc"
+    ],
+    "v1_5_0_001": [
+      "966b87e6ed34484a38b20fd770792c9ad5d1bbd87b2252fd86e60bcfee8c81e6"
     ]
   },
   "affected_objects": [
@@ -47,6 +54,7 @@
     "pc_agent_skill_targets",
     "pc_artifact_candidate_heads",
     "pc_artifact_candidate_versions",
+    "pc_artifact_family_schemas",
     "pc_artifact_fts",
     "pc_artifact_fts_config",
     "pc_artifact_fts_content",
@@ -55,6 +63,8 @@
     "pc_artifact_fts_idx",
     "pc_artifact_handles",
     "pc_artifact_heads",
+    "pc_artifact_index_changes",
+    "pc_artifact_index_coverage",
     "pc_artifact_lineage_artifacts",
     "pc_artifact_lineage_sources",
     "pc_artifact_processing_auto_wave_targets",
@@ -66,7 +76,21 @@
     "pc_artifact_processing_schema",
     "pc_artifact_processing_sequences",
     "pc_artifact_publications",
+    "pc_artifact_search_fts",
+    "pc_artifact_search_fts_config",
+    "pc_artifact_search_fts_content",
+    "pc_artifact_search_fts_data",
+    "pc_artifact_search_fts_delete",
+    "pc_artifact_search_fts_docsize",
+    "pc_artifact_search_fts_idx",
+    "pc_artifact_search_fts_insert",
+    "pc_artifact_search_fts_update",
+    "pc_artifact_search_states",
+    "pc_artifact_search_text",
     "pc_artifact_tags",
+    "pc_artifact_vector_indexes",
+    "pc_artifact_vector_spaces",
+    "pc_artifact_vectors",
     "pc_artifacts",
     "pc_atomic_memory_current",
     "pc_atomic_memory_current_fts",
@@ -83,16 +107,20 @@
     "pc_dream_runs",
     "pc_external_skill_registrations",
     "pc_lexical_projection_versions",
+    "pc_memory_artifact_archive",
     "pc_memory_entry_heads",
     "pc_memory_entry_versions",
     "pc_memory_source_windows",
     "pc_model_usage_daily",
+    "pc_portable_restore_receipts",
     "pc_profile_policies",
     "pc_recall_effort_daily",
     "pc_recall_token_daily",
     "pc_receipt_migration_review",
     "pc_recurrence_match",
     "pc_recurrence_observation",
+    "pc_retained_dream_candidate_heads",
+    "pc_retained_dream_candidate_versions",
     "pc_scope_bindings",
     "pc_scope_context_references",
     "pc_scope_creation_requests",
@@ -125,11 +153,7 @@
     "pc_topic_memory_topic_fts_docsize",
     "pc_topic_memory_topic_fts_idx",
     "pc_topic_memory_work_blocks",
-    "pc_topic_memory_work_budgets",
-    "pc_retained_dream_candidate_heads",
-    "pc_retained_dream_candidate_versions",
-    "pc_memory_artifact_archive",
-    "pc_portable_restore_receipts"
+    "pc_topic_memory_work_budgets"
   ],
   "readiness_scope": "server",
   "retained_objects": [
@@ -175,6 +199,27 @@
         "seekdb",
         "oceanbase"
       ]
+    },
+    {
+      "id": "artifact_storage",
+      "revision": "v1_5_0_001",
+      "kind": "data",
+      "module": "artifact_storage_readiness.py",
+      "resources": [
+        "server_domain.py",
+        "server_vector_domain.py",
+        "atomic_memory_readiness_1300.py",
+        "dream/upgrade.py",
+        "dream/schema.json"
+      ],
+      "depends_on": [
+        "portable_storage"
+      ],
+      "backends": [
+        "sqlite",
+        "seekdb",
+        "oceanbase"
+      ]
     }
   ],
   "domain_readiness": {
@@ -186,6 +231,10 @@
     ],
     "s1402": [
       "server_upgrade",
+      "portable_storage"
+    ],
+    "v1_5_0_001": [
+      "artifact_storage",
       "portable_storage"
     ]
   },
@@ -201,7 +250,8 @@
     "schemas/mysql-r1400.json",
     "schemas/mysql-s1400.json",
     "schemas/mysql-s1401.json",
-    "schemas/mysql-s1402.json"
+    "schemas/mysql-s1402.json",
+    "schemas/mysql-v1_5_0_001.json"
   ],
   "mysql_history": "mysql",
   "mysql_schema_extensions": {
