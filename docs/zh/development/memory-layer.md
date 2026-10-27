@@ -43,6 +43,9 @@ scope ID 在数据库中选择相互隔离的 Source journal、记忆集合和 T
 `ScopedAtomicMemoryApplication.create()` 以全有或全无的方式批量写入显式记忆，每个输入对应返回一条记录。基于 Source
 的提取走另一条路径：先 capture Source，再调用 `flush()`，由已配置的提取 pipeline 处理待处理的 Source window。
 `cursor()` 返回已处理到的 Source 位置。
+使用内置提取与 reconcile Prompt 时，没有相关记忆、也没有同窗口先前候选的候选按提取结果保留，不发起 reconcile
+请求；使用自定义 Prompt 或注入的 pipeline 时，每个候选都会经过 reconcile。是否保留一条事实由提取决定。内置
+reconciler 的无目标 `noop` 只在与相关项比较时丢弃候选，因此这类候选不会经过这第二次判断。
 
 在 SQLite、seekdb 和 OceanBase 上，`flush()` 使用相同的检索与比较规则，让新候选与相关历史记忆比较。
 Source 和 Prompt 进入处理窗口时鉴权，召回的记忆进入比较集合时鉴权。窗口处理期间权限发生变化会阻止发布；

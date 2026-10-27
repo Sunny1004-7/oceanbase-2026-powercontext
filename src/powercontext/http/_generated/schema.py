@@ -7,7 +7,7 @@ OPENAPI_SCHEMA: dict[str, JsonValue] = {
     "info": {
         "title": "PowerContext API",
         "description": "Remote PowerContext transport. Runtime behavior is reported by /v1/capabilities.",
-        "version": "1.4.0",
+        "version": "1.4.1",
     },
     "paths": {
         "/v1/atomic-memory/list": {
@@ -11276,7 +11276,16 @@ OPENAPI_SCHEMA: dict[str, JsonValue] = {
                         "through "
                         "their "
                         "dedicated "
-                        "workflow."
+                        "workflow. "
+                        "String "
+                        "values "
+                        "that "
+                        "are "
+                        "empty "
+                        "or "
+                        "whitespace-only "
+                        "are "
+                        "rejected."
                     },
                 },
                 "additionalProperties": False,
