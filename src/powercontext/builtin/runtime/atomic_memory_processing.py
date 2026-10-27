@@ -829,9 +829,8 @@ class AtomicMemorySourceWindowProcessor:
             if prompt is None
             else prompt.compiled_instructions
         )
-        return (
-            pipeline.estimator.estimate(f"{instructions}\n{value.model_dump_json()}") <= self.config.input_tokens_limit
-        )
+        payload = value.model_dump_json() if pipeline.input_renderer is None else pipeline.input_renderer(value)
+        return pipeline.estimator.estimate(f"{instructions}\n{payload}") <= self.config.input_tokens_limit
 
     def _require_budget(self, pipeline, value, key):
         if not self._fits(pipeline, value, key):
