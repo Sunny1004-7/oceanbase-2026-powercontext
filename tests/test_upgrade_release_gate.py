@@ -40,6 +40,9 @@ from tests.release_upgrades.test_full_server import environment_for
 
 @pytest.fixture
 def release(tmp_path, monkeypatch):
+    # Disposable release fixtures own their checkout identity, independently of CI.
+    monkeypatch.delenv("PC_UPGRADE_SOURCE_SHA", raising=False)
+    monkeypatch.delenv("GITHUB_SHA", raising=False)
     persistence = tmp_path / "src/powercontext/builtin/persistence/tables.py"
     persistence.parent.mkdir(parents=True)
     persistence.write_text("# disposable persistence input\n")

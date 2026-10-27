@@ -475,7 +475,7 @@ jobs:
         with:
           version: ${{ env.UV_VERSION }}
 
-      - name: Verify OceanBase Atomic Memory and HTTP regressions
+      - name: Verify OceanBase Atomic Memory, HTTP and archive regressions
         timeout-minutes: 40
         if: matrix.database == 'oceanbase'
         env:
@@ -542,7 +542,9 @@ jobs:
             tests/e2e/test_atomic_memory_search_authorization_snapshot.py \
             tests/e2e/test_atomic_memory_read_snapshot.py \
             tests/e2e/test_server_metrics_oceanbase.py \
-            tests/e2e/test_runtime_server.py -k oceanbase \
+            tests/e2e/test_runtime_server.py \
+            'tests/e2e/test_portable_archive.py::test_archive_batches_validation_and_rechecks_after_dry_run[server]' \
+            -k 'oceanbase or archive_batches' \
             --junitxml="$RUNNER_TEMP/atomic-memory-oceanbase-snapshots.xml"
           uv run --locked --extra server python - <<'PY'
           import json
@@ -555,9 +557,9 @@ jobs:
           for suite in suites:
               for key in counts:
                   counts[key] += int(suite.get(key, "0"))
-          print("OceanBase Atomic Memory and HTTP results:", json.dumps(counts))
+          print("OceanBase Atomic Memory, HTTP and archive results:", json.dumps(counts))
           if not counts["tests"] or any(counts[key] for key in ("failures", "errors", "skipped")):
-              raise SystemExit("OceanBase Atomic Memory and HTTP regressions must execute without failures, errors, or skips")
+              raise SystemExit("OceanBase Atomic Memory, HTTP and archive regressions must execute without failures, errors, or skips")
           PY
 
       - name: Run deterministic scenarios

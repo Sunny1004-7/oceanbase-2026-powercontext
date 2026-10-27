@@ -439,6 +439,13 @@ jobs:
       - name: Test code indexing with embedded seekdb
         run: make code-seekdb-test
 
+      - name: Test batched archive validation with embedded seekdb
+        timeout-minutes: 5
+        run: |
+          uv run --locked --extra seekdb python -c "import pylibseekdb"
+          uv run --locked --extra seekdb pytest -vv \
+            'tests/e2e/test_portable_archive.py::test_archive_batches_validation_and_rechecks_after_dry_run[seekdb]'
+
       - name: Test unified migrations with embedded seekdb
         # Full-Server cases run in separate processes and exceed fifteen minutes
         # in aggregate; each runner keeps its 180-second deadline below.
