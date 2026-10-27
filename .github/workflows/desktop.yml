@@ -189,6 +189,76 @@ jobs:
           path: desktop/src-tauri/target/release/bundle/dmg/*.dmg
           if-no-files-found: error
 
+  linux:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.installer_run == '' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: desktop
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Install Linux Desktop dependencies
+        working-directory: .
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y \
+            build-essential \
+            dbus-x11 \
+            gnome-keyring \
+            libayatana-appindicator3-dev \
+            libgtk-3-dev \
+            libsecret-1-dev \
+            libssl-dev \
+            libwebkit2gtk-4.1-dev \
+            librsvg2-dev \
+            libxdo-dev \
+            openjdk-17-jre-headless \
+            pkg-config
+      - uses: jdx/mise-action@9b200bcecbfd6303e69a4a261b2e09e3757440a7 # v5.2.0
+        with:
+          working_directory: desktop
+      - name: Install pinned Linux Rust toolchain
+        run: rustup toolchain install 1.95.0 --profile minimal --component rustfmt --component clippy
+      - name: Cache desktop dependencies
+        uses: ./.github/actions/cache-pnpm
+        with:
+          working-directory: desktop
+          cache-dependency-glob: desktop/pnpm-lock.yaml
+      - name: Cache Rust dependencies and compilation
+        uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
+        with:
+          workspaces: desktop/src-tauri -> target
+          key: linux
+          cache-bin: false
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+      - run: cargo fmt --manifest-path src-tauri/Cargo.toml --check
+      - run: cargo clippy --locked --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+      - run: pnpm ipc:check
+      - name: Build unsigned Debian package
+        run: pnpm tauri build --bundles deb --ci -- --locked
+      - name: Verify Debian package
+        run: |
+          packages=(src-tauri/target/release/bundle/deb/*.deb)
+          test "${#packages[@]}" -eq 1
+          dpkg-deb --info "${packages[0]}"
+          dpkg-deb --contents "${packages[0]}" >/dev/null
+      - name: Upload Debian package
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: desktop-linux-ubuntu-24.04-internal-unsigned
+          path: desktop/src-tauri/target/release/bundle/deb/*.deb
+          if-no-files-found: error
+
   installed-package:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.installer_run != '' }}
     runs-on: windows-2025
