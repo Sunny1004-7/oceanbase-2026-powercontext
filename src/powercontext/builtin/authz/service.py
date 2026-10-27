@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Authorization Provider SPI and Server-owned Access use cases."""
+"""Authorization Provider SPI and Access Control use cases."""
 
 from __future__ import annotations
 
@@ -33,8 +33,7 @@ from uuid import uuid4
 
 from sqlalchemy.ext.asyncio import AsyncConnection, AsyncEngine
 
-from powercontext.limits import MAX_POLICY_REVISION_LENGTH
-from powercontext.server.authz.errors import (
+from powercontext.builtin.authz.errors import (
     AccessBindingNotFoundError,
     AccessConflictError,
     AccessControlError,
@@ -43,7 +42,7 @@ from powercontext.server.authz.errors import (
     AccessInvalidRequestError,
     AccessUnavailableError,
 )
-from powercontext.server.authz.models import (
+from powercontext.builtin.authz.models import (
     DEFAULT_DEPLOYMENT_ID,
     ROLE_ACTIONS,
     ROLE_CHILD_ACTIONS,
@@ -62,16 +61,17 @@ from powercontext.server.authz.models import (
     PrincipalRef,
     ResourceRef,
 )
-from powercontext.server.authz.profiles import (
+from powercontext.builtin.authz.profiles import (
     ARTIFACT_FAMILY_PROFILES,
     artifact_family_profile,
     validate_action_resource,
     validate_binding_role,
     validate_binding_subject,
 )
+from powercontext.limits import MAX_POLICY_REVISION_LENGTH
 
 if TYPE_CHECKING:
-    from powercontext.server.authz.casbin import CasbinAuthorizationProvider
+    from powercontext.builtin.authz.casbin import CasbinAuthorizationProvider
 
 
 _T = TypeVar("_T")
@@ -416,7 +416,7 @@ async def read_decision_state(
     comparison in the decision.
     """
 
-    from powercontext.server.authz.repository import RelationalAccessRepository
+    from powercontext.builtin.authz.repository import RelationalAccessRepository
 
     native = type(repository) is RelationalAccessRepository
     options = {"binding_resources": binding_resources} if native else {}
@@ -654,7 +654,7 @@ class AccessControlService:
         self, principal: PrincipalRef | None, *, context: AccessAuditContext
     ) -> AsyncIterator[None]:
         """Reuse canonical local policy inputs while a single generation attempt prepares work."""
-        from powercontext.server.authz.casbin import CasbinAuthorizationProvider
+        from powercontext.builtin.authz.casbin import CasbinAuthorizationProvider
 
         actor = _required_principal(principal)
         provider = self.provider
@@ -683,8 +683,8 @@ class AccessControlService:
         An observed revision can reuse only a complete matching batch. False asks
         the caller to retry under a pinned snapshot, without admitting any inputs.
         """
-        from powercontext.server.authz.casbin import CasbinAuthorizationProvider
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.casbin import CasbinAuthorizationProvider
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         provider = self.provider
         repository = getattr(provider, "_repository", None)
@@ -746,8 +746,8 @@ class AccessControlService:
 
     def with_connection(self, connection):
         """Bind relationships, builtin authorization reads, and audit to a transaction."""
-        from powercontext.server.authz.casbin import CasbinAuthorizationProvider
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.casbin import CasbinAuthorizationProvider
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         if not isinstance(self.relationships, RelationalAccessRepository) or self.audit is not self.relationships:
             raise AccessUnavailableError("transactional_relationships_unavailable")
@@ -769,12 +769,12 @@ class AccessControlService:
 
     def supports_read_snapshot(self, engine: AsyncEngine) -> bool:
         """Whether binding local policy to this engine preserves the Provider's rules."""
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         provider = self.provider
         canonical = type(provider) is BuiltinAuthorizationProvider
-        if not canonical and type(provider).__module__ == "powercontext.server.authz.casbin":
-            from powercontext.server.authz.casbin import CasbinAuthorizationProvider
+        if not canonical and type(provider).__module__ == "powercontext.builtin.authz.casbin":
+            from powercontext.builtin.authz.casbin import CasbinAuthorizationProvider
 
             canonical = type(provider) is CasbinAuthorizationProvider
         if not canonical:
@@ -791,7 +791,7 @@ class AccessControlService:
 
     def supports_write_transaction(self, engine: AsyncEngine) -> bool:
         """Whether owner relations and audit can join this business database."""
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         if type(self.relationships) is not RelationalAccessRepository or self.audit is not self.relationships:
             return False
@@ -804,7 +804,7 @@ class AccessControlService:
 
     def for_read(self, connection: AsyncConnection) -> AccessControlService:
         """Use a local policy snapshot when available, preserving external point decisions."""
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         if not self.supports_read_snapshot(connection.engine):
             return self
@@ -823,7 +823,7 @@ class AccessControlService:
 
     async def bootstrap_subject_scope(self, connection, principal, scope_id, *, context):
         """Grant only a newly created ordinary Scope, in the Source transaction."""
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         if not isinstance(self.relationships, RelationalAccessRepository):
             raise AccessUnavailableError("transactional_relationships_unavailable")
@@ -900,7 +900,7 @@ class AccessControlService:
         actor = _required_principal(principal)
         if self._static_scope_principal is None or actor != self._static_scope_principal:
             return
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         resource = ResourceRef.scope(scope_id)
         keys = tuple(
@@ -1249,7 +1249,7 @@ class AccessControlService:
         context: AccessAuditContext,
     ) -> tuple[ArtifactOwnerRelation, ...]:
         """Establish an independent local owner set, retaining each relation and audit."""
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         if not resources:
             return ()
@@ -1312,7 +1312,7 @@ class AccessControlService:
         self, attestations: Sequence[CandidateOwnerAttestation]
     ) -> tuple[CandidateOwnerAttestation, ...]:
         """Persist one independent candidate window under the configured relationship store."""
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         if not attestations:
             return ()
@@ -1328,7 +1328,7 @@ class AccessControlService:
 
     async def candidate_owners(self, scope_id, candidate_ids):
         """Read persisted owner attestations without deriving ownership from grants."""
-        from powercontext.server.authz.repository import RelationalAccessRepository
+        from powercontext.builtin.authz.repository import RelationalAccessRepository
 
         repository = self._relationship_reader()
         if type(repository) is RelationalAccessRepository:
@@ -1504,7 +1504,7 @@ class AccessControlService:
             yield
         finally:
             self._deferred_decisions.reset(token)
-            from powercontext.server.authz.repository import RelationalAccessRepository
+            from powercontext.builtin.authz.repository import RelationalAccessRepository
 
             if type(self.audit) is RelationalAccessRepository:
                 await _access_call(self.audit.append_audits(events))

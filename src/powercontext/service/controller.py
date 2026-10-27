@@ -31,7 +31,7 @@ from pathlib import Path
 from typing import cast
 from urllib.parse import urlsplit
 
-from powercontext.cli.env_file import environment_context
+from powercontext.env_file import environment_context
 from powercontext.paths import POWERCONTEXT_HOME_ENV, powercontext_data_dir
 from powercontext.server.configuration import ServerConfigurationError, server_settings_context
 from powercontext.service.adapters import NativeServiceAdapter, native_service_adapter
