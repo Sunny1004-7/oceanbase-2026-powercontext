@@ -16,14 +16,39 @@
 
 from __future__ import annotations
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncConnection
 
 from powercontext.builtin.persistence.cursors import SourceCursorRepository
 from powercontext.builtin.persistence.database import AsyncDatabase
 from powercontext.builtin.persistence.processing_intents import ArtifactProcessingIntentRepository
 from powercontext.builtin.persistence.supervision import ArtifactProcessingFence, ArtifactProcessingLeaseRepository
-from powercontext.builtin.persistence.tables import PROFILE_POLICIES_TABLE, SOURCE_JOURNAL_HEADS_TABLE
+from powercontext.builtin.persistence.tables import PROFILE_POLICIES_TABLE, SOURCE_JOURNAL_HEADS_TABLE, SOURCES_TABLE
+
+
+async def source_count_scopes(
+    connection: AsyncConnection, scope_ids: tuple[str, ...], binding_name: str, threshold: int
+) -> frozenset[str]:
+    """Test a bounded page of journal identities after each successful cursor.
+
+    LIMIT bounds each indexed metadata read, even when a scope has a large
+    backlog. Journal positions may have gaps; subtracting heads is not a count.
+    """
+
+    cursors = await SourceCursorRepository().load_many(connection, scope_ids, binding_name)
+    eligible = set()
+    for scope in scope_ids:
+        cursor = cursors.get(scope)
+        after = 0 if cursor is None else cursor.cursor.sequence
+        window = (
+            select(SOURCES_TABLE.c.journal_position)
+            .where(SOURCES_TABLE.c.scope_id == scope, SOURCES_TABLE.c.journal_position > after)
+            .limit(threshold)
+            .subquery()
+        )
+        if (await connection.scalar(select(func.count()).select_from(window)) or 0) >= threshold:
+            eligible.add(scope)
+    return frozenset(eligible)
 
 
 async def enabled_profile_scopes(connection: AsyncConnection, scope_ids: tuple[str, ...]) -> frozenset[str]:

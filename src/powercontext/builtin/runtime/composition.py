@@ -156,6 +156,7 @@ from powercontext.builtin.runtime.readiness import (
 )
 from powercontext.builtin.runtime.recall_sufficiency import RecallSufficiencyPolicy
 from powercontext.builtin.runtime.relational import RelationalContexts
+from powercontext.builtin.runtime.source_lifecycle import SourceLifecycleApplication
 from powercontext.builtin.runtime.topic_memory_processing import (
     TopicMemoryWorkerSpec,
     run_topic_memory_worker,
@@ -640,6 +641,7 @@ async def open_builtin_runtime(
                 remote_skill_distribution=contexts.remote_skill_distribution(),
                 statistics_service=contexts.statistics,
                 record_service=contexts.records,
+                source_lifecycle=SourceLifecycleApplication(contexts),
                 prompt_service=contexts.prompts,
                 recall_token_estimator=contexts.estimate_recall_tokens,
                 recall_effort_sink=recall_effort_sink,
@@ -719,8 +721,12 @@ def _artifact_processing_bindings(  # noqa: C901 - validate and assemble one reg
         "profile": config.runtime.profile_schedule_enabled or None,
         "skill": None,
     }
+    counts = {
+        "memory": config.runtime.memory_source_count_threshold,
+        "topic-memory": config.runtime.topic_memory_source_count_threshold,
+    }
     for family, schedule in automatic.items():
-        if schedule is not None and family not in declared | registered:
+        if (schedule is not None or counts.get(family) is not None) and family not in declared | registered:
             if (
                 family == "topic-memory"
                 and config.runtime.artifact_processing_families is None
@@ -787,6 +793,7 @@ def _artifact_processing_bindings(  # noqa: C901 - validate and assemble one reg
                 if family == "skill"
                 else SourceProcessingPendingProvider(contexts.database, binding, family),
                 automatic_scope_filter=enabled_profile_scopes if family == "profile" else None,
+                source_count_threshold=counts.get(family),
             )
         )
     _validate_processing_registrations(configured)

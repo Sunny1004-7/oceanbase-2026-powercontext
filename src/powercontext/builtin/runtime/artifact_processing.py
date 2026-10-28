@@ -117,8 +117,9 @@ class ArtifactProcessingBinding:
     # Only automatic admission is filtered; already accepted requests retain
     # their own Worker authorization and domain completion semantics.
     automatic_scope_filter: Callable[[AsyncConnection, tuple[str, ...]], Awaitable[frozenset[str]]] | None = None
+    source_count_threshold: int | None = None
 
-    def __post_init__(self) -> None:
+    def __post_init__(self) -> None:  # noqa: C901 - independent binding settings
         if not self.binding_name or self.binding_name != self.binding_name.strip():
             raise ValueError("binding_name must be nonempty and trimmed")  # noqa: TRY003
         if re.fullmatch(r"[a-z][a-z0-9-]*", self.artifact_family) is None:
@@ -131,6 +132,10 @@ class ArtifactProcessingBinding:
             raise ValueError("max_workers must be a positive integer")  # noqa: TRY003
         if self.worker_timeout_seconds <= 0:
             raise ValueError("worker_timeout_seconds must be positive")  # noqa: TRY003
+        if self.source_count_threshold is not None and (
+            type(self.source_count_threshold) is not int or self.source_count_threshold < 1
+        ):
+            raise ValueError("source_count_threshold must be a positive integer")  # noqa: TRY003
         if self.automatic_processing_interval is not None:
             if self.automatic_processing_interval.total_seconds() <= 0:
                 raise ValueError("automatic interval must be positive")  # noqa: TRY003
@@ -395,6 +400,8 @@ class _FamilyState:
     scan_after: int = 0
     scan_generation: int = 0
     scan_in_progress: bool = False
+    count_after: int = 0
+    next_count_at: float = 0.0
     reconcile_after: str | None = None
     reconcile_complete: bool = False
     notification_at_start: int = 0
@@ -585,6 +592,8 @@ class ArtifactProcessingSupervisor:
             state.discovery_pending = True
             state.reconcile_complete = False
             state.reconcile_after = None
+            state.count_after = 0
+            state.next_count_at = 0.0
         if self._lease_mode == "oceanbase":
             self._renew_task = asyncio.create_task(self._renew(), name=f"artifact-lease-{self._supervisor_group}")
 
@@ -656,6 +665,52 @@ class ArtifactProcessingSupervisor:
         else:
             await self._discover_requested(state)
             await self._discover_automatic(state)
+        await self._discover_count(state)
+
+    async def _discover_count(self, state: _FamilyState) -> None:
+        """Accept count-qualified work using the same fence, intents and queue.
+
+        This is a separate OR channel, independent of timed scan generations.
+        Accepted work survives provider failure/restart in requested_generation.
+        Memory acknowledgement consumes one window; Topic owns its whole wave.
+        """
+
+        from powercontext.builtin.runtime.processing_discovery import source_count_scopes
+
+        binding = state.binding
+        threshold = binding.source_count_threshold
+        capacity = min(self._fresh_capacity(state), _DISCOVERY_PAGE_SIZE)
+        loop = asyncio.get_running_loop()
+        if threshold is None or capacity <= 0 or loop.time() < state.next_count_at:
+            return
+        admitted = []
+        async with self._database.transaction() as connection:
+            await self._leases.require_fence(connection, self._require_current_fence())
+            rows = await self._intents.scan(
+                connection, binding.binding_name, after_sequence=state.count_after, limit=capacity, dirty_only=True
+            )
+            candidates = tuple(
+                row.scope_id
+                for row in rows
+                if row.scope_id not in state.queued
+                and row.scope_id not in state.running
+                and row.scope_id not in state.retries
+                and row.requested_generation == row.handled_generation
+            )
+            eligible = await source_count_scopes(connection, candidates, binding.binding_name, threshold)
+            if eligible and binding.automatic_scope_filter is not None:
+                eligible &= await binding.automatic_scope_filter(connection, tuple(sorted(eligible)))
+            for scope in sorted(eligible):
+                current = await self._intents.load(connection, scope, binding.binding_name, for_update=True)
+                if current is not None and current.requested_generation == current.handled_generation:
+                    await self._intents.request(connection, scope, binding.binding_name)
+                    admitted.append(scope)
+        # Publish pagination only after commit; failed admissions remain visible.
+        more = len(rows) == capacity
+        state.count_after = rows[-1].pending_sequence if more else 0
+        state.next_count_at = loop.time() + (_DISCOVERY_PAGE_DELAY_SECONDS if more else self._tick)
+        for scope in admitted:
+            self._enqueue(state, scope)
 
     async def _discover_requested(self, state: _FamilyState) -> None:
         capacity = self._fresh_capacity(state)
@@ -1093,6 +1148,8 @@ class ArtifactProcessingSupervisor:
                 continue
             if state.next_schedule_at is not None:
                 deadlines.append(state.next_schedule_at)
+            if state.binding.source_count_threshold is not None and self._fresh_capacity(state) > 0:
+                deadlines.append(max(now, state.next_count_at))
             if state.discovery_pending or state.scan_in_progress or not state.reconcile_complete or state.degraded:
                 deadlines.append(max(now, state.next_discovery_at))
         return None if not deadlines else max(0.001, min(deadlines) - now)

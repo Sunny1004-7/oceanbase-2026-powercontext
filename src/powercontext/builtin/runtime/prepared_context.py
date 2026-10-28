@@ -106,6 +106,7 @@ class PreparedContextBuild:
     origins: tuple[PreparedContextOrigin, ...]
     omissions: PreparedContextOmissions = PreparedContextOmissions()
     code_origins: tuple[CodeEvidenceRef, ...] = ()
+    fragments: tuple[PreparedContextFragment, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -118,6 +119,22 @@ class MemoryEntryAddress:
 
 
 PreparedContextOrigin = MemoryCitation | ArtifactRef | MemoryEntryAddress | ArtifactAddress
+
+
+@dataclass(frozen=True)
+class PreparedContextFragment:
+    """One literal Python-character interval in an exact Memory entry version."""
+
+    address: MemoryEntryAddress
+    start: int
+    end: int
+    text: str
+
+    def __post_init__(self) -> None:
+        if type(self.start) is not int or type(self.end) is not int or not 0 <= self.start < self.end:
+            raise PreparedContextInvariantError("fragment-interval")
+        if len(self.text) != self.end - self.start:
+            raise PreparedContextInvariantError("fragment-length")
 
 
 @dataclass(frozen=True)
@@ -211,6 +228,12 @@ class PreparedContextBuilder:
         profile_candidates: Sequence[PreparedProfileCandidate] = (),
         code_candidates: Sequence[PreparedCodeCandidate] = (),
     ) -> PreparedContextBuild:
+        if request.evidence_selection:
+            from powercontext.builtin.runtime.evidence_selection import build_evidence
+
+            if sum(len(group.hits) for group in memory_candidates) > self.memory_candidate_limit:
+                raise PreparedContextInvariantError("memory-candidate-limit")
+            return build_evidence(request, memory_candidates, self.entry_limit)
         if request.include_code:
 
             def historical(history_request: PrepareContextRequest, entries: int) -> PreparedContextBuild:
@@ -276,6 +299,18 @@ class PreparedContextBuilder:
         the same inputs as :meth:`build_scopes_result` are guaranteed to yield the same
         counters because both go through :meth:`_select_entries`.
         """
+
+        if request.evidence_selection:
+            build = self.build_scopes_result(
+                request=request, current_scope_id=current_scope_id, memory_candidates=memory_candidates
+            )
+            return RecallBudgetView(
+                max_bytes=request.max_bytes,
+                delivered_items=len(build.fragments),
+                truncated_items=0,
+                dropped_items=build.omissions.dropped_items,
+                unused_bytes=request.max_bytes - build.context.content_bytes,
+            )
 
         content, origins, omissions = self._select_entries(
             request=request,
