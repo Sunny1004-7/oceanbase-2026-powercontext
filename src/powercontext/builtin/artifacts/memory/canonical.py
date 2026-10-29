@@ -87,6 +87,34 @@ def normalize_text(value: str) -> str:
     return normalized
 
 
+def normalize_entry_text(value: str, *, kind: str, source_refs: Sequence[object]) -> str:
+    """Preserve complete captured PDF pages while bounding ordinary entries.
+
+    A physical PDF page (including its document ID) is indivisible evidence. The
+    Source resolver authorizes its reference before a candidate reaches this
+    encoder. Apply the same rule when hashing or rebuilding the stored version;
+    changing only the write gate would create unreadable durable entries.
+    """
+    if kind in {"source-evidence", "pdf-page"} and len(source_refs) == 1:
+        reference = source_refs[0]
+        source_id = reference.get("source_id") if isinstance(reference, Mapping) else None
+        if (
+            isinstance(reference, Mapping)
+            and reference.get("source_type") == "pdf-page"
+            and isinstance(source_id, str)
+            and re.fullmatch(r"pdf:[0-9a-f]{64}:[0-9a-f]{64}:[1-9][0-9]*", source_id)
+        ):
+            if not isinstance(value, str):
+                raise _CanonicalTypeError("string", "memory entry text")
+            if not value.strip():
+                raise _CanonicalValueError("string-empty", "memory entry text")
+            # PDF evidence is compared with its exact captured projection. NFC
+            # changes even some layout spaces (U+2000/U+2001). Keep the body;
+            # canonical_json still defines the existing NFC hash equivalence.
+            return value.strip()
+    return normalize_text(value)
+
+
 def normalize_query(value: str) -> str:
     """Normalize one transient retrieval query.
 
@@ -160,7 +188,7 @@ def entry_content_bytes(
 
     return canonical_json({
         "kind": normalize_kind(kind),
-        "text": normalize_text(text),
+        "text": normalize_entry_text(text, kind=normalize_kind(kind), source_refs=source_refs),
         "source_refs": normalize_refs(source_refs),
         "artifact_refs": normalize_refs(artifact_refs),
     })
