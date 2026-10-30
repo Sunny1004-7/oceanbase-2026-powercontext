@@ -18,7 +18,7 @@ async function initialize(requested=$('#precision').value){
   $('#backend').textContent=active.device==='webgpu'?'WebGPU / FP16':`WASM / ${active.dtype==='q8'?'INT8':active.dtype.toUpperCase()}${active.fallback?'（已自动降级）':''}`;
   telemetry({type:'initialized',...active});await refreshCount();return active;
 }
-async function refreshCount(){if(!active)return;const r=await api('status?'+new URLSearchParams({kb,profile:active.profile}));$('#count').textContent=r.count+' 篇文档';$('#current').textContent=$('#kb').selectedOptions[0].textContent;return r;}
+async function refreshCount(){if(!active)return;const selectedKb=kb,profile=active.profile;const r=await api('status?'+new URLSearchParams({kb:selectedKb,profile}));if(kb===selectedKb&&active?.profile===profile){$('#count').textContent=r.count+' 篇文档';$('#current').textContent=$('#kb').selectedOptions[0].textContent;}return r;}
 function setBusy(value){busy=value;for(const s of ['#import','#sample','#search','#kb','#precision'])$(s).disabled=value;$('#progress').hidden=!value;}
 async function guarded(fn){if(busy)return;setBusy(true);try{return await fn();}catch(e){$('#notice').textContent=e.message;$('#notice').classList.add('error');throw e;}finally{setBusy(false);}}
 async function importDocs(docs,{batchSize=4,requested}={}){
@@ -51,4 +51,4 @@ $('#kb').onchange=async()=>{kb=$('#kb').value;localStorage.setItem('zh-page-kb',
 $('#precision').onchange=()=>guarded(async()=>{await initialize();status('已切换到匹配模型方案的独立集合；请导入资料或搜索已有数据。');}).catch(()=>{});
 config=await api('config');await call('configure',{config});
 // The verification harness invokes the same Worker/API/render functions as user actions.
-window.notebook={ready:true,initialize,importDocs,search,logs,get active(){return active;},get kb(){return kb;},async setKb(name){$('#kb').value=name;await $('#kb').onchange();},async setProfile(name){$('#precision').value=name;return initialize(name);},refreshCount};
+window.notebook={ready:true,initialize,importDocs,search,logs,get active(){return active;},get kb(){return kb;},async setKb(name){$('#kb').value=name;await $('#kb').onchange();},async setProfile(name){$('#precision').value=name;return initialize(name);},async encodeQuery(text){await initialize();return call('embed',{texts:[text],batchSize:1,query:true});},refreshCount};

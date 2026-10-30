@@ -17,6 +17,7 @@ const internal=client._delegate._internal;
 const originalExecute=internal.execute.bind(internal);
 internal.execute=async(sql,params)=>{const start=performance.now();try{const r=await originalExecute(sql,params);audit('sql',{sql,params,ms:performance.now()-start,rows:r});return r;}catch(e){audit('sql-error',{sql,error:e.message});throw e;}};
 const collections=new Map();
+let databaseQueue=Promise.resolve();
 const profiles={gpu_fp16:{dtype:'fp16',device:'webgpu'},wasm_q8:{dtype:'q8',device:'wasm'},wasm_fp32:{dtype:'fp32',device:'wasm'},wasm_fp16:{dtype:'fp16',device:'wasm'}};
 function validate(kb,profile){if(!/^[a-zA-Z0-9_-]{1,32}$/.test(kb||'')||!profiles[profile])throw Error('知识库名称需为 1–32 位字母、数字、短横线或下划线');}
 async function collection(kb,profile){
@@ -33,6 +34,11 @@ const vite=await createVite({root:ROOT,server:{middlewareMode:true},appType:'spa
 const server=http.createServer(async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
   res.setHeader('Cross-Origin-Opener-Policy','same-origin');res.setHeader('Cross-Origin-Embedder-Policy','require-corp');
+  // GET_SQL reads a session variable on the SDK connection. Keep each API operation atomic.
+  let releaseDatabase;
+  if(['/api/status','/api/import','/api/search'].includes(url.pathname)){
+    const previous=databaseQueue;databaseQueue=new Promise(resolve=>{releaseDatabase=resolve;});await previous;
+  }
   try{
     if(url.pathname.startsWith('/models/')||url.pathname.startsWith('/ort/')){
       const ort=url.pathname.startsWith('/ort/');const base=path.join(ROOT,ort?'node_modules/onnxruntime-web/dist':'.models');
@@ -68,7 +74,7 @@ const server=http.createServer(async(req,res)=>{
     }
     if(url.pathname==='/api/telemetry'&&req.method==='POST'){const input=await body(req);audit('browser',{event:input});json(res,200,{saved:true});return;}
     vite.middlewares(req,res,()=>{res.writeHead(404);res.end();});
-  }catch(e){json(res,400,{error:e.message});}
+  }catch(e){json(res,400,{error:e.message});}finally{releaseDatabase?.();}
 });
 server.listen(Number(process.env.PORT||4312),'0.0.0.0',()=>console.log(JSON.stringify({url:'http://localhost:'+(process.env.PORT||4312),data:DATA,node:process.version,arch:process.arch,seekdb:'1.4.0',embedding:'browser Worker only'})));
 async function shutdown(){server.close();await vite.close();await client.close();process.exit(0);}

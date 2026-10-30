@@ -33,6 +33,8 @@ APP_DATA_DIR="$PWD/.data/run-02" SEEKDB_PORT=2897 PORT=4313 .venv/bin/python scr
 
 索引刷新使用 SDK `refresh_index()` 对应 `CALL dbms_index_manager.refresh()`，随后在 12 秒上限内检查写入原文可见性，超时返回错误。正常检索使用 `collection.hybridSearch`：数据库 `DBMS_HYBRID_SEARCH.GET_SQL` 生成含 `MATCH`、向量条件与 RRF 的 SQL，再由数据库执行；应用不拼接两路排名。源码中的 `_delegate._internal.execute` 仅为固定 SDK 1.4.0 加入 SQL 审计，不改检索算法，升级 SDK 时需重新核验该记录接口。
 
+数据库操作按完整 API 请求排队，避免 SDK 单连接中的检索会话变量被并发请求覆盖；切库计数也丢弃旧请求的迟到结果。`tests/concurrency.cjs` 使用本次浏览器现场生成的两组向量发起 16 个并发检索，并人为延迟旧库状态回复验证快速切库，不回放预计算检索结果。
+
 验收命令由执行者运行，评审可复现；不需要用户标注或测量。Windows 主流 Chrome 运行真实硬件测试时，在 Windows Node 中执行（Playwright 包本身是跨平台 JS）：
 
 ```powershell
