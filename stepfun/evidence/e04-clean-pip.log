@@ -1,0 +1,8 @@
+Collecting pylibseekdb==1.4.0.post2 (from -r requirements.txt (line 1))
+  Using cached pylibseekdb-1.4.0.post2-cp312-abi3-manylinux_2_28_x86_64.whl.metadata (13 kB)
+Collecting PyMySQL==1.2.0 (from -r requirements.txt (line 2))
+  Using cached pymysql-1.2.0-py3-none-any.whl.metadata (4.3 kB)
+Using cached pylibseekdb-1.4.0.post2-cp312-abi3-manylinux_2_28_x86_64.whl (54.0 MB)
+Using cached pymysql-1.2.0-py3-none-any.whl (45 kB)
+Installing collected packages: PyMySQL, pylibseekdb
+Successfully installed PyMySQL-1.2.0 pylibseekdb-1.4.0.post2

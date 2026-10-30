@@ -1,0 +1,8 @@
+node_modules/
+.models/
+.data/
+.env.local
+dist/
+test-results/
+.tools/
+.venv/

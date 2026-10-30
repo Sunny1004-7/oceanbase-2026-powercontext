@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "label": "gpu-fp16",
+      "profile": "gpu_fp16",
+      "recallAt5": 0.95,
+      "imports": 3,
+      "querySamples": 100
+    },
+    {
+      "label": "wasm-fp32",
+      "profile": "wasm_fp32",
+      "recallAt5": 0.95,
+      "imports": 3,
+      "querySamples": 100
+    },
+    {
+      "label": "wasm-int8",
+      "profile": "wasm_q8",
+      "recallAt5": 0.95,
+      "imports": 3,
+      "querySamples": 100
+    },
+    {
+      "label": "automatic-fallback",
+      "profile": "wasm_q8",
+      "recallAt5": 0.95,
+      "imports": 3,
+      "querySamples": 100
+    }
+  ],
+  "completed": true
+}

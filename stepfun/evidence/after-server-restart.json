@@ -1,0 +1,87 @@
+{
+  "count": {
+    "count": 50,
+    "collection": "kb_f9234d7004db951792e0b289"
+  },
+  "query": {
+    "type": "search",
+    "kb": "eval",
+    "profile": "gpu_fp16",
+    "text": "手机找不到了，怎样避免账号被别人使用？",
+    "normalized": "手机找 账户 使用",
+    "queryRule": "zh-lexical-expansion-v2",
+    "queryEmbeddingMs": 589.7549999998882,
+    "searchMs": 136.14581200000066,
+    "endToEndMs": 773.730000000447,
+    "result": {
+      "ids": [
+        [
+          "n01",
+          "n02",
+          "n25",
+          "n08",
+          "n27"
+        ]
+      ],
+      "distances": [
+        [
+          0.0325,
+          0.0325,
+          0.0299,
+          0.0298,
+          0.0294
+        ]
+      ],
+      "documents": [
+        [
+          "手机遗失处置。手机丢失后，先借用设备冻结手机卡，再在备用设备退出支付账户和聊天账户。清点重要账户，使用预存的恢复码。",
+          "设备失联准备。在另一台设备保存紧急联系人与账户恢复码。记录手机序列号，开启设备查找；手机遗失时按清单处理。",
+          "环境锁定。使用依赖锁文件固定运行版本。新项目建立独立虚拟环境，记录 Python、Node 和数据库版本，避免破坏旧环境。",
+          "恢复演练。备份不是复制后就结束。使用空目录恢复一份项目，核对文件数量和校验值，记录恢复耗时。",
+          "密码管理。项目演示使用占位配置示例，真实密钥仅存本地忽略文件。日志不打印认证头，也不把带密钥地址提交到仓库。"
+        ]
+      ],
+      "metadatas": [
+        [
+          {
+            "kb": "eval",
+            "title": "手机遗失处置",
+            "source": "原创虚构中文笔记，CC0-1.0",
+            "profile": "gpu_fp16",
+            "model_revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781"
+          },
+          {
+            "kb": "eval",
+            "title": "设备失联准备",
+            "source": "原创虚构中文笔记，CC0-1.0",
+            "profile": "gpu_fp16",
+            "model_revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781"
+          },
+          {
+            "kb": "eval",
+            "title": "环境锁定",
+            "source": "原创虚构中文笔记，CC0-1.0",
+            "profile": "gpu_fp16",
+            "model_revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781"
+          },
+          {
+            "kb": "eval",
+            "title": "恢复演练",
+            "source": "原创虚构中文笔记，CC0-1.0",
+            "profile": "gpu_fp16",
+            "model_revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781"
+          },
+          {
+            "kb": "eval",
+            "title": "密码管理",
+            "source": "原创虚构中文笔记，CC0-1.0",
+            "profile": "gpu_fp16",
+            "model_revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781"
+          }
+        ]
+      ]
+    }
+  },
+  "browserVersion": "156.0.8078.74",
+  "pageErrors": []
+}

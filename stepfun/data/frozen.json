@@ -1,0 +1,17 @@
+{
+  "frozen_before_retrieval": true,
+  "license": "CC0-1.0",
+  "documents": 50,
+  "queries": 20,
+  "k": 5,
+  "metric": "mean Recall@5; each query has two relevant documents",
+  "files": {
+    "corpus.json": "573adf6891c5488a13211da544801e7bc36123d6531f434769c020c4e9b5c581",
+    "queries.json": "5e960a89e37504c36f98957d1160f9635d2026f7edbe0d70c26aae31f59ca61d"
+  },
+  "engineering_targets": {
+    "recall_at_5_min": 0.85,
+    "max_absolute_drop": 0.05
+  },
+  "not_official_thresholds": true
+}

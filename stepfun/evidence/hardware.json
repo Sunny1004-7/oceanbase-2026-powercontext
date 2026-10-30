@@ -1,0 +1,13 @@
+{
+  "os": "Microsoft Windows 11 家庭版 中文版",
+  "osVersion": "10.0.26200",
+  "cpu": "13th Gen Intel(R) Core(TM) i7-13700H",
+  "logicalProcessors": 20,
+  "memoryBytes": 16961822720,
+  "gpu": [
+    {
+      "Name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "DriverVersion": "32.0.16.2101"
+    }
+  ]
+}

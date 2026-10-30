@@ -1,0 +1,32 @@
+{
+  "timestamp_utc": "2026-10-30T12:33:59.867191+00:00",
+  "fresh_code_copy": "/home/powercontext/r12/e04-clean-code",
+  "fresh_node_modules": true,
+  "fresh_python_venv": "/home/powercontext/r12/e04-clean-code/.venv",
+  "initial_empty_app_data": "/home/powercontext/r12/e04-final-clean",
+  "model_files_verified": 8,
+  "source_sha256": {
+    "server.mjs": "f9a9b1fec4a99d3909a598c2561ced0aa43d70fd85c03b021f9b28d0ed9e4caf",
+    "src/app.js": "e6292233e7f6017bd8ea6e76554138262a41c1080002276fed56660c1b60319a",
+    "src/embedding.worker.js": "1a0d7860b30fd07ad60b5c0ab1808e7d4c736735a6638f95fff48f161d5ff83f",
+    "src/query.js": "053c07083dd3a3bf905b8a9c07ec75649d6f6563cd960d8e9b427aed8b015460",
+    "src/style.css": "b7c94b365398d310520a44c34ecfda8144801fcb8ff29a82e0ae2325796a85b2",
+    "index.html": "9eaf5dcb2e3a7cc9a591961cfa414bf1ca15fdf49529b40d3aaf06500d9a021e",
+    "package.json": "6aaba8bbe52653c92e26a9d190b64a975caef8b8f544a271d94bd304187695a5",
+    "package-lock.json": "2c9296ef578dfbefa86879b42d813af2d856a0bb828bd3fe9e53dc74ec71a570",
+    "scripts/run.py": "d673b8ae4e47114da03ce5c1871d9f5ce498f8ba8ce40c83a4b87fd32c192a91",
+    "requirements.txt": "0364eeeb8b046634fbb4a5408495a8c0926c644048de238352d1bbe52acbe097",
+    "vite.config.js": "e26bef2b0b46acd1146fcf508e591b3b5fbd8b114fbdb264c1fd41391baca84d"
+  },
+  "dependency_logs": {
+    "e04-clean-pip.log": "728baaca018df113cd7aa82607a62a77bf2177fd41e9b48dfd6346fcee061042",
+    "e04-clean-npm.log": "0b84440620edcf61c0c8fc7e331f14ff6b39387c08f475607e527ebdebd4ab4c",
+    "e04-clean-build.log": "824c564b92d45e68d78890538fef8fb95862d7d5db67e114274724883bfca2f5"
+  },
+  "production_build_exit_code": 0,
+  "pip_check_exit_code": 0,
+  "browser_benchmark_exit_code": 0,
+  "ui_flow_exit_code": 0,
+  "server_restart_exit_code": 0,
+  "note": "UI input validation and ready-state text were checked after the full performance run; model worker, query rules, data and database retrieval code were unchanged."
+}

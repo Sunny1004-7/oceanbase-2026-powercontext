@@ -1,0 +1,266 @@
+{
+  "device": {
+    "os": "Windows 11",
+    "browser": "Chrome 156.0.8078.74 (headed)",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "driver": "32.0.16.2101",
+    "linux_service": "WSL2 Ubuntu 24.04 x86_64; Node 22.14.0; seekdb 1.4.0.0"
+  },
+  "runtime": "@huggingface/transformers 3.8.1",
+  "dataset": {
+    "frozen_before_retrieval": true,
+    "license": "CC0-1.0",
+    "documents": 50,
+    "queries": 20,
+    "k": 5,
+    "metric": "mean Recall@5; each query has two relevant documents",
+    "files": {
+      "corpus.json": "573adf6891c5488a13211da544801e7bc36123d6531f434769c020c4e9b5c581",
+      "queries.json": "5e960a89e37504c36f98957d1160f9635d2026f7edbe0d70c26aae31f59ca61d"
+    },
+    "engineering_targets": {
+      "recall_at_5_min": 0.85,
+      "max_absolute_drop": 0.05
+    },
+    "not_official_thresholds": true
+  },
+  "model": {
+    "id": "Xenova/bge-small-zh-v1.5",
+    "revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781",
+    "totals_bytes": {
+      "fp32": 95401750,
+      "fp16": 48047300,
+      "q8": 24560715
+    },
+    "compression_ratio": {
+      "fp16": 1.985579834871054,
+      "q8": 3.8843229930399015
+    }
+  },
+  "end_to_end_definition": "Browser submission until result DOM and synchronous layout are ready; includes inference, HTTP, seekdb query and rendering; excludes prior model initialization in warm samples",
+  "timing_units": "milliseconds",
+  "rows": [
+    {
+      "configuration": "gpu-fp16",
+      "profile": "gpu_fp16",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "fallback_reason": null,
+      "model_cold_load_ms": 3070.3849999997765,
+      "onnx_fetch_ms": 995.5850000008941,
+      "onnx_download_bytes": 47497427,
+      "model_fetch_events": {
+        "tokenizer.json": {
+          "start": 1363.5149999996647,
+          "bytes": 439125,
+          "end": 1390.7050000000745,
+          "fetch_ms": 27.190000000409782
+        },
+        "tokenizer_config.json": {
+          "start": 1364.7249999996275,
+          "bytes": 367,
+          "end": 1387.8199999993667,
+          "fetch_ms": 23.09499999973923
+        },
+        "config.json": {
+          "start": 1365.9899999992922,
+          "bytes": 716,
+          "end": 1387.9349999995902,
+          "fetch_ms": 21.945000000298023
+        },
+        "onnx/model_fp16.onnx": {
+          "start": 1447.2449999991804,
+          "bytes": 47497427,
+          "end": 2442.8300000000745,
+          "fetch_ms": 995.5850000008941
+        }
+      },
+      "documents": 50,
+      "full_import_repeats": 3,
+      "warm_query_samples": 100,
+      "document_inference_ms_median": 512.9699999997392,
+      "write_ms_median": 329.8751729999967,
+      "refresh_ms_median": 618.7243430000017,
+      "query_inference_ms_median": 15.962499999906868,
+      "seekdb_ms_median": 5.415491499998097,
+      "end_to_end_ms_median": 30.854999999981374,
+      "recall_at_5": 0.95,
+      "page_error_count": 0,
+      "external_requests": 0,
+      "backend_ui": "WebGPU / FP16",
+      "documents_per_second": 97.47158703242961,
+      "batch_comparison": {
+        "batch1_median_ms": 1056.7150000007823,
+        "batch4_median_ms": 512.9699999997392,
+        "ratio_batch1_over_batch4": 2.0599937618210022,
+        "repeats_each": 3,
+        "constant": "same GPU, fp16, model, 50 docs, backend and query configuration",
+        "limitation": "batch4 measured before batch1; medians include all three full imports, no random order"
+      },
+      "absolute_quality_drop_from_fp32": 0.0
+    },
+    {
+      "configuration": "wasm-fp32",
+      "profile": "wasm_fp32",
+      "adapter": null,
+      "fallback_reason": null,
+      "model_cold_load_ms": 2417.7800000002608,
+      "onnx_fetch_ms": 1609.1650000000373,
+      "onnx_download_bytes": 94851877,
+      "model_fetch_events": {
+        "tokenizer.json": {
+          "start": 128.24000000022352,
+          "bytes": 439125,
+          "end": 135.25,
+          "fetch_ms": 7.009999999776483
+        },
+        "tokenizer_config.json": {
+          "start": 127.77000000048429,
+          "bytes": 367,
+          "end": 132.7949999999255,
+          "fetch_ms": 5.0249999994412065
+        },
+        "config.json": {
+          "start": 130.35500000044703,
+          "bytes": 716,
+          "end": 148.72499999962747,
+          "fetch_ms": 18.369999999180436
+        },
+        "onnx/model.onnx": {
+          "start": 155.57500000018626,
+          "bytes": 94851877,
+          "end": 1764.7400000002235,
+          "fetch_ms": 1609.1650000000373
+        }
+      },
+      "documents": 50,
+      "full_import_repeats": 3,
+      "warm_query_samples": 100,
+      "document_inference_ms_median": 1824.4050000002608,
+      "write_ms_median": 237.49087700000382,
+      "refresh_ms_median": 629.1373390000008,
+      "query_inference_ms_median": 25.927500000223517,
+      "seekdb_ms_median": 5.563789499999984,
+      "end_to_end_ms_median": 36.955000000074506,
+      "recall_at_5": 0.95,
+      "page_error_count": 0,
+      "external_requests": 0,
+      "backend_ui": "WASM / FP32",
+      "documents_per_second": 27.406195444538277,
+      "absolute_quality_drop_from_fp32": 0.0
+    },
+    {
+      "configuration": "wasm-int8",
+      "profile": "wasm_q8",
+      "adapter": null,
+      "fallback_reason": null,
+      "model_cold_load_ms": 1060.3500000005588,
+      "onnx_fetch_ms": 408.97499999962747,
+      "onnx_download_bytes": 24010842,
+      "model_fetch_events": {
+        "tokenizer.json": {
+          "start": 141.87000000011176,
+          "bytes": 439125,
+          "end": 147.9199999999255,
+          "fetch_ms": 6.0499999998137355
+        },
+        "tokenizer_config.json": {
+          "start": 140.535000000149,
+          "bytes": 367,
+          "end": 145.339999999851,
+          "fetch_ms": 4.804999999701977
+        },
+        "config.json": {
+          "start": 145.20000000018626,
+          "bytes": 716,
+          "end": 161.24000000022352,
+          "fetch_ms": 16.040000000037253
+        },
+        "onnx/model_quantized.onnx": {
+          "start": 170.4550000000745,
+          "bytes": 24010842,
+          "end": 579.429999999702,
+          "fetch_ms": 408.97499999962747
+        }
+      },
+      "documents": 50,
+      "full_import_repeats": 3,
+      "warm_query_samples": 100,
+      "document_inference_ms_median": 1418.8950000004843,
+      "write_ms_median": 206.62008100000094,
+      "refresh_ms_median": 513.192501000005,
+      "query_inference_ms_median": 42.8625000002794,
+      "seekdb_ms_median": 6.008751500005019,
+      "end_to_end_ms_median": 58.885000000242144,
+      "recall_at_5": 0.95,
+      "page_error_count": 0,
+      "external_requests": 0,
+      "backend_ui": "WASM / INT8",
+      "documents_per_second": 35.23868926170219,
+      "absolute_quality_drop_from_fp32": 0.0
+    },
+    {
+      "configuration": "automatic-fallback",
+      "profile": "wasm_q8",
+      "adapter": null,
+      "fallback_reason": "未找到可用 GPU",
+      "model_cold_load_ms": 1064.8650000002235,
+      "onnx_fetch_ms": 403.90500000026077,
+      "onnx_download_bytes": 24010842,
+      "model_fetch_events": {
+        "tokenizer.json": {
+          "start": 130.1149999992922,
+          "bytes": 439125,
+          "end": 135.62999999988824,
+          "fetch_ms": 5.5150000005960464
+        },
+        "tokenizer_config.json": {
+          "start": 128.45999999996275,
+          "bytes": 367,
+          "end": 132.25,
+          "fetch_ms": 3.790000000037253
+        },
+        "config.json": {
+          "start": 132.1499999994412,
+          "bytes": 716,
+          "end": 149.2749999994412,
+          "fetch_ms": 17.125
+        },
+        "onnx/model_quantized.onnx": {
+          "start": 155.7299999995157,
+          "bytes": 24010842,
+          "end": 559.6349999997765,
+          "fetch_ms": 403.90500000026077
+        }
+      },
+      "documents": 50,
+      "full_import_repeats": 3,
+      "warm_query_samples": 100,
+      "document_inference_ms_median": 1216.3150000004098,
+      "write_ms_median": 211.04957800000557,
+      "refresh_ms_median": 527.4533559999982,
+      "query_inference_ms_median": 19.609999999869615,
+      "seekdb_ms_median": 5.7823414999948,
+      "end_to_end_ms_median": 30.540000000037253,
+      "recall_at_5": 0.95,
+      "page_error_count": 0,
+      "external_requests": 0,
+      "backend_ui": "WASM / INT8（已自动降级）",
+      "documents_per_second": 41.1077722464848,
+      "absolute_quality_drop_from_fp32": 0.0
+    }
+  ],
+  "engineering_target_passed": true,
+  "comparison_limits": [
+    "FP32 vs INT8 on WASM isolates precision; GPU/FP16 vs WASM/INT8 changes both backend and precision",
+    "Fixed small hand-labeled development set; query cleanup was refined on these queries, so this is not an independent generalization estimate",
+    "Early direct-question configuration had Recall@5=0.75; preserved in preliminary evidence. No corpus/query labels were removed or changed",
+    "WebGPU uses a real non-fallback NVIDIA adapter; controlled fallback uses Chrome --disable-gpu --disable-software-rasterizer, automatic request remains auto",
+    "Earlier two-requestAnimationFrame presentation barrier inflated background-window latency; final app measures synchronous result layout readiness"
+  ]
+}
