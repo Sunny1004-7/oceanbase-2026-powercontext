@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field, field_validator
 from pypdf import PdfReader
 
 from powercontext.sources._pdf_retrieval import search_pdf_pages as search_pdf_pages
+from powercontext.sources._pdf_text import extract_page_text
 from powercontext.sources.definitions import AdapterSourceDefinition, SourceDefinition
 from powercontext.sources.models import Source, SourceMaterialization
 from powercontext.sources.projections import TEXT_EVIDENCE_PROJECTION_KEY, TextEvidence
@@ -50,7 +51,7 @@ def parse_pdf_document(value: PDFDocumentInput) -> tuple[PDFPageInput, ...]:
                 document_id=value.document_id,
                 document_sha256=digest,
                 page_number=number,
-                text=page.extract_text() or "",
+                text=extract_page_text(page),
             )
             for number, page in enumerate(reader.pages, 1)
         )

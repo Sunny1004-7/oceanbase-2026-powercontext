@@ -27,6 +27,7 @@ def make_pdf(pages: list[str], *, user_password: str | None = None) -> bytes:
         NameObject("/Type"): NameObject("/Font"),
         NameObject("/Subtype"): NameObject("/CIDFontType2"),
         NameObject("/BaseFont"): NameObject("/TestUnicode"),
+        NameObject("/DW"): NumberObject(500),
         NameObject("/CIDSystemInfo"): DictionaryObject({
             NameObject("/Registry"): TextStringObject("Adobe"),
             NameObject("/Ordering"): TextStringObject("Identity"),
@@ -43,20 +44,24 @@ def make_pdf(pages: list[str], *, user_password: str | None = None) -> bytes:
     })
     font_ref = writer._add_object(font)
     for text in pages:
-        page = writer.add_blank_page(width=612, height=792)
+        lines = [
+            line
+            for original in text.splitlines()
+            for line in textwrap.wrap(original, width=84, break_long_words=False, break_on_hyphens=False)
+        ]
+        # Keep the independent known text on its physical page. Very long words
+        # use a smaller font; dense pages grow vertically without splitting pages.
+        height = max(792, 82 + 13 * max(0, len(lines) - 1))
+        font_size = min(10, 1080 / max((len(line) for line in lines), default=1))
+        page = writer.add_blank_page(width=612, height=height)
         page[NameObject("/Resources")] = DictionaryObject({
             NameObject("/Font"): DictionaryObject({NameObject("/F1"): font_ref})
         })
         if text:
             commands = []
-            lines = [
-                line
-                for original in text.splitlines()
-                for line in textwrap.wrap(original, width=84, break_long_words=False, break_on_hyphens=False)
-            ]
             for index, line in enumerate(lines):
                 encoded = "".join(f"{codes[character]:04x}" for character in line)
-                commands.append(f"BT /F1 10 Tf 1 0 0 1 36 {756 - index * 13} Tm <{encoded}> Tj ET")
+                commands.append(f"BT /F1 {font_size:.6f} Tf 1 0 0 1 36 {height - 36 - index * 13} Tm <{encoded}> Tj ET")
             content = DecodedStreamObject()
             content.set_data("\n".join(commands).encode())
             page[NameObject("/Contents")] = writer._add_object(content)
