@@ -1,0 +1,6 @@
+{
+  "source": "MiniMax ordinary output",
+  "target": "evidence/development-01/candidate/reading_list.py",
+  "before_sha256": "4e827469d881044eb30ad0c298a643c30292d8d914c6296ddb8be9dc4e0a9bb0",
+  "candidate_sha256": "6094bc05e5f9ab6010f2e0d2a67b083ced8d04c0fb74ec6d7530e78bec1bb43b"
+}

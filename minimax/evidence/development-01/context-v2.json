@@ -1,0 +1,78 @@
+{
+  "task_key": "tag-filter",
+  "selection": "seekdb structured current-source query",
+  "sources": [
+    {
+      "source_id": "example/before/reading_list.py::select_books,main::frozen",
+      "path": "example/before/reading_list.py",
+      "kind": "code",
+      "symbol": "select_books,main",
+      "source_version": "frozen",
+      "revision": "4e827469d881044eb30ad0c298a643c30292d8d914c6296ddb8be9dc4e0a9bb0",
+      "content": "\"\"\"Reading list baseline: status selection and deterministic ordering.\"\"\"\nimport argparse\nimport json\nfrom pathlib import Path\n\nSTATUSES = ('unread', 'reading', 'done')\n\ndef select_books(books, status=None, **filters):\n    \"\"\"Select by status; other filters are reserved for later CLI extensions.\"\"\"\n    if status is not None and status not in STATUSES:\n        raise ValueError('unknown status')\n    selected = [book for book in books if status is None or book['status'] == status]\n    return sorted(selected, key=lambda book: (book['added'], book['id']))\n\ndef main():\n    parser = argparse.ArgumentParser(description='阅读清单')\n    parser.add_argument('data', type=Path)\n    parser.add_argument('--status', choices=STATUSES)\n    args = parser.parse_args()\n    books = json.loads(args.data.read_text(encoding='utf-8'))\n    print(json.dumps(select_books(books, status=args.status), ensure_ascii=False))\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    {
+      "source_id": "example/books.json::BOOKS::frozen",
+      "path": "example/books.json",
+      "kind": "data",
+      "symbol": "BOOKS",
+      "source_version": "frozen",
+      "revision": "98b4390a53a4ecdb1c9f9a3ce3beba092957ce712814904d0a1dd789c4042367",
+      "content": "[\n  {\"id\":\"b04\",\"title\":\"事务札记\",\"status\":\"reading\",\"tags\":[\"数据库\",\"SQL\"],\"added\":\"2026-10-03\"},\n  {\"id\":\"b02\",\"title\":\"检索入门\",\"status\":\"done\",\"tags\":[\"检索\",\"数据库\"],\"added\":\"2026-10-01\"},\n  {\"id\":\"b05\",\"title\":\"周末散文\",\"status\":\"unread\",\"tags\":[],\"added\":\"2026-10-04\"},\n  {\"id\":\"b03\",\"title\":\"索引小册\",\"status\":\"unread\",\"tags\":[\"数据库索引\",\"SQL\"],\"added\":\"2026-10-02\"},\n  {\"id\":\"b01\",\"title\":\"向量读本\",\"status\":\"unread\",\"tags\":[\"数据库\",\"检索\",\"数据库\"],\"added\":\"2026-10-01\"},\n  {\"id\":\"b06\",\"title\":\"脚本实践\",\"status\":\"done\",\"tags\":[\"Python\"],\"added\":\"2026-10-04\"}\n]\n"
+    },
+    {
+      "source_id": "specs/v2.json::COMPAT-01::v2",
+      "path": "specs/v2.json",
+      "kind": "spec",
+      "symbol": "COMPAT-01",
+      "source_version": "v2",
+      "revision": "4f69422aefc6e628bc645ef102838d8b7e305eb8d0ed09d9b8ce52208549cffd",
+      "content": "保留按 added 升序、同日按 id 升序的稳定结果；不修改输入数据。"
+    },
+    {
+      "source_id": "specs/v2.json::COMPAT-02::v2",
+      "path": "specs/v2.json",
+      "kind": "spec",
+      "symbol": "COMPAT-02",
+      "source_version": "v2",
+      "revision": "bb5dda68f5b8419b2d9adc33c4829bbc085272121dbdcc74ef70278bc3f5d720",
+      "content": "保持原有状态校验、中文 JSON 输出及空结果行为，不新增第三方业务依赖。"
+    },
+    {
+      "source_id": "specs/v2.json::TAG-01::v2",
+      "path": "specs/v2.json",
+      "kind": "spec",
+      "symbol": "TAG-01",
+      "source_version": "v2",
+      "revision": "f5e6ba7ef8e40d2cb3706a55205a23e6b557fd6a6dd55f47a332f0e6e555ef9f",
+      "content": "select_books 与 CLI --tag 接受一个标签；先对查询标签 strip 去除首尾空白，再按 tags 数组完整元素精确、区分大小写匹配，不做子串匹配。"
+    },
+    {
+      "source_id": "specs/v2.json::TAG-02::v2",
+      "path": "specs/v2.json",
+      "kind": "spec",
+      "symbol": "TAG-02",
+      "source_version": "v2",
+      "revision": "b2df2be10ca1e09886dc1937e6d2d0c7c4d1bb7973ac55f1a650336c8b401d13",
+      "content": "标签与 status 同时指定时取交集。tag 为 None、空字符串或只有空白时视作不指定标签，保持原有筛选。"
+    },
+    {
+      "source_id": "specs/v2.json::TAG-03::v2",
+      "path": "specs/v2.json",
+      "kind": "spec",
+      "symbol": "TAG-03",
+      "source_version": "v2",
+      "revision": "d900ffc90ed1087b7bb9fc960e7927b5a6df8b71c9ab10c37044b3219633bc5e",
+      "content": "书目缺少 tags 字段或 tags 为空数组时，指定非空标签不能匹配；一个书目含重复标签也只输出一次；未知标签返回空数组。"
+    },
+    {
+      "source_id": "tests/test_reading_list.py::RegressionTests,TargetTests::frozen",
+      "path": "tests/test_reading_list.py",
+      "kind": "test",
+      "symbol": "RegressionTests,TargetTests",
+      "source_version": "frozen",
+      "revision": "8d4bc3d947e82816392bb5e1e2f6b9dc7c2d538ec4d4c24088c9fbcea770e9c9",
+      "content": "\"\"\"Frozen business tests. READING_MODULE points at before/after snapshots.\"\"\"\nimport copy, importlib.util, json, os, pathlib, subprocess, sys, unittest\nROOT=pathlib.Path(__file__).resolve().parents[1]\nMODULE=pathlib.Path(os.environ.get('READING_MODULE',ROOT/'example/before/reading_list.py')).resolve()\nspec=importlib.util.spec_from_file_location('reading_list',MODULE)\napp=importlib.util.module_from_spec(spec); spec.loader.exec_module(app)\nBOOKS=json.loads((ROOT/'example/books.json').read_text(encoding='utf-8'))\ndef ids(items):return [x['id'] for x in items]\ndef cli(*args):return subprocess.run([sys.executable,str(MODULE),str(ROOT/'example/books.json'),*args],capture_output=True,text=True,encoding='utf-8')\n\nclass RegressionTests(unittest.TestCase):\n    def test_all_order(self):self.assertEqual(ids(app.select_books(BOOKS)),['b01','b02','b03','b04','b05','b06'])\n    def test_status(self):self.assertEqual(ids(app.select_books(BOOKS,status='unread')),['b01','b03','b05'])\n    def test_reading(self):self.assertEqual(ids(app.select_books(BOOKS,status='reading')),['b04'])\n    def test_done(self):self.assertEqual(ids(app.select_books(BOOKS,status='done')),['b02','b06'])\n    def test_invalid_status(self):\n        with self.assertRaises(ValueError):app.select_books(BOOKS,status='bad')\n    def test_empty(self):self.assertEqual(app.select_books([]),[])\n    def test_immutable(self):\n        books=copy.deepcopy(BOOKS); old=copy.deepcopy(books); app.select_books(books,status='done'); self.assertEqual(books,old)\n    def test_cli_status(self):\n        p=cli('--status','reading'); self.assertEqual(p.returncode,0,p.stderr); self.assertEqual(ids(json.loads(p.stdout)),['b04'])\n    def test_cli_invalid(self):self.assertEqual(cli('--status','bad').returncode,2)\n\nclass TargetTests(unittest.TestCase):\n    def test_tag(self):self.assertEqual(ids(app.select_books(BOOKS,tag='数据库')),['b01','b02','b04'])\n    def test_intersection(self):self.assertEqual(ids(app.select_books(BOOKS,status='done',tag='数据库')),['b02'])\n    def test_trim_v2(self):self.assertEqual(ids(app.select_books(BOOKS,tag='  数据库  ')),['b01','b02','b04'])\n    def test_exact(self):self.assertEqual(ids(app.select_books(BOOKS,tag='数据库索引')),['b03'])\n    def test_unknown(self):self.assertEqual(app.select_books(BOOKS,tag='不存在'),[])\n    def test_case(self):self.assertEqual(app.select_books(BOOKS,tag='python'),[])\n    def test_missing_tags(self):self.assertEqual(app.select_books([{'id':'x','status':'unread','added':'2026-01-01'}],tag='数据库'),[])\n    def test_empty_tag(self):self.assertEqual(ids(app.select_books(BOOKS,tag='  ',status='done')),['b02','b06'])\n    def test_duplicates(self):self.assertEqual(ids(app.select_books(BOOKS[:]+[{'id':'x','status':'done','added':'2026-11-01','tags':['独立','独立']}],tag='独立')),['x'])\n    def test_input_unchanged(self):\n        books=copy.deepcopy(BOOKS); old=copy.deepcopy(books); app.select_books(books,tag='数据库'); self.assertEqual(books,old)\n    def test_cli_tag(self):\n        p=cli('--tag','数据库'); self.assertEqual(p.returncode,0,p.stderr); self.assertEqual(ids(json.loads(p.stdout)),['b01','b02','b04'])\n    def test_cli_both(self):\n        p=cli('--tag','数据库','--status','unread'); self.assertEqual(p.returncode,0,p.stderr); self.assertEqual(ids(json.loads(p.stdout)),['b01'])\n\nif __name__=='__main__':unittest.main()\n"
+    }
+  ]
+}

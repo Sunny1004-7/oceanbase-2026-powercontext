@@ -1,0 +1,16 @@
+{
+  "mode": "replay",
+  "new_model_call": false,
+  "tests_sha256": "8d4bc3d947e82816392bb5e1e2f6b9dc7c2d538ec4d4c24088c9fbcea770e9c9",
+  "before_sha256": "4e827469d881044eb30ad0c298a643c30292d8d914c6296ddb8be9dc4e0a9bb0",
+  "after_sha256": "6094bc05e5f9ab6010f2e0d2a67b083ced8d04c0fb74ec6d7530e78bec1bb43b",
+  "baseline_regression_exit": 0,
+  "baseline_all_exit": 1,
+  "baseline_failures": 10,
+  "after_all_exit": 0,
+  "tests_total": 21,
+  "PowerContext": "1.4.1: sources.capture_working_note + records.list_sources; separate write/read processes",
+  "state_reuse_effect": "modify_with_current_v2_context",
+  "final_next_action": "deliver_verified_patch",
+  "all_six_local_acceptance": true
+}

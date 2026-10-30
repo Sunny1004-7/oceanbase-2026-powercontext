@@ -1,0 +1,11 @@
+{
+  "task": "tag-filter",
+  "completed": [
+    "baseline_verified",
+    "sources_imported",
+    "spec_updated_v2"
+  ],
+  "tests_sha256": "8d4bc3d947e82816392bb5e1e2f6b9dc7c2d538ec4d4c24088c9fbcea770e9c9",
+  "failed_behavior": "tag filtering absent",
+  "next_action": "modify_with_current_v2_context"
+}

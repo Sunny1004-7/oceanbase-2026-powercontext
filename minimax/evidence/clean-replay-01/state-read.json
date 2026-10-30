@@ -1,0 +1,17 @@
+{
+  "pid": 883,
+  "action": "read",
+  "sources": {
+    "items": [
+      {
+        "scope_id": "scp_0km1nae5hfvfct63dxhj9x3qss",
+        "source_type": "content",
+        "source_id": "state-baseline",
+        "content": "{\"task\": \"tag-filter\", \"completed\": [\"baseline_verified\", \"sources_imported\", \"spec_updated_v2\"], \"tests_sha256\": \"8d4bc3d947e82816392bb5e1e2f6b9dc7c2d538ec4d4c24088c9fbcea770e9c9\", \"failed_behavior\": \"tag filtering absent\", \"next_action\": \"modify_with_current_v2_context\"}",
+        "position": 1,
+        "content_digest": "sha256:3d2eb9acffe42c7b72ddf2ebe55da3c413b269e0ed6b8229d6fef65111fbf955"
+      }
+    ],
+    "next_cursor": null
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "model": "MiniMax-M2.5",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Reply with the single word OK."
+    }
+  ],
+  "temperature": 0.1,
+  "max_tokens": 1024
+}

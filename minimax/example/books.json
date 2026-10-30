@@ -1,0 +1,8 @@
+[
+  {"id":"b04","title":"事务札记","status":"reading","tags":["数据库","SQL"],"added":"2026-10-03"},
+  {"id":"b02","title":"检索入门","status":"done","tags":["检索","数据库"],"added":"2026-10-01"},
+  {"id":"b05","title":"周末散文","status":"unread","tags":[],"added":"2026-10-04"},
+  {"id":"b03","title":"索引小册","status":"unread","tags":["数据库索引","SQL"],"added":"2026-10-02"},
+  {"id":"b01","title":"向量读本","status":"unread","tags":["数据库","检索","数据库"],"added":"2026-10-01"},
+  {"id":"b06","title":"脚本实践","status":"done","tags":["Python"],"added":"2026-10-04"}
+]

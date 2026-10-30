@@ -1,0 +1,25 @@
+{
+  "pid": 608,
+  "action": "read",
+  "sources": {
+    "items": [
+      {
+        "scope_id": "scp_49w7m9bdfcjry821zjsxsbmqdk",
+        "source_type": "content",
+        "source_id": "state-baseline",
+        "content": "{\"task\": \"tag-filter\", \"completed\": [\"baseline_verified\", \"sources_imported\", \"spec_updated_v2\"], \"tests_sha256\": \"8d4bc3d947e82816392bb5e1e2f6b9dc7c2d538ec4d4c24088c9fbcea770e9c9\", \"failed_behavior\": \"tag filtering absent\", \"next_action\": \"modify_with_current_v2_context\"}",
+        "position": 1,
+        "content_digest": "sha256:3d2eb9acffe42c7b72ddf2ebe55da3c413b269e0ed6b8229d6fef65111fbf955"
+      },
+      {
+        "scope_id": "scp_49w7m9bdfcjry821zjsxsbmqdk",
+        "source_type": "content",
+        "source_id": "state-verified",
+        "content": "{\"task\": \"tag-filter\", \"completed\": [\"baseline_verified\", \"spec_v2_imported\", \"patch_applied\", \"all_21_tests_passed\"], \"tests_sha256\": \"8d4bc3d947e82816392bb5e1e2f6b9dc7c2d538ec4d4c24088c9fbcea770e9c9\", \"candidate_sha256\": \"6094bc05e5f9ab6010f2e0d2a67b083ced8d04c0fb74ec6d7530e78bec1bb43b\", \"next_action\": \"deliver_verified_patch\"}",
+        "position": 2,
+        "content_digest": "sha256:8629aaca8797498bfd6c4202c37de32f95597ee4fdcc2cf9bb10d7c7fe6162e7"
+      }
+    ],
+    "next_cursor": null
+  }
+}

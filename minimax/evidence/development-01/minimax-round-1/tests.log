@@ -1,0 +1,29 @@
+$ /home/powercontext/r12/venv/bin/python -m unittest discover -s tests -p test_reading_list.py -v
+test_all_order (test_reading_list.RegressionTests.test_all_order) ... ok
+test_cli_invalid (test_reading_list.RegressionTests.test_cli_invalid) ... ok
+test_cli_status (test_reading_list.RegressionTests.test_cli_status) ... ok
+test_done (test_reading_list.RegressionTests.test_done) ... ok
+test_empty (test_reading_list.RegressionTests.test_empty) ... ok
+test_immutable (test_reading_list.RegressionTests.test_immutable) ... ok
+test_invalid_status (test_reading_list.RegressionTests.test_invalid_status) ... ok
+test_reading (test_reading_list.RegressionTests.test_reading) ... ok
+test_status (test_reading_list.RegressionTests.test_status) ... ok
+test_case (test_reading_list.TargetTests.test_case) ... ok
+test_cli_both (test_reading_list.TargetTests.test_cli_both) ... ok
+test_cli_tag (test_reading_list.TargetTests.test_cli_tag) ... ok
+test_duplicates (test_reading_list.TargetTests.test_duplicates) ... ok
+test_empty_tag (test_reading_list.TargetTests.test_empty_tag) ... ok
+test_exact (test_reading_list.TargetTests.test_exact) ... ok
+test_input_unchanged (test_reading_list.TargetTests.test_input_unchanged) ... ok
+test_intersection (test_reading_list.TargetTests.test_intersection) ... ok
+test_missing_tags (test_reading_list.TargetTests.test_missing_tags) ... ok
+test_tag (test_reading_list.TargetTests.test_tag) ... ok
+test_trim_v2 (test_reading_list.TargetTests.test_trim_v2) ... ok
+test_unknown (test_reading_list.TargetTests.test_unknown) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.665s
+
+OK
+
+exit_code=0

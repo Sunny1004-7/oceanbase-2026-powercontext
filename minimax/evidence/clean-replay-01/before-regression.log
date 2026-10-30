@@ -1,0 +1,17 @@
+$ /home/powercontext/r12/e02-clean-venv/bin/python -m unittest test_reading_list.RegressionTests -v
+test_all_order (test_reading_list.RegressionTests.test_all_order) ... ok
+test_cli_invalid (test_reading_list.RegressionTests.test_cli_invalid) ... ok
+test_cli_status (test_reading_list.RegressionTests.test_cli_status) ... ok
+test_done (test_reading_list.RegressionTests.test_done) ... ok
+test_empty (test_reading_list.RegressionTests.test_empty) ... ok
+test_immutable (test_reading_list.RegressionTests.test_immutable) ... ok
+test_invalid_status (test_reading_list.RegressionTests.test_invalid_status) ... ok
+test_reading (test_reading_list.RegressionTests.test_reading) ... ok
+test_status (test_reading_list.RegressionTests.test_status) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.247s
+
+OK
+
+exit_code=0

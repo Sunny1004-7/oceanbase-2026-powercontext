@@ -1,0 +1,4 @@
+$ /home/powercontext/r12/e02-clean-venv/bin/python /mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/state_worker.py write --data /home/powercontext/r12/e02-clean-replay/powercontext --output /mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/evidence/clean-replay-01/state-write.json --phase baseline --input /mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/evidence/clean-replay-01/baseline-state-input.json
+{"action": "write", "pid": 860, "output": "/mnt/d/DONTSTOP/Race/\u7b2c\u516d\u5c4a OceanBase \u6570\u636e\u5e93\u5927\u8d5b/\u89e3\u9898/R12_\u7aef\u4fa7\u77e5\u8bc6\u5e93\u4e0eMiniMax/\u751f\u6001\u5de5\u4f5c\u533a/minimax/evidence/clean-replay-01/state-write.json"}
+
+exit_code=0

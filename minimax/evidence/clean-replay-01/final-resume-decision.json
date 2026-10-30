@@ -1,0 +1,18 @@
+{
+  "resume": true,
+  "source_id": "state-verified",
+  "source_position": 2,
+  "state": {
+    "task": "tag-filter",
+    "completed": [
+      "baseline_verified",
+      "spec_v2_imported",
+      "patch_applied",
+      "all_21_tests_passed"
+    ],
+    "tests_sha256": "8d4bc3d947e82816392bb5e1e2f6b9dc7c2d538ec4d4c24088c9fbcea770e9c9",
+    "candidate_sha256": "6094bc05e5f9ab6010f2e0d2a67b083ced8d04c0fb74ec6d7530e78bec1bb43b",
+    "next_action": "deliver_verified_patch"
+  },
+  "next_action": "deliver_verified_patch"
+}

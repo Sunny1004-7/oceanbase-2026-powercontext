@@ -1,0 +1,25 @@
+{
+  "timestamp_utc": "2026-10-30T11:59:13.107329+00:00",
+  "duration_ms": 1173.2876319999832,
+  "base_url": "https://api.minimax.cn/v1",
+  "requested_model": "MiniMax-M2.5",
+  "returned_model": "MiniMax-M2.5",
+  "id": "0733b990d3be89802b89194ba337b016",
+  "request_id": "0733b990d3be89802b89194ba337b016",
+  "usage": {
+    "total_tokens": 212,
+    "total_characters": 0,
+    "prompt_tokens": 209,
+    "completion_tokens": 3,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 197
+    }
+  },
+  "finish_reason": "stop",
+  "content": "OK",
+  "request_sha256": "04bd4f2629049db02b067ca2c8918455368f4130e8921f24c0b5d06fc4bb6972",
+  "reasoning_saved": false
+}

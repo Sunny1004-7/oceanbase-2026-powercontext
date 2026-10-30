@@ -1,0 +1,56 @@
+[
+  {
+    "source_id": "specs/v1.json::COMPAT-01::v1",
+    "source_version": "v1",
+    "is_current": 0,
+    "revision": "4f69422aefc6e628bc645ef102838d8b7e305eb8d0ed09d9b8ce52208549cffd"
+  },
+  {
+    "source_id": "specs/v1.json::COMPAT-02::v1",
+    "source_version": "v1",
+    "is_current": 0,
+    "revision": "bb5dda68f5b8419b2d9adc33c4829bbc085272121dbdcc74ef70278bc3f5d720"
+  },
+  {
+    "source_id": "specs/v1.json::TAG-01::v1",
+    "source_version": "v1",
+    "is_current": 0,
+    "revision": "75e8df3f4eea68d12c3b8b83e551750d850b58dc521152ef6514fd361609cfb8"
+  },
+  {
+    "source_id": "specs/v1.json::TAG-02::v1",
+    "source_version": "v1",
+    "is_current": 0,
+    "revision": "d04e895fdcf7efdb6711659f3c0623333f5326d562ef3bc3879b647cc00813e1"
+  },
+  {
+    "source_id": "specs/v2.json::COMPAT-01::v2",
+    "source_version": "v2",
+    "is_current": 1,
+    "revision": "4f69422aefc6e628bc645ef102838d8b7e305eb8d0ed09d9b8ce52208549cffd"
+  },
+  {
+    "source_id": "specs/v2.json::COMPAT-02::v2",
+    "source_version": "v2",
+    "is_current": 1,
+    "revision": "bb5dda68f5b8419b2d9adc33c4829bbc085272121dbdcc74ef70278bc3f5d720"
+  },
+  {
+    "source_id": "specs/v2.json::TAG-01::v2",
+    "source_version": "v2",
+    "is_current": 1,
+    "revision": "f5e6ba7ef8e40d2cb3706a55205a23e6b557fd6a6dd55f47a332f0e6e555ef9f"
+  },
+  {
+    "source_id": "specs/v2.json::TAG-02::v2",
+    "source_version": "v2",
+    "is_current": 1,
+    "revision": "b2df2be10ca1e09886dc1937e6d2d0c7c4d1bb7973ac55f1a650336c8b401d13"
+  },
+  {
+    "source_id": "specs/v2.json::TAG-03::v2",
+    "source_version": "v2",
+    "is_current": 1,
+    "revision": "d900ffc90ed1087b7bb9fc960e7927b5a6df8b71c9ab10c37044b3219633bc5e"
+  }
+]

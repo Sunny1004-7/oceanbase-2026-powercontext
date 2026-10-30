@@ -1,0 +1,25 @@
+{
+  "timestamp_utc": "2026-10-30T12:06:37.495969+00:00",
+  "duration_ms": 3221.9850419999148,
+  "base_url": "https://api.minimax.cn/v1",
+  "requested_model": "MiniMax-M2.5",
+  "returned_model": "MiniMax-M2.5",
+  "id": "0733bb4d40b1b731721e2f3deb565828",
+  "request_id": "0733bb4d40b1b731721e2f3deb565828",
+  "usage": {
+    "total_tokens": 3478,
+    "total_characters": 0,
+    "prompt_tokens": 2938,
+    "completion_tokens": 540,
+    "completion_tokens_details": {
+      "reasoning_tokens": 129
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 128
+    }
+  },
+  "finish_reason": "stop",
+  "content": "{\"reading_list.py\": \"\\\"\\\"\\\"Reading list: status/tag selection and deterministic ordering.\\\"\\\"\\\"\\nimport argparse\\nimport json\\nfrom pathlib import Path\\n\\nSTATUSES = ('unread', 'reading', 'done')\\n\\ndef _normalize_tag(tag):\\n    \\\"\\\"\\\"Strip a query tag; blank or None means 'no tag filter'.\\\"\\\"\\\"\\n    if tag is None:\\n        return None\\n    if not isinstance(tag, str):\\n        raise ValueError('tag must be a string')\\n    cleaned = tag.strip()\\n    return cleaned or None\\n\\ndef select_books(books, status=None, tag=None, **filters):\\n    \\\"\\\"\\\"Select by status and (optionally) by an exact tag; filters intersect.\\\"\\\"\\\"\\n    if status is not None and status not in STATUSES:\\n        raise ValueError('unknown status')\\n    wanted = _normalize_tag(tag)\\n    selected = []\\n    for book in books:\\n        if status is not None and book['status'] != status:\\n            continue\\n        if wanted is not None:\\n            tags = book.get('tags') or []\\n            if wanted not in tags:\\n                continue\\n        selected.append(book)\\n    return sorted(selected, key=lambda book: (book['added'], book['id']))\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description='阅读清单')\\n    parser.add_argument('data', type=Path)\\n    parser.add_argument('--status', choices=STATUSES)\\n    parser.add_argument('--tag')\\n    args = parser.parse_args()\\n    books = json.loads(args.data.read_text(encoding='utf-8'))\\n    print(json.dumps(select_books(books, status=args.status, tag=args.tag), ensure_ascii=False))\\n\\nif __name__ == '__main__':\\n    main()\\n\"}",
+  "request_sha256": "5fde5502c6848d5f3dd182acac3f74697914524a33077bbd47f1faa85f8f7f98",
+  "reasoning_saved": false
+}

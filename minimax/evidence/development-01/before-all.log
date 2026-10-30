@@ -1,0 +1,193 @@
+$ /home/powercontext/r12/venv/bin/python -m unittest discover -s tests -p test_reading_list.py -v
+test_all_order (test_reading_list.RegressionTests.test_all_order) ... ok
+test_cli_invalid (test_reading_list.RegressionTests.test_cli_invalid) ... ok
+test_cli_status (test_reading_list.RegressionTests.test_cli_status) ... ok
+test_done (test_reading_list.RegressionTests.test_done) ... ok
+test_empty (test_reading_list.RegressionTests.test_empty) ... ok
+test_immutable (test_reading_list.RegressionTests.test_immutable) ... ok
+test_invalid_status (test_reading_list.RegressionTests.test_invalid_status) ... ok
+test_reading (test_reading_list.RegressionTests.test_reading) ... ok
+test_status (test_reading_list.RegressionTests.test_status) ... ok
+test_case (test_reading_list.TargetTests.test_case) ... FAIL
+test_cli_both (test_reading_list.TargetTests.test_cli_both) ... FAIL
+test_cli_tag (test_reading_list.TargetTests.test_cli_tag) ... FAIL
+test_duplicates (test_reading_list.TargetTests.test_duplicates) ... FAIL
+test_empty_tag (test_reading_list.TargetTests.test_empty_tag) ... ok
+test_exact (test_reading_list.TargetTests.test_exact) ... FAIL
+test_input_unchanged (test_reading_list.TargetTests.test_input_unchanged) ... ok
+test_intersection (test_reading_list.TargetTests.test_intersection) ... FAIL
+test_missing_tags (test_reading_list.TargetTests.test_missing_tags) ... FAIL
+test_tag (test_reading_list.TargetTests.test_tag) ... FAIL
+test_trim_v2 (test_reading_list.TargetTests.test_trim_v2) ... FAIL
+test_unknown (test_reading_list.TargetTests.test_unknown) ... FAIL
+
+======================================================================
+FAIL: test_case (test_reading_list.TargetTests.test_case)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 31, in test_case
+    def test_case(self):self.assertEqual(app.select_books(BOOKS,tag='python'),[])
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'id': 'b01', 'title': '向量读本', 'status': [535 chars]04'}] != []
+
+First list contains 6 additional elements.
+First extra element 0:
+{'id': 'b01', 'title': '向量读本', 'status': 'unread', 'tags': ['数据库', '检索', '数据库'], 'added': '2026-10-01'}
+
+Diff is 701 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_cli_both (test_reading_list.TargetTests.test_cli_both)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 40, in test_cli_both
+    p=cli('--tag','数据库','--status','unread'); self.assertEqual(p.returncode,0,p.stderr); self.assertEqual(ids(json.loads(p.stdout)),['b01'])
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : usage: reading_list.py [-h] [--status {unread,reading,done}] data
+reading_list.py: error: unrecognized arguments: --tag 数据库
+
+
+======================================================================
+FAIL: test_cli_tag (test_reading_list.TargetTests.test_cli_tag)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 38, in test_cli_tag
+    p=cli('--tag','数据库'); self.assertEqual(p.returncode,0,p.stderr); self.assertEqual(ids(json.loads(p.stdout)),['b01','b02','b04'])
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : usage: reading_list.py [-h] [--status {unread,reading,done}] data
+reading_list.py: error: unrecognized arguments: --tag 数据库
+
+
+======================================================================
+FAIL: test_duplicates (test_reading_list.TargetTests.test_duplicates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 34, in test_duplicates
+    def test_duplicates(self):self.assertEqual(ids(app.select_books(BOOKS[:]+[{'id':'x','status':'done','added':'2026-11-01','tags':['独立','独立']}],tag='独立')),['x'])
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['b01', 'b02', 'b03', 'b04', 'b05', 'b06', 'x'] != ['x']
+
+First differing element 0:
+'b01'
+'x'
+
+First list contains 6 additional elements.
+First extra element 1:
+'b02'
+
+- ['b01', 'b02', 'b03', 'b04', 'b05', 'b06', 'x']
++ ['x']
+
+======================================================================
+FAIL: test_exact (test_reading_list.TargetTests.test_exact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 29, in test_exact
+    def test_exact(self):self.assertEqual(ids(app.select_books(BOOKS,tag='数据库索引')),['b03'])
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['b01', 'b02', 'b03', 'b04', 'b05', 'b06'] != ['b03']
+
+First differing element 0:
+'b01'
+'b03'
+
+First list contains 5 additional elements.
+First extra element 1:
+'b02'
+
+- ['b01', 'b02', 'b03', 'b04', 'b05', 'b06']
++ ['b03']
+
+======================================================================
+FAIL: test_intersection (test_reading_list.TargetTests.test_intersection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 27, in test_intersection
+    def test_intersection(self):self.assertEqual(ids(app.select_books(BOOKS,status='done',tag='数据库')),['b02'])
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['b02', 'b06'] != ['b02']
+
+First list contains 1 additional elements.
+First extra element 1:
+'b06'
+
+- ['b02', 'b06']
++ ['b02']
+
+======================================================================
+FAIL: test_missing_tags (test_reading_list.TargetTests.test_missing_tags)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 32, in test_missing_tags
+    def test_missing_tags(self):self.assertEqual(app.select_books([{'id':'x','status':'unread','added':'2026-01-01'}],tag='数据库'),[])
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'id': 'x', 'status': 'unread', 'added': '2026-01-01'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'id': 'x', 'status': 'unread', 'added': '2026-01-01'}
+
+- [{'added': '2026-01-01', 'id': 'x', 'status': 'unread'}]
++ []
+
+======================================================================
+FAIL: test_tag (test_reading_list.TargetTests.test_tag)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 26, in test_tag
+    def test_tag(self):self.assertEqual(ids(app.select_books(BOOKS,tag='数据库')),['b01','b02','b04'])
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['b01', 'b02', 'b03', 'b04', 'b05', 'b06'] != ['b01', 'b02', 'b04']
+
+First differing element 2:
+'b03'
+'b04'
+
+First list contains 3 additional elements.
+First extra element 3:
+'b04'
+
+- ['b01', 'b02', 'b03', 'b04', 'b05', 'b06']
++ ['b01', 'b02', 'b04']
+
+======================================================================
+FAIL: test_trim_v2 (test_reading_list.TargetTests.test_trim_v2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 28, in test_trim_v2
+    def test_trim_v2(self):self.assertEqual(ids(app.select_books(BOOKS,tag='  数据库  ')),['b01','b02','b04'])
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['b01', 'b02', 'b03', 'b04', 'b05', 'b06'] != ['b01', 'b02', 'b04']
+
+First differing element 2:
+'b03'
+'b04'
+
+First list contains 3 additional elements.
+First extra element 3:
+'b04'
+
+- ['b01', 'b02', 'b03', 'b04', 'b05', 'b06']
++ ['b01', 'b02', 'b04']
+
+======================================================================
+FAIL: test_unknown (test_reading_list.TargetTests.test_unknown)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R12_端侧知识库与MiniMax/生态工作区/minimax/tests/test_reading_list.py", line 30, in test_unknown
+    def test_unknown(self):self.assertEqual(app.select_books(BOOKS,tag='不存在'),[])
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'id': 'b01', 'title': '向量读本', 'status': [535 chars]04'}] != []
+
+First list contains 6 additional elements.
+First extra element 0:
+{'id': 'b01', 'title': '向量读本', 'status': 'unread', 'tags': ['数据库', '检索', '数据库'], 'added': '2026-10-01'}
+
+Diff is 701 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.487s
+
+FAILED (failures=10)
+
+exit_code=1
