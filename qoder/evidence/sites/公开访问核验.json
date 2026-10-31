@@ -1,0 +1,243 @@
+{
+  "status": "passed",
+  "public_url": "https://group-relay-r13-8vzve9qsn8d.qoder.zone",
+  "source_sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec",
+  "site_version": "r13-e03-v1",
+  "anonymous_browser": {
+    "passed": true,
+    "phase": "published",
+    "url": "https://group-relay-r13-8vzve9qsn8d.qoder.zone/",
+    "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec",
+    "checks": [
+      {
+        "name": "desktop anonymous HTTP success",
+        "passed": true,
+        "finalUrl": "https://group-relay-r13-8vzve9qsn8d.qoder.zone/"
+      },
+      {
+        "name": "desktop expected project, source SHA and truthful usage disclosure",
+        "passed": true
+      },
+      {
+        "name": "desktop three real screenshots load",
+        "passed": true,
+        "broken": []
+      },
+      {
+        "name": "desktop no horizontal overflow",
+        "passed": true,
+        "dimensions": {
+          "width": 1440,
+          "scroll": 1440
+        }
+      },
+      {
+        "name": "desktop code links use the immutable source version",
+        "passed": true
+      },
+      {
+        "name": "desktop no local machine link offered as public experience",
+        "passed": true
+      },
+      {
+        "name": "desktop navigation anchor targets exist",
+        "passed": true,
+        "badAnchors": []
+      },
+      {
+        "name": "published assets match build; HTML has only the verified Qoder hosting watermark",
+        "passed": true,
+        "files": 6
+      },
+      {
+        "name": "mobile anonymous HTTP success",
+        "passed": true,
+        "finalUrl": "https://group-relay-r13-8vzve9qsn8d.qoder.zone/"
+      },
+      {
+        "name": "mobile expected project, source SHA and truthful usage disclosure",
+        "passed": true
+      },
+      {
+        "name": "mobile three real screenshots load",
+        "passed": true,
+        "broken": []
+      },
+      {
+        "name": "mobile no horizontal overflow",
+        "passed": true,
+        "dimensions": {
+          "width": 390,
+          "scroll": 390
+        }
+      },
+      {
+        "name": "mobile code links use the immutable source version",
+        "passed": true
+      },
+      {
+        "name": "mobile no local machine link offered as public experience",
+        "passed": true
+      },
+      {
+        "name": "mobile navigation anchor targets exist",
+        "passed": true,
+        "badAnchors": []
+      }
+    ],
+    "pageErrors": [],
+    "networkErrors": [],
+    "browser": "Chrome156.0.8078.74 / Playwright1.56.1",
+    "anonymous": true
+  },
+  "built_artifact": {
+    "source_sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec",
+    "site_version": "r13-e03-v1",
+    "files": [
+      {
+        "path": "index.html",
+        "bytes": 21739,
+        "sha256": "9ef5d5ce7f05131feecb9fed7a7c04f619491d4eda3a02fe970ab86683ea13e3"
+      },
+      {
+        "path": "site.js",
+        "bytes": 772,
+        "sha256": "196514b7027601930b01e86a95536ab478df6780ada03e9b8b11a363fde2b36b"
+      },
+      {
+        "path": "style.css",
+        "bytes": 18070,
+        "sha256": "f57d4fe32fc5f0d935e5d9077cab79b70e596b692b0dacfbdf99b0f975b966b6"
+      },
+      {
+        "path": "assets/desktop-overview.png",
+        "bytes": 78601,
+        "sha256": "78006113b9206cfab38d6f824dd9c34d6fae4a445684e6740e2c5bce382811a9"
+      },
+      {
+        "path": "assets/mobile.png",
+        "bytes": 38471,
+        "sha256": "20a5576fcdcc48220f3822877bca103f11ebe262ae79b5233b3bd43364d681bf"
+      },
+      {
+        "path": "assets/report.png",
+        "bytes": 77614,
+        "sha256": "3817f1291b2a9f41dfb9d8c401753d9ed5436d22e00c393ce5dd964a6892cc41"
+      }
+    ]
+  },
+  "published_assets": [
+    {
+      "file": "index.html",
+      "status": 200,
+      "sha256": "0a0e9f36c5de3a1fb48596f67b97ee02d31fe83d9aa8e9a264f2cd7156f68416",
+      "expected_sha256": "9ef5d5ce7f05131feecb9fed7a7c04f619491d4eda3a02fe970ab86683ea13e3",
+      "equal": false,
+      "hosting_watermark_only": true,
+      "watermark_sha256": "f5049f24312d8eb94c51fff9bb97fe05e4114f51cf7c484ce8dc646625d6e64f"
+    },
+    {
+      "file": "style.css",
+      "status": 200,
+      "sha256": "f57d4fe32fc5f0d935e5d9077cab79b70e596b692b0dacfbdf99b0f975b966b6",
+      "expected_sha256": "f57d4fe32fc5f0d935e5d9077cab79b70e596b692b0dacfbdf99b0f975b966b6",
+      "equal": true
+    },
+    {
+      "file": "site.js",
+      "status": 200,
+      "sha256": "196514b7027601930b01e86a95536ab478df6780ada03e9b8b11a363fde2b36b",
+      "expected_sha256": "196514b7027601930b01e86a95536ab478df6780ada03e9b8b11a363fde2b36b",
+      "equal": true
+    },
+    {
+      "file": "assets/desktop-overview.png",
+      "status": 200,
+      "sha256": "78006113b9206cfab38d6f824dd9c34d6fae4a445684e6740e2c5bce382811a9",
+      "expected_sha256": "78006113b9206cfab38d6f824dd9c34d6fae4a445684e6740e2c5bce382811a9",
+      "equal": true
+    },
+    {
+      "file": "assets/report.png",
+      "status": 200,
+      "sha256": "3817f1291b2a9f41dfb9d8c401753d9ed5436d22e00c393ce5dd964a6892cc41",
+      "expected_sha256": "3817f1291b2a9f41dfb9d8c401753d9ed5436d22e00c393ce5dd964a6892cc41",
+      "equal": true
+    },
+    {
+      "file": "assets/mobile.png",
+      "status": 200,
+      "sha256": "20a5576fcdcc48220f3822877bca103f11ebe262ae79b5233b3bd43364d681bf",
+      "expected_sha256": "20a5576fcdcc48220f3822877bca103f11ebe262ae79b5233b3bd43364d681bf",
+      "equal": true
+    }
+  ],
+  "hosting_html": {
+    "only_difference": "One Qoder hosting watermark v1 script",
+    "watermark_bytes": 57042,
+    "watermark_sha256": "f5049f24312d8eb94c51fff9bb97fe05e4114f51cf7c484ce8dc646625d6e64f",
+    "raw_html_byte_equal": false,
+    "after_removing_exact_watermark_equals_build": true,
+    "normalized_sha256": "9ef5d5ce7f05131feecb9fed7a7c04f619491d4eda3a02fe970ab86683ea13e3"
+  },
+  "links": [
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/tree/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec/qoder",
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec",
+      "exists_in_immutable_remote_archive": true
+    },
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/blob/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec/qoder/README.md",
+      "path": "qoder/README.md",
+      "exists_in_immutable_remote_archive": true,
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec"
+    },
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/blob/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec/qoder/README.md",
+      "path": "qoder/README.md",
+      "exists_in_immutable_remote_archive": true,
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec"
+    },
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/blob/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec/qoder/samples/%E9%AA%8C%E8%AF%81%E6%A0%B7%E4%BE%8B.md",
+      "path": "qoder/samples/验证样例.md",
+      "exists_in_immutable_remote_archive": true,
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec"
+    },
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/blob/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec/qoder/README.md",
+      "path": "qoder/README.md",
+      "exists_in_immutable_remote_archive": true,
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec"
+    },
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/blob/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec/qoder/samples/%E9%AA%8C%E8%AF%81%E6%A0%B7%E4%BE%8B.md",
+      "path": "qoder/samples/验证样例.md",
+      "exists_in_immutable_remote_archive": true,
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec"
+    },
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/blob/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec/qoder/evidence/%E9%AA%8C%E6%94%B6%E6%91%98%E8%A6%81.json",
+      "path": "qoder/evidence/验收摘要.json",
+      "exists_in_immutable_remote_archive": true,
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec"
+    },
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/blob/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec/qoder/development/README.md",
+      "path": "qoder/development/README.md",
+      "exists_in_immutable_remote_archive": true,
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec"
+    },
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/tree/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec/qoder",
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec",
+      "exists_in_immutable_remote_archive": true
+    },
+    {
+      "url": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext/commit/8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec",
+      "sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec",
+      "verified_remote_commit": true
+    }
+  ],
+  "note": "5 CSS/JS/image assets are byte-identical. HTML contains exactly one identified Qoder hosting watermark script; removing that exact SHA256 script reproduces the build bytes. Git source directory verification remains strictly byte-for-byte."
+}

@@ -1,0 +1,35 @@
+{
+  "platform": "Qoder Sites (qoder-cn, region cn, prod)",
+  "site_version": "r13-e03-v1",
+  "source_sha": "8677d0ef8b9e4e4db2a8ed72d558a96f3c6caaec",
+  "source_repo": "https://github.com/Sunny1004-7/oceanbase-2026-powercontext",
+  "source_branch": "2026-competition-ecosystem",
+  "url": "https://group-relay-r13-8vzve9qsn8d.qoder.zone",
+  "host": "group-relay-r13-8vzve9qsn8d.qoder.zone",
+  "project_id": "01a1902b-f28d-7d2c-b120-510734668c07",
+  "site_id": "01a1902b-f28e-796d-a335-801fa7dcd1f2",
+  "display_name": "组会接力",
+  "slug": "group-relay-r13",
+  "action_id": "d1ab3114-0889-43a2-8d89-526910338951",
+  "verification_operation_id": "01a1902b-f548-75fa-90c0-ebdcf954c99d",
+  "publish_operation_id": "01a1902c-31c2-7eaf-84d1-86180e68e376",
+  "deployment_id": "01a1902b-f2e6-7008-b379-69ed4b93b567",
+  "owner_uid": "01a1785d-d922-7ab0-9899-bec7deab2f6a",
+  "owner_uid_source": "用户本人确认；list_sites scope=owned 仅含本站，平台读取接口未直接返回 owner UID 字段",
+  "publication": {
+    "published": true,
+    "readiness": "publication_completed",
+    "operation_state": "succeeded",
+    "committed": true,
+    "lifecycle": "active",
+    "governance_status": "normal"
+  },
+  "access_policy": {
+    "mode": "public",
+    "auth_integration_status": "not_required",
+    "include_project_members": false,
+    "rechecked_after_change": true
+  },
+  "anonymous_verification": "../evidence/sites/公开访问核验.json",
+  "source_mapping": "The site and primary application are built from source_sha. A later cumulative delivery commit adds this public publication evidence; app/ bytes are preserved."
+}

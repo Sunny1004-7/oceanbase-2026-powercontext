@@ -4,6 +4,8 @@
 
 这是可在本地运行的中文 Web 工具。支持创建独立项目、约定格式的 Markdown/CSV 导入、任务更新、四项复盘、修正与撤回，以及带来源的 Markdown 周报。PowerContext 保存项目进展、决定和报告偏好，重启后重新读取；运行时无需模型密钥。
 
+[公开展示站](https://group-relay-r13-8vzve9qsn8d.qoder.zone) · [站点版本与发布核验](deployment/README.md)
+
 ## 安装与启动
 
 实测环境为 Linux/WSL、Python3.12.3、Chrome156。先安装系统的 Python3.12 和 venv 支持，再在仓库的 qoder 目录执行：
