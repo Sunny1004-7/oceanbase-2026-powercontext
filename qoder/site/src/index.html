@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>组会接力 · 把进展、决定和下一步接起来</title>
+<meta name="description" content="组会接力：面向课题组与课程项目的单机中文工具。导入约定格式的复盘，创建任务，生成有来源的周报与交接单。本页为静态展示站，应用需在本地运行。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b2432'/%3E%3Cpath d='M9 12h9a5 5 0 0 1 0 10H9' fill='none' stroke='%23f6f2e9' stroke-width='2.6' stroke-linecap='round'/%3E%3Ccircle cx='9' cy='12' r='3' fill='%230d7a68'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script src="site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="组会接力，回到页首">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 12h9a5 5 0 0 1 0 10H9" fill="none" stroke="#f6f2e9" stroke-width="2.6" stroke-linecap="round"/><circle cx="9" cy="12" r="3" fill="#2fbfa4"/></svg>
+      <span class="brand-name">组会接力</span>
+    </a>
+    <nav class="site-nav" aria-label="页面导航">
+      <a href="#flow">流程</a>
+      <a href="#features">功能</a>
+      <a href="#screens">界面</a>
+      <a href="#tech">技术</a>
+      <a href="#run">运行</a>
+      <a href="#acceptance">验收</a>
+    </nav>
+    <a class="header-repo" href="{{LINK_CODE}}" target="_blank" rel="noopener noreferrer">代码<span class="visually-hidden">（固定版本，新窗口打开 GitHub）</span></a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">OceanBase 数据库大赛 · PowerContext 生态作品</p>
+      <h1 id="hero-title">把这次组会，<br><span class="accent-underline">接到下一次。</span></h1>
+      <p class="lede">「组会接力」把分散在聊天记录、便签和记忆里的<strong>进展、决定、下一步</strong>接成一条线。导入约定格式的 Markdown / CSV 复盘，下次打开就能看到接续卡；要交周报或换人接手时，一键生成带来源的报告。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#run">在本地跑起来</a>
+        <a class="btn btn-ghost" href="{{LINK_README}}" target="_blank" rel="noopener noreferrer">阅读固定版说明<span class="visually-hidden">（新窗口打开 GitHub）</span></a>
+      </div>
+      <ul class="hero-facts" aria-label="项目基本情况">
+        <li>单机本地运行</li>
+        <li>无需 LLM、无需额外账号</li>
+        <li>数据由 PowerContext 持久化</li>
+      </ul>
+    </div>
+    <div class="hero-board" aria-label="示意便签：接续卡长什么样（非产品截图）">
+      <p class="board-caption">手绘示意 · 非产品截图</p>
+      <article class="note note-a">
+        <h2 class="note-title">上周组会 · 复盘</h2>
+        <dl class="note-fields">
+          <div><dt>已完成</dt><dd>配制三组培养基</dd></div>
+          <div><dt>困难</dt><dd>蓝光灯需要重新标定</dd></div>
+          <div><dt>决定</dt><dd>先固定盐度，再调光照</dd></div>
+          <div><dt>下一步</dt><dd>记录七天生长曲线</dd></div>
+        </dl>
+      </article>
+      <div class="relay-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 40" focusable="false"><path d="M12 2v28m0 0l-7-7m7 7l7-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <article class="note note-b">
+        <h2 class="note-title">本周打开 · 从这里继续</h2>
+        <ul class="note-tasks">
+          <li><span class="chip chip-doing">进行中</span>标定蓝光灯 <span class="who">小林</span></li>
+          <li><span class="chip chip-todo">待办</span>记录生长曲线 <span class="who">小周</span></li>
+        </ul>
+        <p class="note-source">来源：algae-week-1 · 可回溯原文</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section pain" aria-labelledby="pain-title">
+  <div class="wrap">
+    <h2 id="pain-title" class="section-title">组会之后，常见的三种断线</h2>
+    <div class="pain-grid">
+      <article class="pain-card">
+        <h3>“上次决定是什么来着？”</h3>
+        <p>结论散落在群聊第 200 条消息里，翻半天找不到，只好再讨论一遍。</p>
+      </article>
+      <article class="pain-card">
+        <h3>“这周谁在做什么？”</h3>
+        <p>任务口头分配，没有状态和截止日期，下次组会才发现同一件事没人动。</p>
+      </article>
+      <article class="pain-card">
+        <h3>“交接全靠口述”</h3>
+        <p>有人毕业或退出，接手的人拿不到完整脉络，周报也说不清依据来自哪次记录。</p>
+      </article>
+    </div>
+    <p class="pain-answer">组会接力不替你开会，也不猜你的意思——它只负责把<strong>写下来的东西</strong>可靠地接住、连上、传下去。</p>
+  </div>
+</section>
+
+<section class="section flow" id="flow" aria-labelledby="flow-title">
+  <div class="wrap">
+    <h2 id="flow-title" class="section-title">三步接力：记录 → 接续 → 交接</h2>
+    <ol class="flow-steps">
+      <li class="flow-step">
+        <span class="step-num" aria-hidden="true">1</span>
+        <h3>记录</h3>
+        <p>按模板导入 Markdown / CSV 复盘，或直接填表单：<strong>已完成、困难、决定、下一步</strong>四项，加上带负责人和截止日期的任务表。重复导入不会产生重复任务。</p>
+      </li>
+      <li class="flow-step">
+        <span class="step-num" aria-hidden="true">2</span>
+        <h3>接续</h3>
+        <p>下次打开，首页给出「从这里继续」卡片：未完成任务、最近的决定、上次留下的下一步。完成或编辑任务，写错的记录可以修正或撤回。</p>
+      </li>
+      <li class="flow-step">
+        <span class="step-num" aria-hidden="true">3</span>
+        <h3>交接</h3>
+        <p>生成周报或交接单，每条内容标注来源记录编号，可回看原始输入。称呼、输出重点等偏好会体现在报告里。复制或下载 Markdown 即可发出。</p>
+      </li>
+    </ol>
+    <div class="timeline-demo" aria-label="示意时间线：修正与撤回如何保持记录可信（非产品截图）">
+      <p class="board-caption">手绘示意 · 记录可以被纠正，历史仍然可查</p>
+      <ol class="timeline">
+        <li><span class="tl-dot" aria-hidden="true"></span><div><strong>周一</strong> 导入 week-1 复盘<span class="tl-tag">有效</span></div></li>
+        <li><span class="tl-dot tl-warn" aria-hidden="true"></span><div><strong>周三</strong> 发现盐度写错，提交修正版本<span class="tl-tag">week-1 → 新版本</span></div></li>
+        <li><span class="tl-dot" aria-hidden="true"></span><div><strong>周五</strong> 周报只汇总有效记录，旧版本仍可追溯<span class="tl-tag">来源可查</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section features" id="features" aria-labelledby="features-title">
+  <div class="wrap">
+    <h2 id="features-title" class="section-title">已实现的功能，与明确的边界</h2>
+    <div class="feature-cols">
+      <div class="feature-col can">
+        <h3><span class="col-badge badge-can">能做</span>当前版本已实现</h3>
+        <ul class="check-list">
+          <li>约定格式输入：结构化 Markdown / CSV 导入，字段校验、去重</li>
+          <li>任务管理：稳定 ID、状态流转、负责人、截止日期，可完成与编辑</li>
+          <li>四项复盘：已完成 / 困难 / 决定 / 下一步，支持多行文本</li>
+          <li>项目隔离：每个项目独立存储范围，互不串数据</li>
+          <li>来源追溯：报告内容可回指具体记录与原始输入</li>
+          <li>修正与撤回：错误记录出新版本或标记无效，历史保留</li>
+          <li>偏好影响报告：称呼、输出重点持久化并用于生成</li>
+          <li>带来源的周报 / 交接单，Markdown 复制与下载</li>
+        </ul>
+      </div>
+      <div class="feature-col cannot">
+        <h3><span class="col-badge badge-cannot">范围</span>适用条件</h3>
+        <ul class="cross-list">
+          <li>任意会议全文理解：不做智能摘要，不按自然语言猜测字段</li>
+          <li>云端多人协作：单机单进程、单用户设计，无登录系统</li>
+          <li>LLM 依赖：不需要模型 API，也不需要额外注册账号</li>
+        </ul>
+        <p class="boundary-note">适合个人或小组在单机上整理约定格式的项目进展；报告依据当前有效记录生成。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section screens" id="screens" aria-labelledby="screens-title">
+  <div class="wrap">
+    <h2 id="screens-title" class="section-title">真实界面</h2>
+    <p class="section-lede">以下截图来自本地实际运行的组会接力，使用原创虚构样例。点击图片可查看原图。</p>
+    {{SCREENSHOTS}}
+  </div>
+</section>
+
+<section class="section tech" id="tech" aria-labelledby="tech-title">
+  <div class="wrap">
+    <h2 id="tech-title" class="section-title">它是怎么记住的：PowerContext + 分工</h2>
+    <div class="tech-grid">
+      <div class="tech-diagram" role="img" aria-label="数据流示意：复盘输入进入应用，应用把每次操作作为事件写入 PowerContext（内置 SQLite），读取时分页取回事件、重建有效状态，再生成接续卡与报告">
+        <svg viewBox="0 0 560 240" focusable="false" aria-hidden="true">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0L10 5L0 10z" fill="#5b6472"/>
+            </marker>
+          </defs>
+          <rect x="8" y="24" width="150" height="76" rx="12" class="dg-box"/>
+          <text x="83" y="55" text-anchor="middle" class="dg-title">复盘输入</text>
+          <text x="83" y="78" text-anchor="middle" class="dg-sub">Markdown / CSV / 表单</text>
+          <rect x="205" y="24" width="150" height="76" rx="12" class="dg-box dg-accent"/>
+          <text x="280" y="55" text-anchor="middle" class="dg-title">组会接力应用</text>
+          <text x="280" y="78" text-anchor="middle" class="dg-sub">FastAPI · 单机单进程</text>
+          <rect x="402" y="24" width="150" height="76" rx="12" class="dg-box"/>
+          <text x="477" y="49" text-anchor="middle" class="dg-title">PowerContext</text>
+          <text x="477" y="70" text-anchor="middle" class="dg-sub">事件持久化</text>
+          <text x="477" y="88" text-anchor="middle" class="dg-sub">内置 SQLite</text>
+          <line x1="158" y1="62" x2="199" y2="62" class="dg-line" marker-end="url(#arrow)"/>
+          <line x1="355" y1="62" x2="396" y2="62" class="dg-line" marker-end="url(#arrow)"/>
+          <path d="M477 100 v40 h-197 v-34" fill="none" class="dg-line" marker-end="url(#arrow)"/>
+          <text x="378" y="132" text-anchor="middle" class="dg-sub">按 SDK 分页读回事件</text>
+          <rect x="205" y="164" width="150" height="60" rx="12" class="dg-box"/>
+          <text x="280" y="189" text-anchor="middle" class="dg-title">重建有效状态</text>
+          <text x="280" y="210" text-anchor="middle" class="dg-sub">修正 / 撤回后仍一致</text>
+          <path d="M205 194 h-90 v-88" fill="none" class="dg-line" marker-end="url(#arrow)"/>
+          <text x="112" y="180" text-anchor="middle" class="dg-sub">接续卡 · 周报 · 交接单</text>
+        </svg>
+      </div>
+      <div class="tech-copy">
+        <h3>像记账一样记事件</h3>
+        <p>应用不直接改一张「当前状态表」。每次导入、完成任务、修正记录，都作为一条<strong>不可变事件</strong>写进 PowerContext（SDK 内置 SQLite）。要显示当前状态时，按 SDK 的分页接口把事件读回来，重放出「现在有效的记录」：被修正的旧版本、被撤回的记录不再计入，但随时能查。</p>
+        <p>这样即使换个进程重新打开，读到的仍是同一份有效状态；浏览器只缓存「当前选中项目」这类界面偏好，业务数据不落浏览器。</p>
+        <h3>谁做了什么</h3>
+        <ul class="role-list">
+          <li><strong>Qoder CN CLI 1.1.81</strong>：主要业务逻辑、界面与 PowerContext 接入的开发。</li>
+          <li><strong>Codex</strong>：规格与环境、独立测试、发布核验与材料整理。</li>
+          <li><strong>本展示站</strong>：由 Qoder 制作的静态入口，仅介绍与引流，不连接任何本地数据。</li>
+        </ul>
+        <p class="stack-line">运行时：Python 3.12 · FastAPI 0.115.14 · PowerContext 1.4.1（builtin SQLite）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section run" id="run" aria-labelledby="run-title">
+  <div class="wrap">
+    <h2 id="run-title" class="section-title">在本地运行，亲手试一遍</h2>
+    <p class="section-lede">这是一个「公开展示站 + 本地可运行应用」的组合：本页不提供在线体验，应用在你自己的机器上启动，数据留在本地。</p>
+    <div class="run-grid">
+      <div class="run-steps">
+        <h3>三步启动（Linux / WSL，Python 3.12+）</h3>
+        <ol class="code-steps">
+          <li>
+            <p>获取固定版本代码并进入目录</p>
+            <pre><code>git clone https://github.com/Sunny1004-7/oceanbase-2026-powercontext.git
+cd oceanbase-2026-powercontext
+git checkout {{SOURCE_SHA}}
+cd qoder</code></pre>
+          </li>
+          <li>
+            <p>安装依赖</p>
+            <pre><code>bash scripts/setup.sh</code></pre>
+          </li>
+          <li>
+            <p>启动，浏览器访问本机地址</p>
+            <pre><code>bash scripts/start.sh
+# 服务地址 http://127.0.0.1:4323（仅本机）</code></pre>
+          </li>
+        </ol>
+        <p class="run-note">完整步骤与常见问题见<a href="{{LINK_README}}" target="_blank" rel="noopener noreferrer">固定版 README<span class="visually-hidden">（新窗口打开）</span></a>。</p>
+      </div>
+      <div class="run-samples">
+        <h3>两个原创虚构样例</h3>
+        <article class="sample-card">
+          <h4>海藻培养实验</h4>
+          <p>实验室每周复盘：培养基、灯光标定、生长曲线，演示跨周接续与任务状态流转。</p>
+        </article>
+        <article class="sample-card">
+          <h4>课程协作工具</h4>
+          <p>学生小组开发项目：调研、选型争议、模块分工，演示决定追踪与交接。</p>
+        </article>
+        <p class="run-note">在选中项目的“导入”页选择样例，不会污染其他项目。样例原文见<a href="{{LINK_SAMPLES}}" target="_blank" rel="noopener noreferrer">samples/验证样例.md<span class="visually-hidden">（新窗口打开）</span></a>。</p>
+        <p class="disclaimer-inline">样例为原创虚构，仅用于演示；自动化验收是在这些固定虚构样例上的工具实验，不构成真人使用统计或提效数据。</p>
+      </div>
+    </div>
+    <div class="material-links">
+      <h3>固定版本材料（链接锁定同一提交，不随 main 浮动）</h3>
+      <ul class="link-cards">
+        <li><a href="{{LINK_README}}" target="_blank" rel="noopener noreferrer"><span class="lc-title">README</span><span class="lc-desc">运行说明与输入格式</span></a></li>
+        <li><a href="{{LINK_SAMPLES}}" target="_blank" rel="noopener noreferrer"><span class="lc-title">samples/验证样例.md</span><span class="lc-desc">两个虚构样例原文</span></a></li>
+        <li><a href="{{LINK_EVIDENCE}}" target="_blank" rel="noopener noreferrer"><span class="lc-title">evidence/验收摘要.json</span><span class="lc-desc">独立验收记录</span></a></li>
+        <li><a href="{{LINK_DEVELOPMENT}}" target="_blank" rel="noopener noreferrer"><span class="lc-title">development/README.md</span><span class="lc-desc">开发过程记录</span></a></li>
+        <li><a href="{{LINK_CODE}}" target="_blank" rel="noopener noreferrer"><span class="lc-title">qoder/ 代码入口</span><span class="lc-desc">固定提交的完整源码</span></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section acceptance" id="acceptance" aria-labelledby="acceptance-title">
+  <div class="wrap">
+    <h2 id="acceptance-title" class="section-title">验收状态</h2>
+    {{ACCEPTANCE}}
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">组会接力 · 静态展示站</p>
+        <p>本页仅作项目介绍与入口，不读取任何本地 PowerContext 数据，不提供在线体验。应用请在本地按上方步骤运行。</p>
+        <p>暂无真人使用统计；示例与验收均基于原创虚构样例。</p>
+      </div>
+      <div class="footer-meta">
+        <dl>
+          <div><dt>站点版本</dt><dd>{{SITE_VERSION}}</dd></div>
+          <div><dt>对应源码提交</dt><dd><a class="sha-link" href="{{LINK_COMMIT}}" target="_blank" rel="noopener noreferrer"><code>{{SOURCE_SHA}}</code><span class="visually-hidden">（新窗口打开该提交）</span></a></dd></div>
+          <div><dt>仓库分支</dt><dd><code>2026-competition-ecosystem</code></dd></div>
+        </dl>
+      </div>
+    </div>
+    <p class="footer-line">OceanBase 数据库大赛 · PowerContext 生态 · 主要开发 Qoder CN CLI，独立核验 Codex</p>
+  </div>
+</footer>
+</body>
+</html>

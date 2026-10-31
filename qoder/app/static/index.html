@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组会接力</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar: Project List -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>组会接力</h1>
+                <button id="btn-new-project" class="btn btn-small">+ 新建项目</button>
+            </div>
+            <nav id="project-list" class="project-list">
+                <div class="empty-state">暂无项目</div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- No project selected state -->
+            <div id="no-project-view" class="view">
+                <div class="welcome-card">
+                    <h2>欢迎使用组会接力</h2>
+                    <p>帮助科研小组把每次讨论的进展、困难、决定和下次行动接起来。</p>
+                    <ul class="feature-list">
+                        <li>创建项目，导入或手填复盘记录</li>
+                        <li>跟踪任务状态，保存决定与偏好</li>
+                        <li>生成带来源追溯的周报/交接单</li>
+                    </ul>
+                    <p class="note">示例数据为原创虚构，仅用于演示功能。想体验样例：请先点击左上角「新建项目」创建并选中一个项目，再到该项目的「导入」页选择样例按钮一键导入。</p>
+                </div>
+            </div>
+
+            <!-- Project view -->
+            <div id="project-view" class="view hidden">
+                <!-- Revision toolbar -->
+                <div class="project-toolbar">
+                    <span id="revision-badge" class="revision-badge">修订 r0</span>
+                    <button id="btn-refresh" class="btn btn-small btn-secondary">刷新状态</button>
+                </div>
+
+                <!-- Continuation Card -->
+                <section class="card continuation-card">
+                    <h3>下次从这里继续</h3>
+                    <div id="continuation-content" class="continuation-content">
+                        <p class="empty-text">暂无未完成任务</p>
+                    </div>
+                </section>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="tasks">任务</button>
+                    <button class="tab-btn" data-tab="review">复盘</button>
+                    <button class="tab-btn" data-tab="import">导入</button>
+                    <button class="tab-btn" data-tab="report">报告</button>
+                    <button class="tab-btn" data-tab="preferences">偏好</button>
+                </div>
+
+                <!-- Tasks Tab -->
+                <div id="tab-tasks" class="tab-content active">
+                    <div class="card">
+                        <h3>添加任务</h3>
+                        <form id="task-form" class="form-inline">
+                            <div class="form-group">
+                                <label for="task-id">ID</label>
+                                <input type="text" id="task-id" required placeholder="例如: algae-light">
+                            </div>
+                            <div class="form-group">
+                                <label for="task-title">标题</label>
+                                <input type="text" id="task-title" required placeholder="任务标题">
+                            </div>
+                            <div class="form-group">
+                                <label for="task-status">状态</label>
+                                <select id="task-status">
+                                    <option value="todo">待办</option>
+                                    <option value="doing">进行中</option>
+                                    <option value="done">已完成</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="task-owner">负责人</label>
+                                <input type="text" id="task-owner" placeholder="姓名">
+                            </div>
+                            <div class="form-group">
+                                <label for="task-due">截止日期</label>
+                                <input type="date" id="task-due">
+                            </div>
+                            <button type="submit" class="btn">添加任务</button>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3>当前任务</h3>
+                        <div id="tasks-list" class="tasks-list">
+                            <div class="empty-state">暂无任务</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Tab -->
+                <div id="tab-review" class="tab-content">
+                    <div id="review-correction-banner" class="correction-banner hidden">
+                        正在修正记录：<strong id="review-correction-target"></strong>
+                        <button id="btn-cancel-correction" type="button" class="btn btn-small btn-secondary">取消修正</button>
+                    </div>
+                    <div class="card">
+                        <h3>添加复盘记录</h3>
+                        <form id="review-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="review-record-id">记录编号</label>
+                                    <input type="text" id="review-record-id" required placeholder="例如: algae-week-1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="review-date">日期</label>
+                                    <input type="date" id="review-date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="review-completed">已完成</label>
+                                <textarea id="review-completed" rows="2" placeholder="本周完成的工作"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="review-blockers">困难</label>
+                                <textarea id="review-blockers" rows="2" placeholder="遇到的困难或阻碍"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="review-decisions">决定</label>
+                                <textarea id="review-decisions" rows="2" placeholder="做出的决定"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="review-next-steps">下一步</label>
+                                <textarea id="review-next-steps" rows="2" placeholder="下一步计划"></textarea>
+                            </div>
+                            <button type="submit" id="review-submit-btn" class="btn">保存复盘</button>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3>历史复盘记录</h3>
+                        <div id="reviews-list" class="reviews-list">
+                            <div class="empty-state">暂无复盘记录</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Import Tab -->
+                <div id="tab-import" class="tab-content">
+                    <div class="card">
+                        <h3>一键导入样例</h3>
+                        <p class="help-text">样例为原创虚构数据，直接导入当前选中的项目；重复点击不会产生重复任务或复盘。</p>
+                        <div class="sample-buttons">
+                            <button id="btn-load-algae" class="btn btn-secondary">导入样例：海藻培养实验</button>
+                            <button id="btn-load-course" class="btn btn-secondary">导入样例：课程协作工具</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>导入结构化数据</h3>
+                        <p class="help-text">支持 Markdown 固定格式或 CSV 表格（UTF-8 编码）。文件最大 100 KiB；每项目最多 200 个任务、500 次事件，超限会拒绝写入。</p>
+
+                        <div class="form-group">
+                            <label for="import-format">格式</label>
+                            <select id="import-format">
+                                <option value="markdown">Markdown</option>
+                                <option value="csv">CSV</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="import-file">上传文件</label>
+                            <input type="file" id="import-file" accept=".md,.csv,.txt">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="import-content">或直接粘贴文本</label>
+                            <textarea id="import-content" rows="10" placeholder="粘贴 Markdown 或 CSV 内容..."></textarea>
+                        </div>
+
+                        <button id="btn-import" class="btn">导入</button>
+                        <div id="import-result" class="result-message"></div>
+                    </div>
+
+                    <div class="card">
+                        <h3>导入格式说明</h3>
+                        <details>
+                            <summary>Markdown 模板</summary>
+                            <pre class="format-example"># 复盘：第一周
+记录编号: algae-week-1
+日期: 2026-10-26
+已完成: 配制三组培养基
+困难: 蓝光灯需要重新标定
+决定: 先固定盐度再调整光照
+下一步: 记录七天的生长曲线
+
+| ID | 标题 | 状态 | 负责人 | 截止日期 |
+| --- | --- | --- | --- | --- |
+| algae-light | 标定蓝光灯 | doing | 小林 | 2026-11-02 |
+| algae-curve | 记录生长曲线 | todo | 小周 | 2026-11-06 |</pre>
+                        </details>
+                        <details>
+                            <summary>CSV 表头</summary>
+                            <pre class="format-example">record_id,date,completed,blockers,decisions,next_steps,task_id,title,status,owner,due_date</pre>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Report Tab -->
+                <div id="tab-report" class="tab-content">
+                    <div class="card">
+                        <h3>生成报告</h3>
+                        <p class="help-text">基于当前有效记录生成带来源追溯的 Markdown 报告。</p>
+                        <button id="btn-generate-report" class="btn">生成报告</button>
+                        <button id="btn-copy-report" class="btn btn-secondary" disabled>复制报告</button>
+                        <button id="btn-download-report" class="btn btn-secondary" disabled>下载 Markdown</button>
+                    </div>
+                    <div class="card">
+                        <h3>报告预览</h3>
+                        <pre id="report-preview" class="report-preview">点击「生成报告」查看当前项目的报告</pre>
+                    </div>
+                </div>
+
+                <!-- Preferences Tab -->
+                <div id="tab-preferences" class="tab-content">
+                    <div class="card">
+                        <h3>项目偏好设置</h3>
+                        <form id="preferences-form">
+                            <div class="form-group">
+                                <label for="pref-report-title">报告标题（report_title）</label>
+                                <input type="text" id="pref-report-title" placeholder="例如: 海藻接力周报（用作报告第一行标题）">
+                            </div>
+                            <div class="form-group">
+                                <label for="pref-focus">输出重点（focus）</label>
+                                <select id="pref-focus">
+                                    <option value="default">默认顺序</option>
+                                    <option value="next_steps">下一步优先（next_steps）</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn">保存偏好</button>
+                        </form>
+                        <div id="prefs-result" class="result-message"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Source Detail Modal -->
+        <div id="source-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>来源详情</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="source-detail-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Project Modal -->
+        <div id="new-project-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>新建项目</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="new-project-form">
+                        <div class="form-group">
+                            <label for="new-project-name">项目名称</label>
+                            <input type="text" id="new-project-name" required placeholder="例如: 海藻培养实验">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-project-summary">简介（可选）</label>
+                            <input type="text" id="new-project-summary" placeholder="项目简要说明">
+                        </div>
+                        <button type="submit" class="btn">创建</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay hidden">
+            <div class="spinner"></div>
+            <p>处理中...</p>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

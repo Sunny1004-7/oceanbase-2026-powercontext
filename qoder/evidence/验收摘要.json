@@ -1,0 +1,376 @@
+{
+  "status": "passed",
+  "recorded_at_utc": "2026-10-31T03:27:51.899665+00:00",
+  "scope": "real SDK + HTTP + installed app + owned fresh Chrome contexts; fictional data",
+  "group_count": 6,
+  "check_count": 54,
+  "passed_count": 54,
+  "groups": [
+    {
+      "name": "SDK与业务契约",
+      "passed": true,
+      "checks": [
+        {
+          "test": "review idempotency before revision check",
+          "passed": true
+        },
+        {
+          "test": "MD CSV duplicate and atomic validation",
+          "passed": true
+        },
+        {
+          "test": "task edits provenance and old import",
+          "passed": true
+        },
+        {
+          "test": "two corrections and withdrawal",
+          "passed": true
+        },
+        {
+          "test": "preferences affect report and optimistic concurrency",
+          "passed": true
+        },
+        {
+          "test": "55 updates across SDK pages",
+          "passed": true
+        },
+        {
+          "test": "source and unknown project isolation",
+          "passed": true
+        },
+        {
+          "test": "required action and revision on all writes",
+          "passed": true
+        },
+        {
+          "test": "new process reads same effective state",
+          "passed": true
+        }
+      ],
+      "count": 9,
+      "raw_path": "clean-results-final/independent/results.json",
+      "raw_sha256": "93c1209538a45abe8cadd709342a1013e24f609edd7415f858ad7c0ce6ca6472"
+    },
+    {
+      "name": "输入与来源边界",
+      "passed": true,
+      "checks": [
+        {
+          "test": "same action ID remains isolated across projects",
+          "passed": true
+        },
+        {
+          "test": "report includes effective source ID time and raw entry",
+          "passed": true
+        },
+        {
+          "test": "invalid field types are controlled and atomic",
+          "passed": true
+        },
+        {
+          "test": "unsupported file encoding has a clear client error",
+          "passed": true
+        },
+        {
+          "test": "source preserves the full accepted import",
+          "passed": true
+        },
+        {
+          "test": "a second process cannot own the same data directory",
+          "passed": true
+        }
+      ],
+      "count": 6,
+      "raw_path": "clean-results-final/edge/results.json",
+      "raw_sha256": "4ad0818bcd1e0a0ebb359fef4d87d90e107a755067ef51a868b2c80f50aee8ff"
+    },
+    {
+      "name": "撤回与导入回执",
+      "passed": true,
+      "checks": [
+        {
+          "test": "reusing a withdrawn record ID gives a clear atomic refusal",
+          "passed": true
+        },
+        {
+          "test": "old import preserves withdrawal and reports only effective additions",
+          "passed": true
+        },
+        {
+          "test": "new-action duplicate and same-action retry have truthful receipts",
+          "passed": true
+        },
+        {
+          "test": "new record IDs can continue without restoring withdrawn facts",
+          "passed": true
+        }
+      ],
+      "count": 4,
+      "raw_path": "clean-results-final/lifecycle/results.json",
+      "raw_sha256": "aee4640485a55a88f6f2b961e4d681f7283f8668fe97fd174af7279809e6eaa6"
+    },
+    {
+      "name": "500事件上限与运行时",
+      "passed": true,
+      "checks": [
+        {
+          "check": "SPA served",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "app.js has write controls",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "sample import (multi-section MD)",
+          "passed": true,
+          "detail": "{\"imported_tasks\":7,\"imported_reviews\":2,\"source_id\":\"runtime-import-1\",\"idempotent\":false}"
+        },
+        {
+          "check": "import produced reviews+tasks",
+          "passed": true,
+          "detail": "reviews=2 tasks=7"
+        },
+        {
+          "check": "second process refused on same DATA_DIR",
+          "passed": true,
+          "detail": "exit=3"
+        },
+        {
+          "check": "event cap refuses writes at 500",
+          "passed": true,
+          "detail": "written=498 event_count=500"
+        },
+        {
+          "check": "report still readable at cap",
+          "passed": true,
+          "detail": ""
+        }
+      ],
+      "count": 7,
+      "raw_path": "clean-results-final/runtime-results.json",
+      "raw_sha256": "19aba68d2a5206644ccf9bb805907e596113ac0e36c618c775839c2dd0cc3007"
+    },
+    {
+      "name": "完整浏览器流程",
+      "passed": true,
+      "checks": [
+        {
+          "name": "fresh browser opens with project list",
+          "passed": true
+        },
+        {
+          "name": "empty project report invents no progress",
+          "passed": true
+        },
+        {
+          "name": "example import is visible for selected project",
+          "passed": true
+        },
+        {
+          "name": "sample Markdown import through UI",
+          "passed": true,
+          "detail": {
+            "tasks": 3,
+            "reviews": 1
+          }
+        },
+        {
+          "name": "a record change invalidates the earlier report export",
+          "passed": true
+        },
+        {
+          "name": "repeat example creates no duplicate effective tasks",
+          "passed": true
+        },
+        {
+          "name": "continuation displays actual source IDs",
+          "passed": true
+        },
+        {
+          "name": "continuation provides timestamp and original entry",
+          "passed": true
+        },
+        {
+          "name": "continuation opens real source",
+          "passed": true
+        },
+        {
+          "name": "complete and edit task through UI",
+          "passed": true
+        },
+        {
+          "name": "task current values cite the update source",
+          "passed": true
+        },
+        {
+          "name": "correction replaces earlier effective fact",
+          "passed": true
+        },
+        {
+          "name": "withdrawal removes effective review",
+          "passed": true
+        },
+        {
+          "name": "report reflects stored preference and effective corrections",
+          "passed": true
+        },
+        {
+          "name": "report exposes source time and actual raw links",
+          "passed": true
+        },
+        {
+          "name": "Markdown download equals generated report",
+          "passed": true
+        },
+        {
+          "name": "switching project clears previous report",
+          "passed": true
+        },
+        {
+          "name": "CSV file import keeps quoted values and project isolation",
+          "passed": true
+        },
+        {
+          "name": "bad import produces visible error without partial write",
+          "passed": true
+        },
+        {
+          "name": "second project report contains only its facts",
+          "passed": true
+        },
+        {
+          "name": "390px layout has no horizontal page overflow",
+          "passed": true,
+          "detail": {
+            "scroll": 390,
+            "viewport": 390
+          }
+        }
+      ],
+      "count": 21,
+      "raw_path": "browser-release/results.json",
+      "raw_sha256": "55e013df49619f019a58169ce86a01c0b5097b59ec745e9381d6b1c99041ded9"
+    },
+    {
+      "name": "重启与新浏览器上下文",
+      "passed": true,
+      "checks": [
+        {
+          "name": "new process uses the independent installed source and same data",
+          "passed": true
+        },
+        {
+          "name": "A fresh context has no project-state cache",
+          "passed": true
+        },
+        {
+          "name": "A persistent effective state is byte-equivalent after restart",
+          "passed": true
+        },
+        {
+          "name": "A UI report is reconstructed from saved sources",
+          "passed": true
+        },
+        {
+          "name": "B fresh context has no project-state cache",
+          "passed": true
+        },
+        {
+          "name": "B persistent effective state is byte-equivalent after restart",
+          "passed": true
+        },
+        {
+          "name": "B UI report is reconstructed from saved sources",
+          "passed": true
+        }
+      ],
+      "count": 7,
+      "raw_path": "browser-restart-release-results.json",
+      "raw_sha256": "1b591b6c4011159567c3b74cc78a3ac58956ea7c7e0b86e10f5be9686b9f025d"
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "/home/powercontext/r13/e03-clean-code/.venv/bin/python",
+        "tests/independent_contract.py"
+      ],
+      "cwd": "/home/powercontext/r13/e03-clean-code",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-31T03:20:45.745256+00:00",
+      "finished_at_utc": "2026-10-31T03:20:55.717306+00:00",
+      "log": "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R13_Dify与Qoder/原始证据/Qoder/clean-test-final-1.log",
+      "log_sha256": "b5f9664c315da0c2ff7339dc8f771a15e3e9bb54698859201def2d4f98dfd0ab"
+    },
+    {
+      "command": [
+        "/home/powercontext/r13/e03-clean-code/.venv/bin/python",
+        "tests/edge_contract.py"
+      ],
+      "cwd": "/home/powercontext/r13/e03-clean-code",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-31T03:20:55.720198+00:00",
+      "finished_at_utc": "2026-10-31T03:21:00.617463+00:00",
+      "log": "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R13_Dify与Qoder/原始证据/Qoder/clean-test-final-2.log",
+      "log_sha256": "2f14534761e3abe2b32f79f5ed9610107f03e25c7d30c2e82e6c7b5252c754ea"
+    },
+    {
+      "command": [
+        "/home/powercontext/r13/e03-clean-code/.venv/bin/python",
+        "tests/lifecycle_contract.py"
+      ],
+      "cwd": "/home/powercontext/r13/e03-clean-code",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-31T03:21:00.622389+00:00",
+      "finished_at_utc": "2026-10-31T03:21:03.532344+00:00",
+      "log": "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R13_Dify与Qoder/原始证据/Qoder/clean-test-final-3.log",
+      "log_sha256": "81f2bbeb14da10cba146643614169c8fd1ff91dc102b2e3ce7ff8f7adb8e2c0d"
+    },
+    {
+      "command": [
+        "/home/powercontext/r13/e03-clean-code/.venv/bin/python",
+        "scripts/verify_runtime.py"
+      ],
+      "cwd": "/home/powercontext/r13/e03-clean-code",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-31T03:21:03.536169+00:00",
+      "finished_at_utc": "2026-10-31T03:22:10.512237+00:00",
+      "log": "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R13_Dify与Qoder/原始证据/Qoder/clean-test-final-4.log",
+      "log_sha256": "721023d47a7c4184dbaca749fff085c457cbf526b5299ca57200e275854ef120"
+    }
+  ],
+  "clean_setup": [
+    {
+      "command": [
+        "bash",
+        "scripts/setup.sh"
+      ],
+      "cwd": "/home/powercontext/r13/e03-clean-code",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-31T03:13:22.463969+00:00",
+      "finished_at_utc": "2026-10-31T03:13:51.238113+00:00",
+      "log": "/mnt/d/DONTSTOP/Race/第六届 OceanBase 数据库大赛/解题/R13_Dify与Qoder/原始证据/Qoder/clean-init-1.log",
+      "log_sha256": "381651c02a9b277c6ea9bc562dd00c923aba058c003118138c2262d500121090"
+    }
+  ],
+  "primary_app_sha256": {
+    "app/main.py": "dadcf31f4123ace6e15ba0e9428164f8057d87408682e82793ff29298e5a3109",
+    "app/storage.py": "5a78242b7c1b132526fbe367adf55ca417625e6250f3c25ab23b9eaeafb71f67",
+    "app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/static/app.js": "058f621a5c18191ab78a717baa7957280f6f5ed06d42809cd5a059f3be13a47d",
+    "app/static/index.html": "35633f5c533ab02fc1e42d8841f9a6c46ad960abca197fc22711d8af48bbe158",
+    "app/static/style.css": "5813947c1a0136d77d0ebbf7406b756cffc66eecb9b023ed9d2a03c8434d948a"
+  },
+  "browser": "Chrome156.0.8078.74 / Playwright1.56.1; desktop and390px viewport",
+  "raw_archive": "真实验收记录.zip",
+  "raw_archive_sha256": "9061e471a3c646b3300e75d046239d4319045c0401ff7b8d0a4d83eed7e0aef3",
+  "human_usage_statistics": "暂无真人使用统计",
+  "limits": [
+    "单机单进程，无登录/云端多人协作",
+    "固定Markdown/CSV格式，非任意会议全文理解",
+    "只实测Chrome，未宣称Firefox/Safari或实体手机通过"
+  ]
+}

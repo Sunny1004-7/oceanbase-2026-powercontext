@@ -1,0 +1,50 @@
+{
+  "checks": {
+    "verified_total": 54,
+    "passed": 54,
+    "details": [
+      {
+        "name": "SDK与业务契约（9项）",
+        "passed": true
+      },
+      {
+        "name": "输入与来源边界（6项）",
+        "passed": true
+      },
+      {
+        "name": "撤回与导入回执（4项）",
+        "passed": true
+      },
+      {
+        "name": "500事件上限与运行时（7项）",
+        "passed": true
+      },
+      {
+        "name": "完整浏览器流程（21项）",
+        "passed": true
+      },
+      {
+        "name": "重启与新浏览器上下文（7项）",
+        "passed": true
+      }
+    ]
+  },
+  "conclusion": "6组固定虚构样例，共54条检查记录通过。新目录独立安装、真实PowerContext读写、浏览器主流程与新进程接续均有原始证据。暂无真人使用统计。",
+  "screenshots": [
+    {
+      "key": "desktop-overview",
+      "file": "desktop-overview.png",
+      "caption": "真实应用：任务与接续卡"
+    },
+    {
+      "key": "report",
+      "file": "report.png",
+      "caption": "真实应用：带来源的周报/交接单"
+    },
+    {
+      "key": "mobile",
+      "file": "mobile.png",
+      "caption": "真实应用：390px移动布局"
+    }
+  ]
+}

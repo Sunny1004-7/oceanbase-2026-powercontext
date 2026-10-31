@@ -1,0 +1,24 @@
+{
+  "qoder_uid": "01a1785d-d922-7ab0-9899-bec7deab2f6a",
+  "uid_source": "User confirmation from Qoder CN account profile",
+  "primary_app_author": "Qoder CN CLI 1.1.81",
+  "final_session": "6edf07c8-e6b8-4342-99c2-1f341bcd7939",
+  "primary_app_files": {
+    "app/main.py": "dadcf31f4123ace6e15ba0e9428164f8057d87408682e82793ff29298e5a3109",
+    "app/storage.py": "5a78242b7c1b132526fbe367adf55ca417625e6250f3c25ab23b9eaeafb71f67",
+    "app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/static/app.js": "058f621a5c18191ab78a717baa7957280f6f5ed06d42809cd5a059f3be13a47d",
+    "app/static/index.html": "35633f5c533ab02fc1e42d8841f9a6c46ad960abca197fc22711d8af48bbe158",
+    "app/static/style.css": "5813947c1a0136d77d0ebbf7406b756cffc66eecb9b023ed9d2a03c8434d948a"
+  },
+  "codex_scope": [
+    "requirements/environment repair",
+    "independent tests and browser scripts",
+    "self-contained setup/start scripts",
+    ".gitignore for private/generated files",
+    "minor site integration: fixed links, output-directory guard, narrow-screen grid, readable content without animation, final copy and screenshot links",
+    "formal README/TECHNICAL/sample/development docs",
+    "evidence packaging and release verification"
+  ],
+  "private_reasoning_included": false
+}

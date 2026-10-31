@@ -1,0 +1,4 @@
+record_id,date,completed,blockers,decisions,next_steps,task_id,title,status,owner,due_date
+csv-demo-1,2026-10-30,"完成需求分析，确定MVP范围","对CSV格式不熟悉，字段映射有疑问","采用标准表头，先小批量测试","继续完善任务列表",csv-task-1,理解CSV导入格式,doing,测试员A,2026-11-05
+csv-demo-1,2026-10-30,"完成需求分析，确定MVP范围","对CSV格式不熟悉，字段映射有疑问","采用标准表头，先小批量测试","继续完善任务列表",csv-task-2,编写导入测试用例,todo,测试员B,2026-11-07
+csv-demo-1,2026-10-30,"完成需求分析，确定MVP范围","对CSV格式不熟悉，字段映射有疑问","采用标准表头，先小批量测试","继续完善任务列表",csv-task-3,验证多行内容处理,todo,测试员C,2026-11-08

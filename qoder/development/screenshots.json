@@ -1,0 +1,34 @@
+[
+  {
+    "file": "qoder-request.png",
+    "original": "真实业务修复界面/07_01_start.png",
+    "sha256": "1d0b23ae17e5a0335b669f42e8c64de23a9f33126086b138866b30dbbbc4e1de",
+    "session_id": "6edf07c8-e6b8-4342-99c2-1f341bcd7939",
+    "caption": "Requirements and actual Qoder CLI identity",
+    "editing": "none; actual owned terminal browser screenshot"
+  },
+  {
+    "file": "qoder-source-fix.png",
+    "original": "07b_真实界面/07b_009.png",
+    "sha256": "d4351cac8df6def234face0c3d54417d3aa91614260619afc84caf964eda27fa",
+    "session_id": "6edf07c8-e6b8-4342-99c2-1f341bcd7939",
+    "caption": "Actual app/main.py and storage.py edits",
+    "editing": "none; actual owned terminal browser screenshot"
+  },
+  {
+    "file": "qoder-ui-fix.png",
+    "original": "07b_真实界面/control_quit-after-source-complete_before.png",
+    "sha256": "06bd48f27d92d6ce897e2800345f401c256443552335a1c44736465ff71bc013",
+    "session_id": "6edf07c8-e6b8-4342-99c2-1f341bcd7939",
+    "caption": "Actual report-cache fix and syntax check",
+    "editing": "none; actual owned terminal browser screenshot"
+  },
+  {
+    "file": "qoder-sites.png",
+    "original": "真实开发界面/06_tui_08.png",
+    "sha256": "c80c67db785fc11c5afb373b56427253f081e25d0d7334162b2456234157e70c",
+    "session_id": "4f37daa4-637d-43bb-a856-26780ecedde8",
+    "caption": "Actual Qoder Sites source development",
+    "editing": "none; actual owned terminal browser screenshot"
+  }
+]
