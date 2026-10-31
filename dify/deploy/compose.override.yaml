@@ -1,0 +1,40 @@
+services:
+  api:
+    depends_on: !override
+      init_permissions: {condition: service_completed_successfully}
+      db_postgres: {condition: service_healthy}
+      redis: {condition: service_started}
+    extra_hosts: ["pc-host.internal:172.30.13.1"]
+    mem_limit: 2400m
+  worker:
+    depends_on: !override
+      init_permissions: {condition: service_completed_successfully}
+      db_postgres: {condition: service_healthy}
+      redis: {condition: service_started}
+    extra_hosts: ["pc-host.internal:172.30.13.1"]
+    mem_limit: 1400m
+  worker_beat:
+    mem_limit: 600m
+  web:
+    mem_limit: 900m
+  plugin_daemon:
+    ports: !override ["127.0.0.1:5333:5003"]
+    extra_hosts: ["pc-host.internal:172.30.13.1"]
+    mem_limit: 1000m
+  ssrf_proxy:
+    extra_hosts: ["pc-host.internal:172.30.13.1"]
+    mem_limit: 192m
+  sandbox:
+    mem_limit: 256m
+  db_postgres:
+    mem_limit: 512m
+  redis:
+    mem_limit: 128m
+  nginx:
+    ports: !override ["127.0.0.1:8383:80"]
+    mem_limit: 96m
+networks:
+  default:
+    name: r13-dify
+    ipam:
+      config: [{subnet: 172.30.13.0/24, gateway: 172.30.13.1}]

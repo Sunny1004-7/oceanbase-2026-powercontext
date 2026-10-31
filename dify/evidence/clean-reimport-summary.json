@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "fresh_source_directory": "/home/powercontext/r13/e05-clean-code",
+  "fresh_venv": "/home/powercontext/r13/e05-clean-code/.venv",
+  "new_app_id": "ad02f52c-3a07-4581-b904-ea33128617d5",
+  "original_app_id": "c99cd70e-7921-4046-a25e-594a04ea84c8",
+  "same_dify_workspace": true,
+  "model_plugin_rebound_by_provider_and_name": true,
+  "independent_adapter_url": "http://pc-host.internal:4337",
+  "independent_data_directory": "/home/powercontext/r13/e05-clean-data",
+  "delivered_yaml_sha256": "6dd1de8370e3f4b50a56d708d660609509e1db05bece9f52469dd79ab63fd7dc",
+  "initial_revision": 0,
+  "final_state": {
+    "player": "Comet",
+    "scope_id": "scp_1ppkw0hc546tchmxtnzzv183ys",
+    "revision": 3,
+    "state": {
+      "stage": 3,
+      "completed": [
+        {
+          "commission_id": "c1",
+          "lost": "勇气",
+          "choice": "A",
+          "souvenir": "会发烫的出发扣",
+          "reason": "先试着自己迈出一步"
+        }
+      ],
+      "visits": 0,
+      "lost": "勇气",
+      "commission_id": "c1",
+      "reason": "第一次做组会报告",
+      "choice": "A",
+      "choice_reason": "先试着自己迈出一步",
+      "souvenir": "会发烫的出发扣"
+    },
+    "last_source": {
+      "source_id": "action-74acf16d1cbabf8a1f90d3025589746d",
+      "at": "2026-10-31T02:28:17.209707+00:00",
+      "position": 3
+    },
+    "action_count": 3,
+    "actions": {
+      "c1": {
+        "request_hash": "914613c3e8058a1d91dde777d64043f225f32fc2076ff61d6bda2b07348cf921",
+        "reply": "### 第一幕 · 登记失物\n\n欢迎登记失物“勇气”。它不像喧闹的掌声，更像第一次扣好衬衫时，胸前亮起的一粒小扣子——明明只有一点光，却足够让人迈向讲台。Comet，请告诉我：你想亲自把它找回，还是把它分享、改装成更适合组会报告的模样？两种方式，我会陪你慢慢挑选。\n\n档案里还没有已完成的委托；招领员不会假装以前认识你。\n\n请选择处理方式：\n\n**A 原样找回**：把失物留给自己，领取一件个人纪念物。\n\n**B 换种方式**：将失物改装成可以与别人分享的纪念物。\n\n发送 `@新编号 选A | 理由` 或 `@新编号 选B | 理由`。",
+        "revision": 1,
+        "source_id": "action-07da743bfc8d22b0ee480c8480836a19"
+      },
+      "c2": {
+        "request_hash": "9146e6b4085a4b5b85b99c9e7b817b9fa23e80f16cd00cae2d9c5d82d3a5952f",
+        "reply": "### 第二幕 · 原样找回\n\n你沿着站台深处的微光走去，周末的蓝色小行星在头顶慢慢旋转。勇气并未现身，只在最后一级台阶上留下一颗扣子，像等待被第一次拾起。你伸手触碰它，扣子骤然发烫，暖意穿过指尖，替你迈出了原本不敢迈的那一步。临别时，它化作一枚会发烫的出发扣，被你收进掌心。\n\n档案里还没有已完成的委托；招领员不会假装以前认识你。（读取来源 action-07da743bfc8d22b0ee480c8480836a19，2026-10-31T02:27:42.295932+00:00）\n\n已选 **A**。接下来将领取 **会发烫的出发扣**。\n\n发送 `@新编号 领取` 完成委托。",
+        "revision": 2,
+        "source_id": "action-363169026d3faa3b6aac53ab4a1ffc7a"
+      },
+      "c3": {
+        "request_hash": "b6d3f380e2aced31b6b97ecdd07d2fb1913d009a7c9a4f16464c1edcc39debe8",
+        "reply": "### 第三幕 · 招领回执\n\n阿弧接过那枚微微发烫的扣子，郑重放进你的掌心：“这是你的勇气。它没消失，只是变成了一次出发前，替你扣紧衣服的小小火种。以后害怕的时候，摸摸它——那一点温度会提醒你：你已经向前迈过一步了。周末的蓝色小行星仍在等你同行，这次，让勇气先替你扣好衣襟。”\n\n档案里还没有已完成的委托；招领员不会假装以前认识你。（读取来源 action-363169026d3faa3b6aac53ab4a1ffc7a，2026-10-31T02:28:00.231260+00:00）\n\n**玩家代号**：Comet\n\n**失物**：勇气\n\n**处理方式**：A（原样找回）\n\n**纪念物**：会发烫的出发扣\n\n本次委托完成。下次用同一玩家代号开启新会话，发送 `@新编号 再来`。",
+        "revision": 3,
+        "source_id": "action-74acf16d1cbabf8a1f90d3025589746d"
+      }
+    }
+  },
+  "actual_model_node_successes": 3,
+  "install_log": "clean-install.log",
+  "provision_log": "clean-provision.log"
+}

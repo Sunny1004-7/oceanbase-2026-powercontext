@@ -1,0 +1,54 @@
+{
+  "adapter-contract.json": {
+    "bytes": 21985,
+    "sha256": "1b8fd87633a4e73845b1a6a345f7db3ad6b06f1fe301d94abfbd0b13b9c9d771"
+  },
+  "clean-reimport-summary.json": {
+    "bytes": 4421,
+    "sha256": "07982ed9cbc0e7d73aa907b657e401064ce66f60a19d8de089e4df634d46bb50"
+  },
+  "container-health.json": {
+    "bytes": 7208,
+    "sha256": "6236a7d64f21edb17078780529e9bade98f32f0a06848e3301c4db678e895d28"
+  },
+  "dify-native-runs.zip": {
+    "bytes": 754728,
+    "sha256": "e58297d43e6a286e49c48f2a8545d2e483e360fd25d1c6c0d55cc478e2c5b320"
+  },
+  "failure-suite-summary.json": {
+    "bytes": 150,
+    "sha256": "1f23f13e4f1aaf501b81b25fa91b061b5578c38c7c2d606ed17a550e48f00062"
+  },
+  "full-game-summary.json": {
+    "bytes": 843,
+    "sha256": "b5181240ce5bb1a2eea7643930e61f656920fb4e9298531c7638d4d3fcf50144"
+  },
+  "native-act-1.png": {
+    "bytes": 113743,
+    "sha256": "bc1b96cd083b53faaec128cba8409badbbc2bf7e3ed99c16e4cc8d8f5a4b0514"
+  },
+  "native-act-2.png": {
+    "bytes": 148204,
+    "sha256": "1a73124d3fd46f0526e0e61f138c967cf24ddbf29497f8e6ea096f6bc256e729"
+  },
+  "native-act-3.png": {
+    "bytes": 135176,
+    "sha256": "ae01ed3ee0fdfb95ff71d55c84d2d9734cc27dd8a003caa69c5fc12fe4b72ae6"
+  },
+  "native-mobile-return.png": {
+    "bytes": 75359,
+    "sha256": "f72e349efbdfc6566dc0b4619eb802056141f7c9d468ca969dd5da922b82eb0f"
+  },
+  "platform-yaml-export.json": {
+    "bytes": 285,
+    "sha256": "841b2f46cdbf316937efa2bfe71ffdc2f28861509459396307c0c04061bbf8ae"
+  },
+  "powercontext-audit.jsonl.gz": {
+    "bytes": 9406,
+    "sha256": "9c4c200f455d2bd7bd9985509a40c40635d8f64cba0a4bbca131d9c6ebce9c38"
+  },
+  "restart-summary.json": {
+    "bytes": 4566,
+    "sha256": "4df32a92cd0a354a05d51d87f2522466755aed04edc12d6e6b76363449155acd"
+  }
+}

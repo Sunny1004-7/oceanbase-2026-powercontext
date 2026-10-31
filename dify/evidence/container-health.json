@@ -1,0 +1,227 @@
+{
+  "at_utc": "2026-10-31T02:36:34.233331+00:00",
+  "containers": [
+    {
+      "name": "/r13-dify-sandbox-1",
+      "image": "langgenius/dify-sandbox@sha256:750e1111426ef31a9217b81c98cccfb750f17b182af3221102e420afa9f0928e",
+      "image_id": "sha256:750e1111426ef31a9217b81c98cccfb750f17b182af3221102e420afa9f0928e",
+      "status": "running",
+      "exit_code": 0,
+      "health": "healthy",
+      "restarts": 0,
+      "memory_limit_bytes": 268435456
+    },
+    {
+      "name": "/r13-dify-plugin_daemon-1",
+      "image": "langgenius/dify-plugin-daemon@sha256:34412a22d1e1d1a6c73727fef88cffbcdd9be7a21bf9ad3076b4bf5c1b88fd9b",
+      "image_id": "sha256:34412a22d1e1d1a6c73727fef88cffbcdd9be7a21bf9ad3076b4bf5c1b88fd9b",
+      "status": "running",
+      "exit_code": 0,
+      "health": null,
+      "restarts": 0,
+      "memory_limit_bytes": 1048576000
+    },
+    {
+      "name": "/r13-dify-web-1",
+      "image": "langgenius/dify-web@sha256:e55a6bf1addf109c3655567663f906624f0980061efed864e0f07d23c71fa385",
+      "image_id": "sha256:e55a6bf1addf109c3655567663f906624f0980061efed864e0f07d23c71fa385",
+      "status": "running",
+      "exit_code": 0,
+      "health": null,
+      "restarts": 0,
+      "memory_limit_bytes": 943718400
+    },
+    {
+      "name": "/r13-dify-worker-1",
+      "image": "langgenius/dify-api@sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "image_id": "sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "status": "running",
+      "exit_code": 0,
+      "health": null,
+      "restarts": 0,
+      "memory_limit_bytes": 1468006400
+    },
+    {
+      "name": "/r13-dify-api-1",
+      "image": "langgenius/dify-api@sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "image_id": "sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "status": "running",
+      "exit_code": 0,
+      "health": "healthy",
+      "restarts": 0,
+      "memory_limit_bytes": 2516582400
+    },
+    {
+      "name": "/r13-dify-worker_beat-1",
+      "image": "langgenius/dify-api@sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "image_id": "sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "status": "running",
+      "exit_code": 0,
+      "health": null,
+      "restarts": 0,
+      "memory_limit_bytes": 629145600
+    },
+    {
+      "name": "/r13-dify-nginx-1",
+      "image": "nginx@sha256:5ab5b0b01097420873a3f3330f44248e34a3c2a3e8d5ee30658aeae8cb7435da",
+      "image_id": "sha256:5ab5b0b01097420873a3f3330f44248e34a3c2a3e8d5ee30658aeae8cb7435da",
+      "status": "running",
+      "exit_code": 0,
+      "health": null,
+      "restarts": 0,
+      "memory_limit_bytes": 100663296
+    },
+    {
+      "name": "/r13-dify-db_postgres-1",
+      "image": "postgres@sha256:54e0dd8e8cddcdbb9156c2486eed5a43eccb7214d7c6828097d41ce049fb3984",
+      "image_id": "sha256:54e0dd8e8cddcdbb9156c2486eed5a43eccb7214d7c6828097d41ce049fb3984",
+      "status": "running",
+      "exit_code": 0,
+      "health": "healthy",
+      "restarts": 0,
+      "memory_limit_bytes": 536870912
+    },
+    {
+      "name": "/r13-dify-redis-1",
+      "image": "redis@sha256:63d5174750e285bc3069c4519c53c8b6de6ebe70715140a6c9d21d6f04b77319",
+      "image_id": "sha256:63d5174750e285bc3069c4519c53c8b6de6ebe70715140a6c9d21d6f04b77319",
+      "status": "running",
+      "exit_code": 0,
+      "health": "healthy",
+      "restarts": 0,
+      "memory_limit_bytes": 134217728
+    },
+    {
+      "name": "/r13-dify-init_permissions-1",
+      "image": "busybox@sha256:a46257e06c82ad85242d0d38077d0a52d9896389ca60a1a59d3463db586e5fa4",
+      "image_id": "sha256:a46257e06c82ad85242d0d38077d0a52d9896389ca60a1a59d3463db586e5fa4",
+      "status": "exited",
+      "exit_code": 0,
+      "health": null,
+      "restarts": 0,
+      "memory_limit_bytes": 0
+    },
+    {
+      "name": "/r13-dify-ssrf_proxy-1",
+      "image": "ubuntu/squid@sha256:6a097f68bae708cedbabd6188d68c7e2e7a38cedd05a176e1cc0ba29e3bbe029",
+      "image_id": "sha256:6a097f68bae708cedbabd6188d68c7e2e7a38cedd05a176e1cc0ba29e3bbe029",
+      "status": "running",
+      "exit_code": 0,
+      "health": null,
+      "restarts": 0,
+      "memory_limit_bytes": 201326592
+    }
+  ],
+  "single_stats_sample": [
+    {
+      "BlockIO": "215MB / 349MB",
+      "CPUPerc": "0.00%",
+      "Container": "e256f0a6c70d",
+      "ID": "e256f0a6c70d",
+      "MemPerc": "34.14%",
+      "MemUsage": "87.39MiB / 256MiB",
+      "Name": "r13-dify-sandbox-1",
+      "NetIO": "9.8kB / 2.94kB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "93.1MB / 4.1kB",
+      "CPUPerc": "0.19%",
+      "Container": "f07fc2b1c990",
+      "ID": "f07fc2b1c990",
+      "MemPerc": "8.99%",
+      "MemUsage": "89.87MiB / 1000MiB",
+      "Name": "r13-dify-plugin_daemon-1",
+      "NetIO": "118kB / 164kB",
+      "PIDs": "26"
+    },
+    {
+      "BlockIO": "24MB / 0B",
+      "CPUPerc": "0.00%",
+      "Container": "10d7b6b9ad85",
+      "ID": "10d7b6b9ad85",
+      "MemPerc": "8.54%",
+      "MemUsage": "76.87MiB / 900MiB",
+      "Name": "r13-dify-web-1",
+      "NetIO": "708B / 456B",
+      "PIDs": "11"
+    },
+    {
+      "BlockIO": "27.7MB / 80.6MB",
+      "CPUPerc": "0.20%",
+      "Container": "5bfbb94bf068",
+      "ID": "5bfbb94bf068",
+      "MemPerc": "35.05%",
+      "MemUsage": "490.7MiB / 1.367GiB",
+      "Name": "r13-dify-worker-1",
+      "NetIO": "13.8MB / 10.3MB",
+      "PIDs": "22"
+    },
+    {
+      "BlockIO": "41.5MB / 79.6MB",
+      "CPUPerc": "0.04%",
+      "Container": "b2a6a979141c",
+      "ID": "b2a6a979141c",
+      "MemPerc": "20.59%",
+      "MemUsage": "494.2MiB / 2.344GiB",
+      "Name": "r13-dify-api-1",
+      "NetIO": "7.14MB / 4.23MB",
+      "PIDs": "23"
+    },
+    {
+      "BlockIO": "11MB / 78MB",
+      "CPUPerc": "0.00%",
+      "Container": "6055e5da24e7",
+      "ID": "6055e5da24e7",
+      "MemPerc": "73.97%",
+      "MemUsage": "443.8MiB / 600MiB",
+      "Name": "r13-dify-worker_beat-1",
+      "NetIO": "13.8kB / 89.2kB",
+      "PIDs": "41"
+    },
+    {
+      "BlockIO": "14.6MB / 20.5kB",
+      "CPUPerc": "0.00%",
+      "Container": "ba1cd5d9304f",
+      "ID": "ba1cd5d9304f",
+      "MemPerc": "25.20%",
+      "MemUsage": "24.19MiB / 96MiB",
+      "Name": "r13-dify-nginx-1",
+      "NetIO": "8.53MB / 8.67MB",
+      "PIDs": "22"
+    },
+    {
+      "BlockIO": "26.3MB / 138MB",
+      "CPUPerc": "2.24%",
+      "Container": "e79a5b96a043",
+      "ID": "e79a5b96a043",
+      "MemPerc": "14.05%",
+      "MemUsage": "71.95MiB / 512MiB",
+      "Name": "r13-dify-db_postgres-1",
+      "NetIO": "7.48MB / 17.8MB",
+      "PIDs": "13"
+    },
+    {
+      "BlockIO": "25.8MB / 197kB",
+      "CPUPerc": "0.15%",
+      "Container": "c395e075172e",
+      "ID": "c395e075172e",
+      "MemPerc": "5.71%",
+      "MemUsage": "7.312MiB / 128MiB",
+      "Name": "r13-dify-redis-1",
+      "NetIO": "7.92MB / 3.74MB",
+      "PIDs": "5"
+    },
+    {
+      "BlockIO": "61.3MB / 954kB",
+      "CPUPerc": "0.02%",
+      "Container": "eb36d2ffde22",
+      "ID": "eb36d2ffde22",
+      "MemPerc": "19.96%",
+      "MemUsage": "38.33MiB / 192MiB",
+      "Name": "r13-dify-ssrf_proxy-1",
+      "NetIO": "101kB / 105kB",
+      "PIDs": "9"
+    }
+  ]
+}

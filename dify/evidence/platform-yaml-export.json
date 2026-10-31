@@ -1,0 +1,10 @@
+{
+  "app_id": "c99cd70e-7921-4046-a25e-594a04ea84c8",
+  "format": "yaml",
+  "dsl_version": "0.7.0",
+  "include_secret": false,
+  "file": "星际失物招领局.yml",
+  "bytes": 26674,
+  "sha256": "6dd1de8370e3f4b50a56d708d660609509e1db05bece9f52469dd79ab63fd7dc",
+  "node_count": 16
+}

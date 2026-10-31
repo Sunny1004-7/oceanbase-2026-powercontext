@@ -1,0 +1,58 @@
+{
+  "before_pid": 32068,
+  "after_pid": 46101,
+  "persisted_records_equal_before_return": true,
+  "new_conversation_id": "44271cd4-5f6c-4b40-8ef7-6f4e448950bd",
+  "memory_in_answer": true,
+  "player_isolation_after_return": true,
+  "state_after_return": {
+    "player": "Nova",
+    "scope_id": "scp_4qk62ca7kv8h055ngrq9xzzeqg",
+    "revision": 4,
+    "state": {
+      "stage": 0,
+      "completed": [
+        {
+          "commission_id": "n1",
+          "lost": "周末",
+          "choice": "A",
+          "souvenir": "装着星期八的口袋票",
+          "reason": "这次想把时间留给自己"
+        }
+      ],
+      "visits": 1
+    },
+    "last_source": {
+      "source_id": "action-61454abdcc81689d949736564b47aa1a",
+      "at": "2026-10-31T02:27:46.766886+00:00",
+      "position": 4
+    },
+    "action_count": 4,
+    "actions": {
+      "n1": {
+        "request_hash": "ca83735aa1fe0af0999a0def9e0edb088f8aecc3e4915224bd52314f3a024a45",
+        "reply": "### 第一幕 · 登记失物\n\n阿弧把“周末”记进招领簿：一颗蓝色小行星，正沿着城市的消息洪流缓缓打转。它的光很轻，像替人守住一小段无人打扰的时间。阿弧望了望你，故事里的你只是想留出一个不看消息的下午，于是那颗小行星暂时停在窗边，等你决定要把它领回哪里。\n\n档案里还没有已完成的委托；招领员不会假装以前认识你。\n\n请选择处理方式：\n\n**A 原样找回**：把失物留给自己，领取一件个人纪念物。\n\n**B 换种方式**：将失物改装成可以与别人分享的纪念物。\n\n发送 `@新编号 选A | 理由` 或 `@新编号 选B | 理由`。",
+        "revision": 1,
+        "source_id": "action-bcf4b212aa274b7d4c4d7a00b4b76a85"
+      },
+      "n2": {
+        "request_hash": "853416f1b1b845450fc72fda2e8af0748ed38cd0c0de33241c457e176b94b5a4",
+        "reply": "### 第二幕 · 原样找回\n\nNova，这是你的周末吗？它像一颗蓝色小行星，正躲在时间的缝隙里打转。别急，我会亲自陪你把它领回来——沿着只属于你的小径，走过无人打扰的午后。找回之后，它会化作一张装着“星期八”的口袋票，留给下一个想为自己停一停的周末。\n\n档案里还没有已完成的委托；招领员不会假装以前认识你。（读取来源 action-bcf4b212aa274b7d4c4d7a00b4b76a85，2026-10-31T02:18:04.048125+00:00）\n\n已选 **A**。接下来将领取 **装着星期八的口袋票**。\n\n发送 `@新编号 领取` 完成委托。",
+        "revision": 2,
+        "source_id": "action-2c530c9abfc9b278ba570e026de38ff7"
+      },
+      "n3": {
+        "request_hash": "e2d00df31b4a6725116995bf16c2d2bc3ea86fc6ea3c591bfe857d95ee5963c1",
+        "reply": "### 第三幕 · 招领回执\n\n周末原来躲在口袋里，皱成一小团蓝色的星尘，难怪一直找不到归途。Nova，来领回它吧——这张“星期八”口袋票会替你多留一天：周六还没过完，星期天就已经在路上了。以后若又逢周一，便看看票面，提醒自己曾经把一个完整周末弄丢，也亲手找了回来。\n\n档案里还没有已完成的委托；招领员不会假装以前认识你。（读取来源 action-2c530c9abfc9b278ba570e026de38ff7，2026-10-31T02:18:53.167943+00:00）\n\n**玩家代号**：Nova\n\n**失物**：周末\n\n**处理方式**：A（原样找回）\n\n**纪念物**：装着星期八的口袋票\n\n本次委托完成。下次用同一玩家代号开启新会话，发送 `@新编号 再来`。",
+        "revision": 3,
+        "source_id": "action-3b7f8baf60ff29e730a5769f210fbe26"
+      },
+      "n4": {
+        "request_hash": "1bae41344bb12e6b2c31f35dccf450a97ca746d1f351ebd95ecccdded5665c2e",
+        "reply": "### 回访 · 柜台又亮了\n\n阿弧把那张装着星期八的口袋票轻轻放回你掌心，蓝色星尘立刻沿着票边慢慢聚拢，凝成一枚迷路的周末。看来，它一直躲在星期八后面，等人亲自把它领回去。 Nova，周末这次归你了——愿你走出这扇门时，鞋底真的沾上两天的阳光。\n\n档案里实际记着：你上次丢失了“周末”，选择 A，带走“装着星期八的口袋票”；已完成 1 份委托。（读取来源 action-3b7f8baf60ff29e730a5769f210fbe26，2026-10-31T02:19:08.835855+00:00）\n\n可以登记下一份委托了：`@新编号 登记 勇气 | 理由`（也可选周末或笑话）。",
+        "revision": 4,
+        "source_id": "action-61454abdcc81689d949736564b47aa1a"
+      }
+    }
+  }
+}

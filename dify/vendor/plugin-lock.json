@@ -1,0 +1,8 @@
+{
+  "plugin": "langgenius/openai_api_compatible",
+  "version": "0.0.73",
+  "unique_identifier": "langgenius/openai_api_compatible:0.0.73@4cf123ffaa4556f079bed6c47f3a462cc825504b859b183239e74eb19136a4b5",
+  "download_source": "https://marketplace.dify.ai/api/v1/plugins/download?unique_identifier=langgenius/openai_api_compatible:0.0.73@4cf123ffaa4556f079bed6c47f3a462cc825504b859b183239e74eb19136a4b5",
+  "bytes": 546020,
+  "sha256": "a3c6524f183083e0f6f57ac50f201700fd019e786bd1971249ef086adcb70008"
+}

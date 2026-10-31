@@ -1,0 +1,43 @@
+{
+  "results": [
+    {
+      "test": "Nova initially empty",
+      "passed": true
+    },
+    {
+      "test": "register uses real LLM and saved state",
+      "passed": true
+    },
+    {
+      "test": "invalid choice does not advance",
+      "passed": true
+    },
+    {
+      "test": "same action across new conversation is idempotent",
+      "passed": true
+    },
+    {
+      "test": "same id different input refused",
+      "passed": true
+    },
+    {
+      "test": "Nova complete A ending",
+      "passed": true
+    },
+    {
+      "test": "choice changes ending",
+      "passed": true
+    },
+    {
+      "test": "players stay isolated",
+      "passed": true
+    }
+  ],
+  "players": [
+    "Nova",
+    "Orbit"
+  ],
+  "true_model_calls": 6,
+  "basis": "Dify LLM node traces and usage, plus actual PowerContext reads",
+  "official_score": null
+}

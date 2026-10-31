@@ -1,0 +1,767 @@
+{
+  "passed": true,
+  "player": "Test-c1d51461857d",
+  "kind": "adapter contract only, no model calls",
+  "checks": [
+    {
+      "test": "empty",
+      "passed": true
+    },
+    {
+      "test": "first durable commit",
+      "passed": true
+    },
+    {
+      "test": "old revision same action retry",
+      "passed": true
+    },
+    {
+      "test": "same action different input refused",
+      "passed": true
+    },
+    {
+      "test": "stale revision refused",
+      "passed": true
+    },
+    {
+      "test": "one concurrent winner",
+      "passed": true
+    },
+    {
+      "test": "page-write-2",
+      "passed": true
+    },
+    {
+      "test": "page-write-3",
+      "passed": true
+    },
+    {
+      "test": "page-write-4",
+      "passed": true
+    },
+    {
+      "test": "page-write-5",
+      "passed": true
+    },
+    {
+      "test": "page-write-6",
+      "passed": true
+    },
+    {
+      "test": "page-write-7",
+      "passed": true
+    },
+    {
+      "test": "page-write-8",
+      "passed": true
+    },
+    {
+      "test": "page-write-9",
+      "passed": true
+    },
+    {
+      "test": "page-write-10",
+      "passed": true
+    },
+    {
+      "test": "page-write-11",
+      "passed": true
+    },
+    {
+      "test": "page-write-12",
+      "passed": true
+    },
+    {
+      "test": "page-write-13",
+      "passed": true
+    },
+    {
+      "test": "page-write-14",
+      "passed": true
+    },
+    {
+      "test": "page-write-15",
+      "passed": true
+    },
+    {
+      "test": "page-write-16",
+      "passed": true
+    },
+    {
+      "test": "page-write-17",
+      "passed": true
+    },
+    {
+      "test": "page-write-18",
+      "passed": true
+    },
+    {
+      "test": "page-write-19",
+      "passed": true
+    },
+    {
+      "test": "page-write-20",
+      "passed": true
+    },
+    {
+      "test": "page-write-21",
+      "passed": true
+    },
+    {
+      "test": "page-write-22",
+      "passed": true
+    },
+    {
+      "test": "page-write-23",
+      "passed": true
+    },
+    {
+      "test": "page-write-24",
+      "passed": true
+    },
+    {
+      "test": "page-write-25",
+      "passed": true
+    },
+    {
+      "test": "page-write-26",
+      "passed": true
+    },
+    {
+      "test": "full pagination",
+      "passed": true
+    },
+    {
+      "test": "bounded old action lookup",
+      "passed": true
+    },
+    {
+      "test": "player isolation",
+      "passed": true
+    },
+    {
+      "test": "cross-player source is hidden",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/state/Test-c1d51461857d",
+      "status": 200,
+      "response": {
+        "player": "Test-c1d51461857d",
+        "scope_id": "scp_6yk06aq940gv0d92zmg5knnnkm",
+        "revision": 0,
+        "state": {
+          "stage": 0,
+          "completed": [],
+          "visits": 0
+        },
+        "last_source": null,
+        "action_count": 0,
+        "actions": {}
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 1,
+        "source_id": "action-9a98c6b5a9a85de96f0ab38498f2fe5b",
+        "reply": "适配器一致性测试回执 first"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": true,
+        "revision": 1,
+        "source_id": "action-9a98c6b5a9a85de96f0ab38498f2fe5b",
+        "reply": "适配器一致性测试回执 first"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 409,
+      "response": {
+        "detail": "动作编号已用于其他输入；没有重复推进"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 409,
+      "response": {
+        "detail": "玩家状态已更新；请用同一动作编号重试"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 2,
+        "source_id": "action-237ac6acac5d8afa1036639bb5c5f1c6",
+        "reply": "适配器一致性测试回执 race-b"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 409,
+      "response": {
+        "detail": "玩家状态已更新；请用同一动作编号重试"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 3,
+        "source_id": "action-c2670ba1d78c3c9a22897b9aa6ca84b9",
+        "reply": "适配器一致性测试回执 page-2"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 4,
+        "source_id": "action-c49b7f35233b084829f5cd2ecb31ed62",
+        "reply": "适配器一致性测试回执 page-3"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 5,
+        "source_id": "action-e8d3a9a7e4735c29df44e6e0c76389df",
+        "reply": "适配器一致性测试回执 page-4"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 6,
+        "source_id": "action-c62b62657e3f2e69c5af7b3c6f95558c",
+        "reply": "适配器一致性测试回执 page-5"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 7,
+        "source_id": "action-2c5fe0cd72b0e0793a86a7fdeb9bf3ce",
+        "reply": "适配器一致性测试回执 page-6"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 8,
+        "source_id": "action-cc6a7b190049b3d95b810f9720b77cc7",
+        "reply": "适配器一致性测试回执 page-7"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 9,
+        "source_id": "action-98a5f1de629e7c82836524a56ddae148",
+        "reply": "适配器一致性测试回执 page-8"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 10,
+        "source_id": "action-fe8e8241abab62cef785ba5088d4c27e",
+        "reply": "适配器一致性测试回执 page-9"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 11,
+        "source_id": "action-c5d6d51ab510fccef227a9a276227f26",
+        "reply": "适配器一致性测试回执 page-10"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 12,
+        "source_id": "action-cc6ec756714d447e6a96db7364e1437c",
+        "reply": "适配器一致性测试回执 page-11"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 13,
+        "source_id": "action-4d015615a07492d4fc55d600f4a4c074",
+        "reply": "适配器一致性测试回执 page-12"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 14,
+        "source_id": "action-eefe881ce2ba703032692da5f70d4ccb",
+        "reply": "适配器一致性测试回执 page-13"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 15,
+        "source_id": "action-865204db25b4816a952e375b576f4adc",
+        "reply": "适配器一致性测试回执 page-14"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 16,
+        "source_id": "action-456edc7b1758c07e45b5d11b7a4b2010",
+        "reply": "适配器一致性测试回执 page-15"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 17,
+        "source_id": "action-b049eb79275ddaced48b2a6927171763",
+        "reply": "适配器一致性测试回执 page-16"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 18,
+        "source_id": "action-1a19b573bc81263ed6fb454b0bf03717",
+        "reply": "适配器一致性测试回执 page-17"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 19,
+        "source_id": "action-a49cd473ecf1c07075a55d86ab810f38",
+        "reply": "适配器一致性测试回执 page-18"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 20,
+        "source_id": "action-7a89e7672a84165ebf84705a8db4842d",
+        "reply": "适配器一致性测试回执 page-19"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 21,
+        "source_id": "action-cf936b6459f93a7b292c9d7b37db453b",
+        "reply": "适配器一致性测试回执 page-20"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 22,
+        "source_id": "action-e7fb362f7c97caca6c5d39082d94af8f",
+        "reply": "适配器一致性测试回执 page-21"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 23,
+        "source_id": "action-f6fed09aef49ff16dff5bab25d478b0a",
+        "reply": "适配器一致性测试回执 page-22"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 24,
+        "source_id": "action-e4ed25abb6c17bc2d3f64d21c08e4bb3",
+        "reply": "适配器一致性测试回执 page-23"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 25,
+        "source_id": "action-60e9b82a3d61487f261f952b06cc4aae",
+        "reply": "适配器一致性测试回执 page-24"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 26,
+        "source_id": "action-01707dae1f83c74ef51c1827e4455cb8",
+        "reply": "适配器一致性测试回执 page-25"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/commit",
+      "status": 200,
+      "response": {
+        "saved": true,
+        "duplicate": false,
+        "revision": 27,
+        "source_id": "action-43b053e6f7182c57a256ab8d02874551",
+        "reply": "适配器一致性测试回执 page-26"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/state/Test-c1d51461857d",
+      "status": 200,
+      "response": {
+        "player": "Test-c1d51461857d",
+        "scope_id": "scp_6yk06aq940gv0d92zmg5knnnkm",
+        "revision": 27,
+        "state": {
+          "stage": 0,
+          "completed": [],
+          "visits": 0
+        },
+        "last_source": {
+          "source_id": "action-43b053e6f7182c57a256ab8d02874551",
+          "at": "2026-10-31T02:28:39.970858+00:00",
+          "position": 27
+        },
+        "action_count": 27,
+        "actions": {
+          "first": {
+            "request_hash": "a7937b64b8caa58f03721bb6bacf5c78cb235febe0e70b1b84cd99541461a08e",
+            "reply": "适配器一致性测试回执 first",
+            "revision": 1,
+            "source_id": "action-9a98c6b5a9a85de96f0ab38498f2fe5b"
+          },
+          "race-b": {
+            "request_hash": "4ca7a24603f08ec1c45b5928abf510a548d362ae7181a45e86c1378d999550bd",
+            "reply": "适配器一致性测试回执 race-b",
+            "revision": 2,
+            "source_id": "action-237ac6acac5d8afa1036639bb5c5f1c6"
+          },
+          "page-2": {
+            "request_hash": "0f6724ab77e487b74587299fac8c3336030f4157c86202d5a3f5ca64a6059442",
+            "reply": "适配器一致性测试回执 page-2",
+            "revision": 3,
+            "source_id": "action-c2670ba1d78c3c9a22897b9aa6ca84b9"
+          },
+          "page-3": {
+            "request_hash": "fe5d32f06cf188ad797ee1a75504e24b41df491e7951d4bcef64b81f78cbdefc",
+            "reply": "适配器一致性测试回执 page-3",
+            "revision": 4,
+            "source_id": "action-c49b7f35233b084829f5cd2ecb31ed62"
+          },
+          "page-4": {
+            "request_hash": "b67009442ff6d6cae27f602fde08524850ede8102e9f4572c15c9ec1e0254b45",
+            "reply": "适配器一致性测试回执 page-4",
+            "revision": 5,
+            "source_id": "action-e8d3a9a7e4735c29df44e6e0c76389df"
+          },
+          "page-5": {
+            "request_hash": "bf7fe22f38130f8116b841bc4d954d73c5a541463dc384c2db93e87fdb8129ee",
+            "reply": "适配器一致性测试回执 page-5",
+            "revision": 6,
+            "source_id": "action-c62b62657e3f2e69c5af7b3c6f95558c"
+          },
+          "page-6": {
+            "request_hash": "6e03f24532af8d6a69052fd2d7290fa02c1507c378b88994abc237a5c1260d17",
+            "reply": "适配器一致性测试回执 page-6",
+            "revision": 7,
+            "source_id": "action-2c5fe0cd72b0e0793a86a7fdeb9bf3ce"
+          },
+          "page-7": {
+            "request_hash": "f6b5f3c207e3ce9697a1da842b63cbb8355d4ad0595e4788029005e837ce6295",
+            "reply": "适配器一致性测试回执 page-7",
+            "revision": 8,
+            "source_id": "action-cc6a7b190049b3d95b810f9720b77cc7"
+          },
+          "page-8": {
+            "request_hash": "7808523801f4c42f9e96813a517afd2c1e1300c03a919b292662451f3508118b",
+            "reply": "适配器一致性测试回执 page-8",
+            "revision": 9,
+            "source_id": "action-98a5f1de629e7c82836524a56ddae148"
+          },
+          "page-9": {
+            "request_hash": "3d7a72e10f68fe75cba616954aedbd49398b5ed0c817660f200e7b8ab3c70421",
+            "reply": "适配器一致性测试回执 page-9",
+            "revision": 10,
+            "source_id": "action-fe8e8241abab62cef785ba5088d4c27e"
+          },
+          "page-10": {
+            "request_hash": "bec6d5c8cea5a61cdec6a5ae4569133916ab21156db73a660e5e4b2f358bc517",
+            "reply": "适配器一致性测试回执 page-10",
+            "revision": 11,
+            "source_id": "action-c5d6d51ab510fccef227a9a276227f26"
+          },
+          "page-11": {
+            "request_hash": "eebddaea448287348c8679277cf683be4e788b59cf0ec9958560d0b507a2939f",
+            "reply": "适配器一致性测试回执 page-11",
+            "revision": 12,
+            "source_id": "action-cc6ec756714d447e6a96db7364e1437c"
+          },
+          "page-12": {
+            "request_hash": "cb5666d22889772a17b095942a278f2983d9779619fbdb643bb2146b606ef186",
+            "reply": "适配器一致性测试回执 page-12",
+            "revision": 13,
+            "source_id": "action-4d015615a07492d4fc55d600f4a4c074"
+          },
+          "page-13": {
+            "request_hash": "9963273eb4812fc2775ece38a225828c44fb6f3f05d9821bb11aadadcdfff5d7",
+            "reply": "适配器一致性测试回执 page-13",
+            "revision": 14,
+            "source_id": "action-eefe881ce2ba703032692da5f70d4ccb"
+          },
+          "page-14": {
+            "request_hash": "8c07b7e9252e4c47a77318231251fa41d9d8582e44f07af6bac3bd1ca9292752",
+            "reply": "适配器一致性测试回执 page-14",
+            "revision": 15,
+            "source_id": "action-865204db25b4816a952e375b576f4adc"
+          },
+          "page-15": {
+            "request_hash": "60e55602ab74073b6a3618bccf2f0aac4aeb892aecbf860c5dec9f3e765d82f6",
+            "reply": "适配器一致性测试回执 page-15",
+            "revision": 16,
+            "source_id": "action-456edc7b1758c07e45b5d11b7a4b2010"
+          },
+          "page-16": {
+            "request_hash": "9c980b39ee1fd98aae9246469d2f803284e2b322baf1ed64e4056e8c6445f688",
+            "reply": "适配器一致性测试回执 page-16",
+            "revision": 17,
+            "source_id": "action-b049eb79275ddaced48b2a6927171763"
+          },
+          "page-17": {
+            "request_hash": "3910aa3f3ec6c7ed0c2a8cfe0f5092a7c828b82f9a6d0c38ec26ba405ea40655",
+            "reply": "适配器一致性测试回执 page-17",
+            "revision": 18,
+            "source_id": "action-1a19b573bc81263ed6fb454b0bf03717"
+          },
+          "page-18": {
+            "request_hash": "6c26da76ade557a126d128e04caa6929b3e9b8e42016414cdfc290430c25de17",
+            "reply": "适配器一致性测试回执 page-18",
+            "revision": 19,
+            "source_id": "action-a49cd473ecf1c07075a55d86ab810f38"
+          },
+          "page-19": {
+            "request_hash": "2d21c0a88a60602c6579d6b2cdc351afea24b355ff82002f071d6f90d0b2fe2e",
+            "reply": "适配器一致性测试回执 page-19",
+            "revision": 20,
+            "source_id": "action-7a89e7672a84165ebf84705a8db4842d"
+          },
+          "page-20": {
+            "request_hash": "7215bf97593ad60cee8f614ff5f721e5c205f5bfdc7503d67badba1298a65f2f",
+            "reply": "适配器一致性测试回执 page-20",
+            "revision": 21,
+            "source_id": "action-cf936b6459f93a7b292c9d7b37db453b"
+          },
+          "page-21": {
+            "request_hash": "422c80f186559b1aaa0aff397ebd414104fb6521444dddd66a0f0059b67d133e",
+            "reply": "适配器一致性测试回执 page-21",
+            "revision": 22,
+            "source_id": "action-e7fb362f7c97caca6c5d39082d94af8f"
+          },
+          "page-22": {
+            "request_hash": "d0e8b20f73352f4860fd498c315dc48885246e503b77a912fecc062476f15bd0",
+            "reply": "适配器一致性测试回执 page-22",
+            "revision": 23,
+            "source_id": "action-f6fed09aef49ff16dff5bab25d478b0a"
+          },
+          "page-23": {
+            "request_hash": "8ffd9a746e5aacf3bcafa7ef9458cfbcec048780021d8f29cc093d8c167e468c",
+            "reply": "适配器一致性测试回执 page-23",
+            "revision": 24,
+            "source_id": "action-e4ed25abb6c17bc2d3f64d21c08e4bb3"
+          },
+          "page-24": {
+            "request_hash": "93ee89394ef7ae23ff54b0ed5a549e5617e0f7f0b9107e6554972ca2836a6482",
+            "reply": "适配器一致性测试回执 page-24",
+            "revision": 25,
+            "source_id": "action-60e9b82a3d61487f261f952b06cc4aae"
+          },
+          "page-25": {
+            "request_hash": "46e29eab684fd13411472d0bc6ae5607e310be9ffb1b7f2b75e1acf9322d7d65",
+            "reply": "适配器一致性测试回执 page-25",
+            "revision": 26,
+            "source_id": "action-01707dae1f83c74ef51c1827e4455cb8"
+          },
+          "page-26": {
+            "request_hash": "3b2602ff536e333d89349fcbfa2b943baf60d22390de05767ee8f3cc3923010d",
+            "reply": "适配器一致性测试回执 page-26",
+            "revision": 27,
+            "source_id": "action-43b053e6f7182c57a256ab8d02874551"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/state/Test-c1d51461857d?lookup_action=first",
+      "status": 200,
+      "response": {
+        "player": "Test-c1d51461857d",
+        "scope_id": "scp_6yk06aq940gv0d92zmg5knnnkm",
+        "revision": 27,
+        "state": {
+          "stage": 0,
+          "completed": [],
+          "visits": 0
+        },
+        "last_source": {
+          "source_id": "action-43b053e6f7182c57a256ab8d02874551",
+          "at": "2026-10-31T02:28:39.970858+00:00",
+          "position": 27
+        },
+        "action_count": 27,
+        "actions": {
+          "first": {
+            "request_hash": "a7937b64b8caa58f03721bb6bacf5c78cb235febe0e70b1b84cd99541461a08e",
+            "reply": "适配器一致性测试回执 first",
+            "revision": 1,
+            "source_id": "action-9a98c6b5a9a85de96f0ab38498f2fe5b"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/state/Other-1ced4fbc7670",
+      "status": 200,
+      "response": {
+        "player": "Other-1ced4fbc7670",
+        "scope_id": "scp_79hgbm07gwb2cr3cbggb5j4n0r",
+        "revision": 0,
+        "state": {
+          "stage": 0,
+          "completed": [],
+          "visits": 0
+        },
+        "last_source": null,
+        "action_count": 0,
+        "actions": {}
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sources/Other-1ced4fbc7670/action-43b053e6f7182c57a256ab8d02874551",
+      "status": 404,
+      "response": {
+        "detail": "该玩家没有此来源"
+      }
+    }
+  ]
+}

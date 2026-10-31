@@ -1,0 +1,6 @@
+{
+  "model_failure_feedback": true,
+  "write_failure_feedback": true,
+  "write_retry_same_action_saved_once": true,
+  "isolated_app_restored": true
+}

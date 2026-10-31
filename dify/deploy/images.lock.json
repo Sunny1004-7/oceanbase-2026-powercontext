@@ -1,0 +1,85 @@
+{
+  "dify_version": "1.18.0",
+  "dify_commit": "50abea97062110044f15d0e03ccecadd9ccc87ca",
+  "source_url": "https://codeload.github.com/langgenius/dify/tar.gz/refs/tags/1.18.0",
+  "archive_sha256": "16654704373c1b6cfe81a77bf0402b4f75cab7791ce2485d6fcee5f18e1d9ec4",
+  "services": {
+    "init_permissions": {
+      "requested_tag": "busybox:latest",
+      "image": "busybox@sha256:a46257e06c82ad85242d0d38077d0a52d9896389ca60a1a59d3463db586e5fa4",
+      "image_id": "sha256:a46257e06c82ad85242d0d38077d0a52d9896389ca60a1a59d3463db586e5fa4",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "db_postgres": {
+      "requested_tag": "postgres:15-alpine",
+      "image": "postgres@sha256:54e0dd8e8cddcdbb9156c2486eed5a43eccb7214d7c6828097d41ce049fb3984",
+      "image_id": "sha256:54e0dd8e8cddcdbb9156c2486eed5a43eccb7214d7c6828097d41ce049fb3984",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "redis": {
+      "requested_tag": "redis:6-alpine",
+      "image": "redis@sha256:63d5174750e285bc3069c4519c53c8b6de6ebe70715140a6c9d21d6f04b77319",
+      "image_id": "sha256:63d5174750e285bc3069c4519c53c8b6de6ebe70715140a6c9d21d6f04b77319",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "sandbox": {
+      "requested_tag": "langgenius/dify-sandbox:0.2.15",
+      "image": "langgenius/dify-sandbox@sha256:750e1111426ef31a9217b81c98cccfb750f17b182af3221102e420afa9f0928e",
+      "image_id": "sha256:750e1111426ef31a9217b81c98cccfb750f17b182af3221102e420afa9f0928e",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "ssrf_proxy": {
+      "requested_tag": "ubuntu/squid:latest",
+      "image": "ubuntu/squid@sha256:6a097f68bae708cedbabd6188d68c7e2e7a38cedd05a176e1cc0ba29e3bbe029",
+      "image_id": "sha256:6a097f68bae708cedbabd6188d68c7e2e7a38cedd05a176e1cc0ba29e3bbe029",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "plugin_daemon": {
+      "requested_tag": "langgenius/dify-plugin-daemon:0.6.10-local",
+      "image": "langgenius/dify-plugin-daemon@sha256:34412a22d1e1d1a6c73727fef88cffbcdd9be7a21bf9ad3076b4bf5c1b88fd9b",
+      "image_id": "sha256:34412a22d1e1d1a6c73727fef88cffbcdd9be7a21bf9ad3076b4bf5c1b88fd9b",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "api": {
+      "requested_tag": "langgenius/dify-api:1.18.0",
+      "image": "langgenius/dify-api@sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "image_id": "sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "worker": {
+      "requested_tag": "langgenius/dify-api:1.18.0",
+      "image": "langgenius/dify-api@sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "image_id": "sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "worker_beat": {
+      "requested_tag": "langgenius/dify-api:1.18.0",
+      "image": "langgenius/dify-api@sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "image_id": "sha256:0120970fb4ea59aa328d63b7dda635cccc071efb8aae470cd07115a026dbffd3",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "web": {
+      "requested_tag": "langgenius/dify-web:1.18.0",
+      "image": "langgenius/dify-web@sha256:e55a6bf1addf109c3655567663f906624f0980061efed864e0f07d23c71fa385",
+      "image_id": "sha256:e55a6bf1addf109c3655567663f906624f0980061efed864e0f07d23c71fa385",
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    "nginx": {
+      "requested_tag": "nginx:latest",
+      "image": "nginx@sha256:5ab5b0b01097420873a3f3330f44248e34a3c2a3e8d5ee30658aeae8cb7435da",
+      "image_id": "sha256:5ab5b0b01097420873a3f3330f44248e34a3c2a3e8d5ee30658aeae8cb7435da",
+      "architecture": "amd64",
+      "os": "linux"
+    }
+  }
+}

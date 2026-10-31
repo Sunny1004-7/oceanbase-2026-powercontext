@@ -1,0 +1,12 @@
+.venv/
+.data/
+.sample-data/
+.dify/
+.env*
+!.env.example
+.runtime*.json
+__pycache__/
+.pytest_cache/
+*.pyc
+*.log
+evidence/runtime/
